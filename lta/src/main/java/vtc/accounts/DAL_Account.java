@@ -19,10 +19,10 @@ public class DAL_Account {
             conn = DriverManager.getConnection(strconn);
             start = conn.createStatement();
             rs = start.executeQuery(
-                    "SELECT AccountsID,UserName FROM lemon_tee_shop.accounts where UserName = '" + username + "';");
+                    "SELECT account_id,user_name FROM lemon_tee_shop.accounts where user_name = '" + username + "';");
             while (rs.next()) {
-                if (username.equals(rs.getString("UserName"))) {
-                    id = rs.getInt("AccountsID");
+                if (username.equals(rs.getString("user_name"))) {
+                    id = rs.getInt("account_id");
                 } else {
                     id = -1;
                 }
@@ -34,11 +34,11 @@ public class DAL_Account {
             } else {
 
                 rs = start
-                        .executeQuery("SELECT Password FROM lemon_tee_shop.accounts where AccountsID = '" + id + "';");
+                        .executeQuery("SELECT password FROM lemon_tee_shop.accounts where account_id = '" + id + "';");
                 while (rs.next()) {
                     if (password.equals(rs.getString("Password"))) {
                         rs = start.executeQuery(
-                                "SELECT Position FROM lemon_tee_shop.accounts where AccountsID = '" + id + "';");
+                                "SELECT position FROM lemon_tee_shop.accounts where account_id = '" + id + "';");
                         while (rs.next()) {
                             position = rs.getString("Position");
                         }

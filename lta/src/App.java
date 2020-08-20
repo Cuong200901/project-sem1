@@ -1,32 +1,29 @@
-package vtc;
+import Accounts.DAL_Account;
+import Accounts.*;
 
-import vtc.accounts.*;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class App {
-    public static void main(final String[] args) {
-        final Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
         while (true) {
-
-            final DAL_Account dal_Account = new DAL_Account();
-            final GUI_Account gui_account = new GUI_Account();
+            cls();
+            DAL_Account dal_account = new DAL_Account();
+            GUI_Account gui_account = new GUI_Account();
             String username;
             String password;
-
             System.out.println("+-------------------------------------------+");
-            System.out.println("|               [WELL COME]                 |");
+            System.out.println("|                WELL COME                  |");
             System.out.println("+-------------------------------------------+");
-            System.out.print("      [Username]*");
-            username = nhap();         
-            password = readPassword("      [Password]*");
-            final String check = dal_Account.check_account(username, password);
+            System.out.print("      *Username: ");
+            username = nhap();
+            password = readPassword("      *Password*");
+            String check = dal_account.check_account(username, password);
             if (check == null) {
                 System.out.println("Tai khoan hoac mat khau khong chinh xac!");
                 System.out.printf("Nhan %s de tiep tuc:", "Enter");
-                final String nh = sc.nextLine();
+                String nh = sc.nextLine();
             } else {
                 if (check.equals("Admin")) {
                     gui_account.admin_main_menu();
@@ -44,7 +41,7 @@ public class App {
     }
 
     private static String nhap() {
-        final Scanner input = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
         String a;
         while (true) {
             a = input.nextLine();
@@ -68,22 +65,22 @@ public class App {
         }
     }
 
-    public static String readPassword(final String prompt) {
-        final EraserThread et = new EraserThread(prompt);
-        final Thread mask = new Thread(et);
+    public static String readPassword(String prompt) {
+        EraserThread et = new EraserThread(prompt);
+        Thread mask = new Thread(et);
         mask.start();
 
-        final BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         String password = "";
 
         try {
             password = in.readLine();
-        } catch (final IOException ioe) {
-          ioe.printStackTrace();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
         }
         // stop masking
         et.stopMasking();
         // return the password entered by the user
         return password;
-     }
+    }
 }
