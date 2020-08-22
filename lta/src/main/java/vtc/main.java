@@ -13,16 +13,14 @@ import java.util.Scanner;
 
 public class main {
     public static void main(String[] args) throws SQLException {
-        String  strconn = "jdbc:mysql://localhost:3306/lemon_tee_shop?user=root&password=cuong2001";
-
-
-        try (  Connection  conn = DriverManager.getConnection(strconn);)
-             {
-            System.out.println("Connected to MySql Server.");
-        } catch (SQLException ex) {
-            System.out.println("Connection Error!");
-            System.out.println(ex);
-        }
+        // String  strconn = "jdbc:mysql://localhost:3306/lemon_tee_shop?user=root&password=cuong2001";
+        // try (  Connection  conn = DriverManager.getConnection(strconn);)
+        //      {
+        //     System.out.println("Connected to MySql Server.");
+        // } catch (SQLException ex) {
+        //     System.out.println("Connection Error!");
+        //     System.out.println(ex);
+        // }
         Scanner sc = new Scanner(System.in);
         while (true) {
             cls();
