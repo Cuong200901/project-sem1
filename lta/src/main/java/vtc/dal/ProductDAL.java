@@ -86,25 +86,21 @@ public class ProductDAL {
         }
     }
 
-    public int updateProductsInStock(Product product) throws SQLException {
+    public void updateProductsInStock(int id, int amount) throws SQLException {
         try (Connection con = UtilDB.getConnection();
-             PreparedStatement pstm = con.prepareStatement(
-                     "UPDATE products SET products_in_stock = '?' WHERE (product_id = '?'");) {
-            pstm.setInt(1,product.getProductsInStock());
-            pstm.setInt(2,product.getProductId());
-            int rs = pstm.executeUpdate();
-            if (rs==1) {
-                System.out.println("Update Successful!");
-            }else{
-                System.out.println("Update fail!");
-            }
-            return rs;
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            System.out.println("loi update!");
-            return 0;
-
-        }
+        PreparedStatement pstm = con.prepareStatement(
+                "UPDATE `lemon_tee_shop`.`products` SET `products_in_stock` = '"+amount+"' WHERE (`product_id` = '"+id+"');");) {   
+                   int rs = pstm.executeUpdate();
+                   if (rs==1) {
+                       System.out.println("Update Successful!");
+                   }else{
+                       System.out.println("Update fail!");
+                   }    
+   } catch (SQLException ex) {
+       ex.printStackTrace();
+       System.out.println("Update error!");
+       
+   }
     }
 
 }

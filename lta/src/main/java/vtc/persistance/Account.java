@@ -12,10 +12,10 @@ public class Account {
     private String email;
     private String position;
     private String startTime;
-    private String shitf;
+    private String shift;
 
 //    public Account(){}
-//    public Account(String username, String password, String firstname, String lastname, String birthday, int phonenumber, String email, String position, String starttime, String shitf)
+//    public Account(String username, String password, String firstname, String lastname, String birthday, int phonenumber, String email, String position, String starttime, String shift)
 //    {
 //        this.username = username;
 //        this.password = password;
@@ -26,7 +26,7 @@ public class Account {
 //        this.email = email;
 //        this.position = position;
 //        this.startTime = starttime;
-//        this.shitf = shitf;
+//        this.shift = shift;
 //    }
 
     public int getaccountId() {
@@ -109,11 +109,11 @@ public class Account {
         this.startTime = starttime;
     }
 
-    public String getshitf() {
-        return shitf;
+    public String getshift() {
+        return shift;
     }
 
-    public void setshitf(String shitf) {
-        this.shitf = shitf;
+    public void setshift(String shift) {
+        this.shift = shift;
     }
 }

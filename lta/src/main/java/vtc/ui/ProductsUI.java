@@ -73,26 +73,6 @@ public class ProductsUI {
             System.out.print("   --> Enter your choice:");
             String chose = sc.nextLine();
             switch (chose) {
-                case "1":
-                    cls();
-                    ProductBL.insertProduct();
-                    break;
-                case "2":
-                    cls();
-                    ProductBL.showProduct();
-                    ProductBL.inputInfoUpdate();
-                    break;
-                case "3":
-                    cls();
-                    ProductBL.showProduct();
-                    ProductBL.inputProductsInStock();
-                    break;
-                case "4":
-                    cls();
-                    ProductBL.showProduct();
-                    System.out.printf("Nhan %s de quay lai:", "Enter");
-                    nh = sc.nextLine();
-                    break;
                 case "0":
                     back = false;
                     break;

@@ -7,8 +7,8 @@ import vtc.bl.AccountBL;
 
 public class AccountUI {
     Scanner sc = new Scanner(System.in);
-    ProductsUI ui_products = new ProductsUI();
-OrderUI ui_order = new OrderUI();
+    ProductsUI productsUI = new ProductsUI();
+OrderUI orderUI = new OrderUI();
     public void admin_main_menu(int id) {
         boolean back = true;
         while (back) {
@@ -27,13 +27,18 @@ OrderUI ui_order = new OrderUI();
             System.out.print("   --> Enter your choice: ");
             String chose = sc.nextLine();
             switch (chose) {
+                case "1":
+                cls();
+                AccountBL.showAccountById(id);
+                AccountBL.inputInfoUpdateById(id);
+                break;
                 case "2":
                     cls();
                 manage_staff_menu();
                     break;
                 case "3":
                     cls();
-                    ui_products.admin_products_menu();
+                    productsUI.admin_products_menu();
                     break;
                 case "5":
                     back = false;
@@ -51,7 +56,7 @@ OrderUI ui_order = new OrderUI();
         boolean back = true;
         while (back) {
             cls();
-            
+            System.out.println(id);
             System.out.println("[LTS] PF10 - Group6");
             System.out.println("+-------------------------------------------+");
             System.out.println("|               Wellcome Staff              |");
@@ -64,9 +69,14 @@ OrderUI ui_order = new OrderUI();
             System.out.print("   --> Enter your choice:");
             String chose = sc.nextLine();
             switch (chose) {
+                case "1":
+                cls();
+                AccountBL.showAccountById(id);
+                AccountBL.inputInfoUpdateById(id);
+                break;
                 case "2":
                 cls();
-                ui_order.manage_order_menu(id);
+                orderUI.manage_order_menu(id);
                 break;
                 case "3":
                     back = false;
@@ -98,14 +108,11 @@ OrderUI ui_order = new OrderUI();
             String chose = sc.nextLine();
             switch (chose) {
                 case "1":
-                while(true)
-                {
-                System.out.println("Add complete");
-                    
-                }
-                    
+                AccountBL.inputAccount();
+                    break;  
                 case "2":
-                System.out.println("Upadate complete");
+                AccountBL.showAccount();
+                AccountBL.inputInfoUpdate();
                     break;
                 case "0":
                     back = false;
@@ -132,5 +139,7 @@ OrderUI ui_order = new OrderUI();
         } catch (IOException | InterruptedException ignored) {
         }
     }
+
+    
     
 }

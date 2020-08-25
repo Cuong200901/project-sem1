@@ -95,7 +95,7 @@ public class AccountDAL {
         account.setemail(rs.getString("email"));
         account.setposition(rs.getString("position"));
         account.setstarttime(rs.getString("start_time"));
-        account.setshitf(rs.getString("shitf"));
+        account.setshift(rs.getString("shift"));
         return account;
     }
 
@@ -115,10 +115,26 @@ public class AccountDAL {
         return lst;
     }
 
-    public int update(Account account) throws SQLException {
+    public static List<Account> getById(int id) {
+        String sql = "SELECT * FROM accounts where account_id = '"+id+"';";
+        List<Account> lst = new ArrayList<>();
+        try (Connection con = UtilDB.getConnection();
+                Statement stm = con.createStatement();
+                ResultSet rs = stm.executeQuery(sql)) {
+            while (rs.next()) {
+                lst.add(getAccount(rs));
+            }
+        } catch (SQLException ex) {
+            lst = null;
+            System.out.println(ex.toString());
+        }
+        return lst;
+    }
+
+    public int updateById(Account account, int id) throws SQLException {
         try (Connection con = UtilDB.getConnection();
                 PreparedStatement pstm = con.prepareStatement(
-                        "UPDATE accounts SET user_name` = 'asd', `password` = '?', `first_name` = '?', `last_name` = '?', `birthday` = '?', `phone_number` = '?', `email` = '?', `shitf` = '?' WHERE (account_id = '?'");) {
+                        "UPDATE accounts SET user_name` = '?', `password` = '?', `first_name` = '?', `last_name` = '?', `birthday` = '?', `phone_number` = '?', `email` = '?', `shift` = '?' WHERE (account_id = '?'");) {
             pstm.setString(1, account.getusername());
             pstm.setString(2, account.getuserpassword());
             pstm.setString(3, account.getfirstname());
@@ -126,7 +142,38 @@ public class AccountDAL {
             pstm.setString(5, account.getbirthday());
             pstm.setInt(6, account.getphonenumber());
             pstm.setString(7, account.getemail());
-            pstm.setString(8, account.getshitf());
+            pstm.setString(8, account.getshift());
+            pstm.setInt(9, id);
+            int rs = pstm.executeUpdate();
+            if (rs == 1) {
+                System.out.println("Update Successful!");
+            } else {
+                System.out.println("Update fail!");
+            }
+            return rs;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("loi update!");
+            return 0;
+
+        }
+    }
+
+
+
+
+    public int update(Account account) throws SQLException {
+        try (Connection con = UtilDB.getConnection();
+                PreparedStatement pstm = con.prepareStatement(
+                        "UPDATE accounts SET user_name` = '?', `password` = '?', `first_name` = '?', `last_name` = '?', `birthday` = '?', `phone_number` = '?', `email` = '?', `shift` = '?' WHERE (account_id = '?'");) {
+            pstm.setString(1, account.getusername());
+            pstm.setString(2, account.getuserpassword());
+            pstm.setString(3, account.getfirstname());
+            pstm.setString(4, account.getlastname());
+            pstm.setString(5, account.getbirthday());
+            pstm.setInt(6, account.getphonenumber());
+            pstm.setString(7, account.getemail());
+            pstm.setString(8, account.getshift());
             pstm.setInt(9, account.getaccountId());
             int rs = pstm.executeUpdate();
             if (rs == 1) {
@@ -146,7 +193,7 @@ public class AccountDAL {
     public static int insertaccount(Account account) {
         try (Connection con = UtilDB.getConnection();
                 PreparedStatement pstm = con.prepareStatement(
-                        "INSERT INTO accounts (`user_name`, `password`, `first_name`, `last_name`, `birthday`, `phone_number`, `email`, `position`, `start_time`, `shitf`) VALUES ('?', '?', '?', '?', '?', '?', '?', 'Staff', '"
+                        "INSERT INTO accounts (`user_name`, `password`, `first_name`, `last_name`, `birthday`, `phone_number`, `email`, `position`, `start_time`, `shift`) VALUES ('?', '?', '?', '?', '?', '?', '?', 'Staff', '"
                                 + java.time.LocalDate.now() + "', '?')");) {
             pstm.setString(1, account.getusername());
             pstm.setString(2, account.getuserpassword());
@@ -155,7 +202,7 @@ public class AccountDAL {
             pstm.setString(5, account.getbirthday());
             pstm.setInt(6, account.getphonenumber());
             pstm.setString(7, account.getemail());
-            pstm.setString(8, account.getshitf());
+            pstm.setString(8, account.getshift());
             return pstm.executeUpdate();
         } catch (SQLException ex) {
             System.out.println("Error insert!");

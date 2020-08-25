@@ -78,8 +78,5 @@ public class Product {
     }
 
 
-    @Override
-    public String toString() {
-        return productId + "-" + productName + "-" +cost+ "-" +discount+ "-" +price+ "-" +promotion+ "-" +category ;
-    }
+   
 }

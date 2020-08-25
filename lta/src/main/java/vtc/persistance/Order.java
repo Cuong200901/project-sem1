@@ -1,10 +1,8 @@
 package vtc.persistance;
 
 
-import java.sql.Time;
+
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Order {
 
@@ -14,17 +12,7 @@ public class Order {
     private Account accountId;
     private String note;
     private int table;
-    private List<Product> products;
-
-    public Order() {
-        orderId = 0;
-        time = LocalDateTime.now();
-        orderStatus = "order";
-        accountId = null;
-        note = ".";
-        table = 1;
-        products = new ArrayList<>();
-    }
+    
 
     public int getOrderId() {
         return orderId;
@@ -74,15 +62,6 @@ public class Order {
         this.table = table;
     }
 
-    public List<Product> getProduct() {
-        return products;
-    }
-
-    public void addProduct(Product product) {
-        if (products == null) {
-            products = new ArrayList<>();
-        }
-        products.add(product);
-    }
+  
 
 }
