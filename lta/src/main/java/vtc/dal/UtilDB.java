@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class DB_Util {
+public class UtilDB {
 
     public static Connection getConnection() throws SQLException {
         String password = "cuong2001";
@@ -15,7 +15,7 @@ public class DB_Util {
     }
     public static boolean executeStatement(final String sql) {
         boolean exeResult = false;
-        try (Statement stm = DB_Util.getConnection().createStatement();) {
+        try (Statement stm = UtilDB.getConnection().createStatement();) {
             exeResult = stm.execute(sql);
         } catch (final SQLException e) {
             exeResult = false;

@@ -1,22 +1,22 @@
 package vtc.bl;
 
-import vtc.dal.DAL_Product;
+import vtc.dal.ProductDAL;
 import vtc.persistance.Product;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class BL_Product {
-    public static DAL_Product dal_product = new DAL_Product();
+public class ProductBL {
+    public static ProductDAL dal_product = new ProductDAL();
     static Scanner sc = new Scanner(System.in);
     static List<Product> productsList = new ArrayList<>();
     public List<Product> getAll() {
-        return DAL_Product.getAll();
+        return ProductDAL.getAll();
     }
 
     public boolean addProduct(Product product) {
-        return DAL_Product.insertProduct(product) > 0;
+        return ProductDAL.insertProduct(product) > 0;
     }
 
     // public boolean updatePro(Product product) throws SQLException {
@@ -24,7 +24,7 @@ public class BL_Product {
     // }
 
     public static void showProduct() {
-        BL_Product bl_product = new BL_Product();
+        ProductBL bl_product = new ProductBL();
         List<Product> lst = bl_product.getAll();
         System.out.println("\nItem List: ");
         System.out.println(
@@ -56,7 +56,7 @@ public class BL_Product {
     public static void insertProduct() {
         while (true) {
 
-            BL_Product bl_product = new BL_Product();
+            ProductBL bl_product = new ProductBL();
 
             if (bl_product.addProduct(inputProduct())) {
                 System.out.println("Insert product complete!");
@@ -115,7 +115,7 @@ public class BL_Product {
         while (true) {
 
             Product product = new Product();
-            DAL_Product PD = new DAL_Product();
+            ProductDAL PD = new ProductDAL();
             Scanner sc = new Scanner(System.in);
             System.out.print("Product_id : ");
             int id = sc.nextInt();
@@ -162,7 +162,7 @@ public class BL_Product {
 
         while (true) {
             Product product = new Product();
-            DAL_Product PD = new DAL_Product();
+            ProductDAL PD = new ProductDAL();
             Scanner sc = new Scanner(System.in);
             System.out.print("Product_id : ");
             int id = sc.nextInt();

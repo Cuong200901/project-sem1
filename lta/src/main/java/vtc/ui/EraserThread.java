@@ -1,4 +1,4 @@
-package vtc.gui;
+package vtc.ui;
 
 
 import java.io.*;

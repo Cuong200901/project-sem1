@@ -6,12 +6,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DAL_Product {
+public class ProductDAL {
 
     public static List<Product> getAll() {
         String sql = "select * from products";
         List<Product> lst = new ArrayList<>();
-        try (Connection con = DB_Util.getConnection();
+        try (Connection con = UtilDB.getConnection();
              Statement stm = con.createStatement();
              ResultSet rs = stm.executeQuery(sql)) {
             while (rs.next()) {
@@ -25,7 +25,7 @@ public class DAL_Product {
     }
 
     public static int insertProduct(Product product) {
-        try (Connection con = DB_Util.getConnection();
+        try (Connection con = UtilDB.getConnection();
              PreparedStatement pstm = con.prepareStatement(
                                           "insert into products(name, cost, discount, price,promotion, category, products_in_stock) values (?,?,?,?,?,?,?)");) {
             pstm.setString(1, product.getProductName());
@@ -58,7 +58,7 @@ public class DAL_Product {
     }
 
     public int update(Product product) throws SQLException {
-        try (Connection con = DB_Util.getConnection();
+        try (Connection con = UtilDB.getConnection();
              PreparedStatement pstm = con.prepareStatement(
                      "UPDATE products SET name = '?', cost = '?', discount = '?', price = '?', promotion = '?', category = '?', products_in_stock = '?' WHERE (product_id = '?'");) {
             pstm.setString(1, product.getProductName());
@@ -87,13 +87,11 @@ public class DAL_Product {
     }
 
     public int updateProductsInStock(Product product) throws SQLException {
-        try (Connection con = DB_Util.getConnection();
+        try (Connection con = UtilDB.getConnection();
              PreparedStatement pstm = con.prepareStatement(
                      "UPDATE products SET products_in_stock = '?' WHERE (product_id = '?'");) {
             pstm.setInt(1,product.getProductsInStock());
             pstm.setInt(2,product.getProductId());
-
-
             int rs = pstm.executeUpdate();
             if (rs==1) {
                 System.out.println("Update Successful!");
