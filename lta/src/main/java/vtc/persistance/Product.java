@@ -16,6 +16,7 @@ public class Product {
     }
 
     public void setProductsInStock(int productsInStock) {
+        
         this.productsInStock = productsInStock;
     }
 

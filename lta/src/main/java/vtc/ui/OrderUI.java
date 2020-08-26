@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 import com.mysql.cj.x.protobuf.MysqlxDatatypes.ScalarOrBuilder;
 
+import vtc.bl.OrderBL;
+
 public class OrderUI {
     Scanner sc = new Scanner(System.in);
 
@@ -25,11 +27,15 @@ public class OrderUI {
             switch (chose) {
                 case "1":
                     cls();
-
+                    OrderBL.orderByMonth();
+                    System.out.printf("Nhan %s de quay lai:", "Enter");
+                    String nh = sc.nextLine();
                     break;
                 case "2":
                     cls();
-
+                    OrderBL.monneyEarnerByMonth();
+                    System.out.printf("Nhan %s de quay lai:", "Enter");
+                    nh = sc.nextLine();
                     break;
 
                 case "0":
@@ -37,7 +43,7 @@ public class OrderUI {
                     break;
                 default:
                     System.out.printf("Khong hop le,Nhan %s de quay lai:", "Enter");
-                    String nh = sc.nextLine();
+                    nh = sc.nextLine();
             }
         }
     }

@@ -93,6 +93,7 @@ OrderUI orderUI = new OrderUI();
 
     public void manage_staff_menu() {
         boolean back = true;
+        String chose;
         while (back) {
             cls();
             System.out.println("[LTS] PF10 - Group6");
@@ -105,10 +106,10 @@ OrderUI orderUI = new OrderUI();
             System.out.println("|      0. Come back                         |");
             System.out.println("+-------------------------------------------+");
             System.out.print("   --> Enter your choice:");
-            String chose = sc.nextLine();
+            chose = sc.nextLine();
             switch (chose) {
                 case "1":
-                AccountBL.inputAccount();
+                AccountBL.insertaccount();;
                     break;  
                 case "2":
                 AccountBL.showAccount();

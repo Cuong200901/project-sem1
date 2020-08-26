@@ -165,16 +165,16 @@ public class AccountDAL {
     public int update(Account account) throws SQLException {
         try (Connection con = UtilDB.getConnection();
                 PreparedStatement pstm = con.prepareStatement(
-                        "UPDATE accounts SET user_name` = '?', `password` = '?', `first_name` = '?', `last_name` = '?', `birthday` = '?', `phone_number` = '?', `email` = '?', `shift` = '?' WHERE (account_id = '?'");) {
-            pstm.setString(1, account.getusername());
-            pstm.setString(2, account.getuserpassword());
-            pstm.setString(3, account.getfirstname());
-            pstm.setString(4, account.getlastname());
-            pstm.setString(5, account.getbirthday());
-            pstm.setInt(6, account.getphonenumber());
-            pstm.setString(7, account.getemail());
-            pstm.setString(8, account.getshift());
-            pstm.setInt(9, account.getaccountId());
+                        "UPDATE accounts SET user_name = '?', password`= '?', first_name = '?', last_name = '?', birthday = '?', phone_number = '?', email = '?', shift = '?' WHERE (account_id = '?'");) {
+            pstm.setString(0, account.getusername());
+            pstm.setString(1, account.getuserpassword());
+            pstm.setString(2, account.getfirstname());
+            pstm.setString(3, account.getlastname());
+            pstm.setString(4, account.getbirthday());
+            pstm.setInt(5, account.getphonenumber());
+            pstm.setString(6, account.getemail());
+            pstm.setString(7, account.getshift());
+            pstm.setInt(8, account.getaccountId());
             int rs = pstm.executeUpdate();
             if (rs == 1) {
                 System.out.println("Update Successful!");

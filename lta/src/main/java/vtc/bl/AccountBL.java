@@ -99,10 +99,10 @@ public class AccountBL {
         System.out.print("Email: ");
         account.setemail(nhap());
         account.setposition("Staff");
-        account.setstarttime(formatter.format(java.time.LocalDate.now() ));
+        account.setstarttime("");
         System.out.print("Shift: ");
         account.setshift(nhap());
-        sc.close();
+       
         return account;
     }
 
