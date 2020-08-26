@@ -67,26 +67,31 @@ public class OrderUI {
             switch (chose) {
                 case "1":
                     cls();
+                    OrderBL.showTableClear();
                     break;
                 case "2":
                     cls();
-
+                    OrderBL.showTableExit();
                     break;
 
                 case "3":
                     cls();
-
+                    OrderBL.showTableExit();
+                    OrderBL.completeOrder();
+                    System.out.printf("Nhan %s de quay lai:", "Enter");
+                    String nh = sc.nextLine();
                     break;
                 case "4":
                     cls();
-
+                    OrderBL.showOrderByDay();
+                    OrderBL.showBill();
                     break;
                 case "0":
                     back = false;
                     break;
                 default:
                     System.out.printf("Khong hop le,Nhan %s de quay lai:", "Enter");
-                    String nh = sc.nextLine();
+                    nh = sc.nextLine();
             }
         }
     }

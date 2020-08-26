@@ -27,7 +27,7 @@ public class ProductDAL {
     public static int insertProduct(Product product) {
         try (Connection con = UtilDB.getConnection();
              PreparedStatement pstm = con.prepareStatement(
-                                          "insert into products(name, cost, discount, price,promotion, category, products_in_stock) values (?,?,?,?,?,?,?)");) {
+                                          "insert into products(name, cost, discount, price,promotion, category, products_in_stock) values (?,?,?,?,?,?,?);");) {
             pstm.setString(1, product.getProductName());
             pstm.setDouble(2, product.getCost());
             pstm.setInt(3, product.getDiscount());
@@ -60,7 +60,7 @@ public class ProductDAL {
     public int update(Product product) throws SQLException {
         try (Connection con = UtilDB.getConnection();
              PreparedStatement pstm = con.prepareStatement(
-                     "UPDATE products SET name = '?', cost = '?', discount = '?', price = '?', promotion = '?', category = '?', products_in_stock = '?' WHERE (product_id = '?'");) {
+                     "UPDATE products SET name = ?, cost = ?, discount = ?, price = ?, promotion = ?, category = ?, products_in_stock = ? WHERE (product_id = ?);");) {
             pstm.setString(1, product.getProductName());
             pstm.setDouble(2, product.getCost());
             pstm.setInt(3, product.getDiscount());

@@ -67,14 +67,11 @@ public class AccountDAL {
                 while (rs.next()) {
                     if (password.equals(rs.getString("Password"))) {
                         return id;
-                        }
-                        else
-                        {
-                            return id = -1;
-                        }
+                    } else {
+                        return id = -1;
                     }
                 }
-            
+            }
 
         } catch (SQLException e) {
             System.out.println("Co loi say ra!");
@@ -116,7 +113,7 @@ public class AccountDAL {
     }
 
     public static List<Account> getById(int id) {
-        String sql = "SELECT * FROM accounts where account_id = '"+id+"';";
+        String sql = "SELECT * FROM accounts where account_id = '" + id + "';";
         List<Account> lst = new ArrayList<>();
         try (Connection con = UtilDB.getConnection();
                 Statement stm = con.createStatement();
@@ -134,16 +131,16 @@ public class AccountDAL {
     public int updateById(Account account, int id) throws SQLException {
         try (Connection con = UtilDB.getConnection();
                 PreparedStatement pstm = con.prepareStatement(
-                        "UPDATE accounts SET user_name` = '?', `password` = '?', `first_name` = '?', `last_name` = '?', `birthday` = '?', `phone_number` = '?', `email` = '?', `shift` = '?' WHERE (account_id = '?'");) {
-            pstm.setString(1, account.getusername());
-            pstm.setString(2, account.getuserpassword());
-            pstm.setString(3, account.getfirstname());
-            pstm.setString(4, account.getlastname());
-            pstm.setString(5, account.getbirthday());
-            pstm.setInt(6, account.getphonenumber());
-            pstm.setString(7, account.getemail());
-            pstm.setString(8, account.getshift());
-            pstm.setInt(9, id);
+                        "UPDATE accounts SET `password` = ?, `first_name` = ?, `last_name` = ?, `birthday` = ?, `phone_number` = ?, `email` = ?, `shift` = ? WHERE (account_id = ?);");) {
+
+            pstm.setString(1, account.getuserpassword());
+            pstm.setString(2, account.getfirstname());
+            pstm.setString(3, account.getlastname());
+            pstm.setString(4, account.getbirthday());
+            pstm.setInt(5, account.getphonenumber());
+            pstm.setString(6, account.getemail());
+            pstm.setString(7, account.getshift());
+            pstm.setInt(8, id);
             int rs = pstm.executeUpdate();
             if (rs == 1) {
                 System.out.println("Update Successful!");
@@ -159,14 +156,10 @@ public class AccountDAL {
         }
     }
 
-
-
-
     public int update(Account account) throws SQLException {
         try (Connection con = UtilDB.getConnection();
                 PreparedStatement pstm = con.prepareStatement(
-                        "UPDATE accounts SET user_name = '?', password`= '?', first_name = '?', last_name = '?', birthday = '?', phone_number = '?', email = '?', shift = '?' WHERE (account_id = '?'");) {
-            pstm.setString(0, account.getusername());
+                        "UPDATE accounts SET  password= ?, first_name = ?, last_name = ?, birthday = ?, phone_number = ?, email = ?, shift = ? WHERE (account_id = ?);");) {
             pstm.setString(1, account.getuserpassword());
             pstm.setString(2, account.getfirstname());
             pstm.setString(3, account.getlastname());
@@ -191,25 +184,47 @@ public class AccountDAL {
     }
 
     public static int insertaccount(Account account) {
-        try (Connection con = UtilDB.getConnection();
-                PreparedStatement pstm = con.prepareStatement(
-                        "INSERT INTO accounts (`user_name`, `password`, `first_name`, `last_name`, `birthday`, `phone_number`, `email`, `position`, `start_time`, `shift`) VALUES ('?', '?', '?', '?', '?', '?', '?', 'Staff', '"
-                                + java.time.LocalDate.now() + "', '?')");) {
-            pstm.setString(1, account.getusername());
-            pstm.setString(2, account.getuserpassword());
-            pstm.setString(3, account.getfirstname());
-            pstm.setString(4, account.getlastname());
-            pstm.setString(5, account.getbirthday());
-            pstm.setInt(6, account.getphonenumber());
-            pstm.setString(7, account.getemail());
-            pstm.setString(8, account.getshift());
-            return pstm.executeUpdate();
-        } catch (SQLException ex) {
-            System.out.println("Error insert!");
-            System.out.println(ex.toString());
-            return 0;
 
+        int id = -1;
+
+        String sql = "SELECT account_id FROM lemon_tee_shop.accounts where user_name = '"
+                + account.getusername() + "';";
+
+        try (Connection con = UtilDB.getConnection();
+                Statement stm = con.createStatement();
+                ResultSet rs = stm.executeQuery(sql)) {
+            while (rs.next()) {
+                id = rs.getInt("account_id");
+            }
+        } catch (SQLException ex) {
+
+            System.out.println(ex.toString());
         }
+
+        if (id != -1) {
+            System.out.println("Error insert!");
+            return 0;
+        } else {
+            try (Connection con = UtilDB.getConnection();
+                    PreparedStatement pstm = con.prepareStatement(
+                            "INSERT INTO accounts (user_name, password, first_name, last_name, birthday, phone_number, email,position, start_time, shift) VALUES (?, ?, ?, ?, ?,?, ?, 'Staff', "
+                                    + java.time.LocalDate.now() + ", ?);");) {
+                pstm.setString(1, account.getusername());
+                pstm.setString(2, account.getuserpassword());
+                pstm.setString(3, account.getfirstname());
+                pstm.setString(4, account.getlastname());
+                pstm.setString(5, account.getbirthday());
+                pstm.setInt(6, account.getphonenumber());
+                pstm.setString(7, account.getemail());
+                pstm.setString(8, account.getshift());
+                return pstm.executeUpdate();
+            } catch (SQLException ex) {
+                System.out.println("Error insert!");
+                return 0;
+
+            }
+        }
+
     }
 
 }

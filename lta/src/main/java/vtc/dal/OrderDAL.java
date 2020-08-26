@@ -138,7 +138,7 @@ public class OrderDAL {
     public static void orderAmountByMonth(final int year) {
         int count = 0;
         System.out.println("+-----------------------------------+");
-        System.out.println("|              "+year+"                 |");
+        System.out.println("|              " + year + "                 |");
         System.out.println("+-----------------------------------+");
         System.out.printf("| %-10s | %-20s |\n", "Month", "Amount");
         System.out.println("+-----------------------------------+");
@@ -312,21 +312,20 @@ public class OrderDAL {
         }
     }
 
-    public static void monneyEarnByMonth(final int year)
-    {
+    public static void monneyEarnByMonth(final int year) {
         double monneyEarner = 0;
         System.out.println("+-----------------------------------+");
-        System.out.println("|              "+year+"                 |");
+        System.out.println("|              " + year + "                 |");
         System.out.println("+-----------------------------------+");
         System.out.printf("| %-10s | %-20s |\n", "Month", "Monney Earner");
         System.out.println("+-----------------------------------+");
-        String sql = "SELECT amount, price  from lemon_tee_shop.order_details inner join lemon_tee_shop.products on order_details.product_id = products.product_id join lemon_tee_shop.order on order_details.order_id = order.order_id where year(order.time) = "+year+" and month(order.time) = 1;";
+        String sql = "SELECT amount, price  from lemon_tee_shop.order_details inner join lemon_tee_shop.products on order_details.product_id = products.product_id join lemon_tee_shop.order on order_details.order_id = order.order_id where year(order.time) = "
+                + year + " and month(order.time) = 1;";
         try (Connection con = UtilDB.getConnection();
                 Statement stm = con.createStatement();
                 ResultSet rs = stm.executeQuery(sql)) {
             while (rs.next()) {
-                    monneyEarner = monneyEarner +(rs.getInt("amount") * rs.getDouble("price"));
-                
+                monneyEarner = monneyEarner + (rs.getInt("amount") * rs.getDouble("price"));
 
             }
             System.out.printf("| %-10s | %-20s |\n", "1", monneyEarner);
@@ -336,13 +335,13 @@ public class OrderDAL {
 
             System.out.println(ex.toString());
         }
-        sql = "SELECT amount, price  from lemon_tee_shop.order_details inner join lemon_tee_shop.products on order_details.product_id = products.product_id join lemon_tee_shop.order on order_details.order_id = order.order_id where year(order.time) = "+year+" and month(order.time) = 2;";
+        sql = "SELECT amount, price  from lemon_tee_shop.order_details inner join lemon_tee_shop.products on order_details.product_id = products.product_id join lemon_tee_shop.order on order_details.order_id = order.order_id where year(order.time) = "
+                + year + " and month(order.time) = 2;";
         try (Connection con = UtilDB.getConnection();
                 Statement stm = con.createStatement();
                 ResultSet rs = stm.executeQuery(sql)) {
             while (rs.next()) {
-                    monneyEarner = monneyEarner +(rs.getInt("amount") * rs.getDouble("price"));
-                
+                monneyEarner = monneyEarner + (rs.getInt("amount") * rs.getDouble("price"));
 
             }
             System.out.printf("| %-10s | %-20s |\n", "2", monneyEarner);
@@ -352,13 +351,13 @@ public class OrderDAL {
 
             System.out.println(ex.toString());
         }
-        sql = "SELECT amount, price  from lemon_tee_shop.order_details inner join lemon_tee_shop.products on order_details.product_id = products.product_id join lemon_tee_shop.order on order_details.order_id = order.order_id where year(order.time) = "+year+" and month(order.time) = 3;";
+        sql = "SELECT amount, price  from lemon_tee_shop.order_details inner join lemon_tee_shop.products on order_details.product_id = products.product_id join lemon_tee_shop.order on order_details.order_id = order.order_id where year(order.time) = "
+                + year + " and month(order.time) = 3;";
         try (Connection con = UtilDB.getConnection();
                 Statement stm = con.createStatement();
                 ResultSet rs = stm.executeQuery(sql)) {
             while (rs.next()) {
-                    monneyEarner = monneyEarner +(rs.getInt("amount") * rs.getDouble("price"));
-                
+                monneyEarner = monneyEarner + (rs.getInt("amount") * rs.getDouble("price"));
 
             }
             System.out.printf("| %-10s | %-20s |\n", "3", monneyEarner);
@@ -368,13 +367,13 @@ public class OrderDAL {
 
             System.out.println(ex.toString());
         }
-        sql = "SELECT amount, price  from lemon_tee_shop.order_details inner join lemon_tee_shop.products on order_details.product_id = products.product_id join lemon_tee_shop.order on order_details.order_id = order.order_id where year(order.time) = "+year+" and month(order.time) = 4;";
+        sql = "SELECT amount, price  from lemon_tee_shop.order_details inner join lemon_tee_shop.products on order_details.product_id = products.product_id join lemon_tee_shop.order on order_details.order_id = order.order_id where year(order.time) = "
+                + year + " and month(order.time) = 4;";
         try (Connection con = UtilDB.getConnection();
                 Statement stm = con.createStatement();
                 ResultSet rs = stm.executeQuery(sql)) {
             while (rs.next()) {
-                    monneyEarner = monneyEarner +(rs.getInt("amount") * rs.getDouble("price"));
-                
+                monneyEarner = monneyEarner + (rs.getInt("amount") * rs.getDouble("price"));
 
             }
             System.out.printf("| %-10s | %-20s |\n", "4", monneyEarner);
@@ -384,13 +383,13 @@ public class OrderDAL {
 
             System.out.println(ex.toString());
         }
-        sql = "SELECT amount, price  from lemon_tee_shop.order_details inner join lemon_tee_shop.products on order_details.product_id = products.product_id join lemon_tee_shop.order on order_details.order_id = order.order_id where year(order.time) = "+year+" and month(order.time) = 5;";
+        sql = "SELECT amount, price  from lemon_tee_shop.order_details inner join lemon_tee_shop.products on order_details.product_id = products.product_id join lemon_tee_shop.order on order_details.order_id = order.order_id where year(order.time) = "
+                + year + " and month(order.time) = 5;";
         try (Connection con = UtilDB.getConnection();
                 Statement stm = con.createStatement();
                 ResultSet rs = stm.executeQuery(sql)) {
             while (rs.next()) {
-                    monneyEarner = monneyEarner +(rs.getInt("amount") * rs.getDouble("price"));
-                
+                monneyEarner = monneyEarner + (rs.getInt("amount") * rs.getDouble("price"));
 
             }
             System.out.printf("| %-10s | %-20s |\n", "5", monneyEarner);
@@ -400,13 +399,13 @@ public class OrderDAL {
 
             System.out.println(ex.toString());
         }
-        sql = "SELECT amount, price  from lemon_tee_shop.order_details inner join lemon_tee_shop.products on order_details.product_id = products.product_id join lemon_tee_shop.order on order_details.order_id = order.order_id where year(order.time) = "+year+" and month(order.time) = 6;";
+        sql = "SELECT amount, price  from lemon_tee_shop.order_details inner join lemon_tee_shop.products on order_details.product_id = products.product_id join lemon_tee_shop.order on order_details.order_id = order.order_id where year(order.time) = "
+                + year + " and month(order.time) = 6;";
         try (Connection con = UtilDB.getConnection();
                 Statement stm = con.createStatement();
                 ResultSet rs = stm.executeQuery(sql)) {
             while (rs.next()) {
-                    monneyEarner = monneyEarner +(rs.getInt("amount") * rs.getDouble("price"));
-                
+                monneyEarner = monneyEarner + (rs.getInt("amount") * rs.getDouble("price"));
 
             }
             System.out.printf("| %-10s | %-20s |\n", "6", monneyEarner);
@@ -416,13 +415,13 @@ public class OrderDAL {
 
             System.out.println(ex.toString());
         }
-        sql = "SELECT amount, price  from lemon_tee_shop.order_details inner join lemon_tee_shop.products on order_details.product_id = products.product_id join lemon_tee_shop.order on order_details.order_id = order.order_id where year(order.time) = "+year+" and month(order.time) = 7;";
+        sql = "SELECT amount, price  from lemon_tee_shop.order_details inner join lemon_tee_shop.products on order_details.product_id = products.product_id join lemon_tee_shop.order on order_details.order_id = order.order_id where year(order.time) = "
+                + year + " and month(order.time) = 7;";
         try (Connection con = UtilDB.getConnection();
                 Statement stm = con.createStatement();
                 ResultSet rs = stm.executeQuery(sql)) {
             while (rs.next()) {
-                    monneyEarner = monneyEarner +(rs.getInt("amount") * rs.getDouble("price"));
-                
+                monneyEarner = monneyEarner + (rs.getInt("amount") * rs.getDouble("price"));
 
             }
             System.out.printf("| %-10s | %-20s |\n", "7", monneyEarner);
@@ -432,13 +431,13 @@ public class OrderDAL {
 
             System.out.println(ex.toString());
         }
-        sql = "SELECT amount, price  from lemon_tee_shop.order_details inner join lemon_tee_shop.products on order_details.product_id = products.product_id join lemon_tee_shop.order on order_details.order_id = order.order_id where year(order.time) = "+year+" and month(order.time) = 8;";
+        sql = "SELECT amount, price  from lemon_tee_shop.order_details inner join lemon_tee_shop.products on order_details.product_id = products.product_id join lemon_tee_shop.order on order_details.order_id = order.order_id where year(order.time) = "
+                + year + " and month(order.time) = 8;";
         try (Connection con = UtilDB.getConnection();
                 Statement stm = con.createStatement();
                 ResultSet rs = stm.executeQuery(sql)) {
             while (rs.next()) {
-                    monneyEarner = monneyEarner +(rs.getInt("amount") * rs.getDouble("price"));
-                
+                monneyEarner = monneyEarner + (rs.getInt("amount") * rs.getDouble("price"));
 
             }
             System.out.printf("| %-10s | %-20s |\n", "8", monneyEarner);
@@ -448,13 +447,13 @@ public class OrderDAL {
 
             System.out.println(ex.toString());
         }
-        sql = "SELECT amount, price  from lemon_tee_shop.order_details inner join lemon_tee_shop.products on order_details.product_id = products.product_id join lemon_tee_shop.order on order_details.order_id = order.order_id where year(order.time) = "+year+" and month(order.time) = 9;";
+        sql = "SELECT amount, price  from lemon_tee_shop.order_details inner join lemon_tee_shop.products on order_details.product_id = products.product_id join lemon_tee_shop.order on order_details.order_id = order.order_id where year(order.time) = "
+                + year + " and month(order.time) = 9;";
         try (Connection con = UtilDB.getConnection();
                 Statement stm = con.createStatement();
                 ResultSet rs = stm.executeQuery(sql)) {
             while (rs.next()) {
-                    monneyEarner = monneyEarner +(rs.getInt("amount") * rs.getDouble("price"));
-                
+                monneyEarner = monneyEarner + (rs.getInt("amount") * rs.getDouble("price"));
 
             }
             System.out.printf("| %-10s | %-20s |\n", "9", monneyEarner);
@@ -464,13 +463,13 @@ public class OrderDAL {
 
             System.out.println(ex.toString());
         }
-        sql = "SELECT amount, price  from lemon_tee_shop.order_details inner join lemon_tee_shop.products on order_details.product_id = products.product_id join lemon_tee_shop.order on order_details.order_id = order.order_id where year(order.time) = "+year+" and month(order.time) = 10;";
+        sql = "SELECT amount, price  from lemon_tee_shop.order_details inner join lemon_tee_shop.products on order_details.product_id = products.product_id join lemon_tee_shop.order on order_details.order_id = order.order_id where year(order.time) = "
+                + year + " and month(order.time) = 10;";
         try (Connection con = UtilDB.getConnection();
                 Statement stm = con.createStatement();
                 ResultSet rs = stm.executeQuery(sql)) {
             while (rs.next()) {
-                    monneyEarner = monneyEarner +(rs.getInt("amount") * rs.getDouble("price"));
-                
+                monneyEarner = monneyEarner + (rs.getInt("amount") * rs.getDouble("price"));
 
             }
             System.out.printf("| %-10s | %-20s |\n", "10", monneyEarner);
@@ -480,13 +479,13 @@ public class OrderDAL {
 
             System.out.println(ex.toString());
         }
-        sql = "SELECT amount, price  from lemon_tee_shop.order_details inner join lemon_tee_shop.products on order_details.product_id = products.product_id join lemon_tee_shop.order on order_details.order_id = order.order_id where year(order.time) = "+year+" and month(order.time) = 11;";
+        sql = "SELECT amount, price  from lemon_tee_shop.order_details inner join lemon_tee_shop.products on order_details.product_id = products.product_id join lemon_tee_shop.order on order_details.order_id = order.order_id where year(order.time) = "
+                + year + " and month(order.time) = 11;";
         try (Connection con = UtilDB.getConnection();
                 Statement stm = con.createStatement();
                 ResultSet rs = stm.executeQuery(sql)) {
             while (rs.next()) {
-                    monneyEarner = monneyEarner +(rs.getInt("amount") * rs.getDouble("price"));
-                
+                monneyEarner = monneyEarner + (rs.getInt("amount") * rs.getDouble("price"));
 
             }
             System.out.printf("| %-10s | %-20s |\n", "11", monneyEarner);
@@ -496,13 +495,13 @@ public class OrderDAL {
 
             System.out.println(ex.toString());
         }
-        sql = "SELECT amount, price  from lemon_tee_shop.order_details inner join lemon_tee_shop.products on order_details.product_id = products.product_id join lemon_tee_shop.order on order_details.order_id = order.order_id where year(order.time) = "+year+" and month(order.time) = 12;";
+        sql = "SELECT amount, price  from lemon_tee_shop.order_details inner join lemon_tee_shop.products on order_details.product_id = products.product_id join lemon_tee_shop.order on order_details.order_id = order.order_id where year(order.time) = "
+                + year + " and month(order.time) = 12;";
         try (Connection con = UtilDB.getConnection();
                 Statement stm = con.createStatement();
                 ResultSet rs = stm.executeQuery(sql)) {
             while (rs.next()) {
-                    monneyEarner = monneyEarner +(rs.getInt("amount") * rs.getDouble("price"));
-                
+                monneyEarner = monneyEarner + (rs.getInt("amount") * rs.getDouble("price"));
 
             }
             System.out.printf("| %-10s | %-20s |\n", "12", monneyEarner);
@@ -513,4 +512,27 @@ public class OrderDAL {
             System.out.println(ex.toString());
         }
 
-}}
+    }
+
+
+
+ 
+
+     public static void completeOrder(int table)
+     {
+        try (Connection con = UtilDB.getConnection();
+        PreparedStatement pstm = con.prepareStatement(
+                "UPDATE `lemon_tee_shop`.`table` SET `status` = 'Clear' WHERE (`table_id` = '"+table+"');");) {   
+                   int rs = pstm.executeUpdate();
+                   if (rs==1) {
+                       System.out.println("Successful!");
+                   }else{
+                       System.out.println("Fail!");
+                   }    
+   } catch (SQLException ex) {
+       ex.printStackTrace();
+       System.out.println("Update error!");
+       
+   }
+     }
+}
