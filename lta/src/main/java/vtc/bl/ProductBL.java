@@ -71,7 +71,6 @@ public class ProductBL {
             if (choice1.equalsIgnoreCase("N")) {
                 break;
             }
-
         }
     }
 
@@ -89,18 +88,18 @@ public class ProductBL {
         System.out.print("Product name: ");
         product.setProductName(sc.nextLine());
         System.out.print("Unit cost: ");
-        Double cost = sc.nextDouble();
+        Double cost = input_double();
         product.setCost(cost);
         System.out.print("Unit discount: ");
         int discount = input_int();
         product.setDiscount(discount);
         System.out.print("Unit price: ");
-        Double price = sc.nextDouble();
+        Double price = input_double();
         product.setPrice(price);
         System.out.print("Product promotion: ");
-        product.setPromotion(sc.nextLine());
+        product.setPromotion(nhap());
         System.out.print("Product category: ");
-        product.setCategory(sc.nextLine());
+        product.setCategory(nhap());
         System.out.print("Products in stock: ");
         int productsInStock = input_int();
         product.setProductsInStock(productsInStock);
@@ -119,20 +118,21 @@ public class ProductBL {
             int id = input_int();
             product.setProductId(id);
             System.out.print("Product name: ");
-            product.setProductName(sc.nextLine());
+            product.setProductName(nhap());
             System.out.print("Unit cost: ");
-            Double cost = sc.nextDouble();
+            Double cost = input_double();
             product.setCost(cost);
             System.out.print("Unit discount: ");
             int discount = sc.nextInt();
             product.setDiscount(discount);
             System.out.print("Unit price: ");
-            Double price = sc.nextDouble();
+            Double price = input_double();
             product.setPrice(price);
+
             System.out.print("Product promotion: ");
-            product.setPromotion(sc.nextLine());
+            product.setPromotion(nhap());
             System.out.print("Product category: ");
-            product.setCategory(sc.nextLine());
+            product.setCategory(nhap());
             System.out.print("Products in stock: ");
             int productsInStock = input_int();
             product.setProductsInStock(productsInStock);
@@ -163,7 +163,7 @@ public class ProductBL {
             ProductDAL PD = new ProductDAL();
             Scanner sc = new Scanner(System.in);
             System.out.print("ProductId : ");
-            int id =input_int();
+            int id = input_int();
             System.out.print("Products in stock: ");
             int productsInStock = input_int();
             try {
@@ -175,7 +175,7 @@ public class ProductBL {
             if (choice.equalsIgnoreCase("y")) {
                 try {
                     PD.updateProductsInStock(id, productsInStock);
-                    
+
                 } catch (Exception e) {
                     System.out.println("Error. can't Update!");
                 }
@@ -188,8 +188,7 @@ public class ProductBL {
         }
     }
 
-    public static int input_int()
-    {
+    public static int input_int() {
         final Scanner input = new Scanner(System.in);
         int x = 0;
         String a;
@@ -197,11 +196,52 @@ public class ProductBL {
             a = input.nextLine();
             try {
                 x = Integer.parseInt(a);
-                return x;
+                if (x >= 0) {
+                    return x;
+                }
+                else{
+                    System.out.print("  Nhap sai,moi nhap lai: ");
+                }
             } catch (Exception e) {
                 System.out.print("  Nhap sai,moi nhap lai: ");
             }
         }
-       
+
+    }
+
+    private static String nhap() {
+        final Scanner input = new Scanner(System.in);
+        String a;
+        while (true) {
+            a = input.nextLine();
+            if (a.trim().compareTo("") == 0) {
+                System.out.print(" Nhap sai,moi nhap lai: ");
+
+            } else {
+                return a.trim();
+            }
+        }
+
+    }
+
+    public static double input_double() {
+        final Scanner input = new Scanner(System.in);
+        double x = 0;
+        String a;
+        while (true) {
+            a = input.nextLine();
+            try {
+                x = Double.parseDouble(a);
+                if (x >= 0) {
+                    return x;
+                }
+                else{
+                    System.out.print("  Nhap sai,moi nhap lai: ");
+                }
+            } catch (Exception e) {
+                System.out.print("  Nhap sai,moi nhap lai: ");
+            }
+        }
+
     }
 }

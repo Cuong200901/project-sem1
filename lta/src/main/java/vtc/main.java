@@ -1,6 +1,7 @@
 package vtc;
 
 import vtc.bl.AccountBL;
+import vtc.bl.ProductBL;
 import vtc.dal.OrderDAL;
 import vtc.dal.UtilDB;
 import vtc.ui.EraserThread;
@@ -29,35 +30,52 @@ public class main {
 
         final Scanner sc = new Scanner(System.in);
         while (true) {
-            cls();
+        cls();
 
-            final AccountBL accountBL = new AccountBL();
-            final AccountUI accountUI = new AccountUI();
-            String username;
-            String password;
-            System.out.println("[LTS] PF10 - Group6");
+        final AccountBL accountBL = new AccountBL();
+        final AccountUI accountUI = new AccountUI();
+        String username;
+        String password;
+        System.out.println("[LTS] PF10 - Group6");
 
-            System.out.println("+-------------------------------------------+");
-            System.out.println("|                 WELLCOME                  |");
-            System.out.println("+-------------------------------------------+");
-            System.out.print(" [Username]: ");
-            username = nhap();
-            System.out.print(" [Password]: ");
-            password = nhap();
-            int check = accountBL.login(username, password);
-            if (check == -1) {
-                System.out.println("Tai khoan hoac mat khau khong chinh xac!");
-                System.out.printf("Nhan %s de tiep tuc:", "Enter");
-                String nh = sc.nextLine();
-            } else if (check == 1) {
-                accountUI.admin_main_menu(check);
-            } else {
-                accountUI.staff_main_menu(check);
-
-            }
+        System.out.println("+-------------------------------------------+");
+        System.out.println("|                  WELLCOME                 |");
+        System.out.println("+-------------------------------------------+");
+        System.out.print(" [Username]: ");
+        username = nhap();
+        System.out.print(" [Password]: ");
+        password = nhap();
+        int check = accountBL.login(username, password);
+        if (check == -1) {
+        System.out.println("Tai khoan hoac mat khau khong chinh xac!");
+        System.out.printf("Nhan %s de tiep tuc:", "Enter");
+        String nh = sc.nextLine();
+        } else if (check == 1) {
+        accountUI.admin_main_menu(check);
+        } else {
+        accountUI.staff_main_menu(check);
 
         }
 
+        }
+
+
+        // System.out.print("Continue(Y/N): ");
+        // yn = yesno();
+        // if(yn.equals( "n") ||yn.equals("N"))
+        // {
+        // break;
+        // }
+
+    }
+
+    public static String yesno() {
+        final Scanner sc = new Scanner(System.in);
+        String yn = sc.nextLine();
+        if (yn.equalsIgnoreCase("N") || yn.equalsIgnoreCase("Y")) {
+            return yn;
+        }
+        return yn;
     }
 
     private static String nhap() {
@@ -72,8 +90,6 @@ public class main {
                 return a.trim();
             }
         }
-
-        
 
     }
 
@@ -112,7 +128,6 @@ public class main {
         while (true) {
             a = input.nextLine();
             try {
-
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                 DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 a = LocalDate.parse(a, formatter).format(formatter2);

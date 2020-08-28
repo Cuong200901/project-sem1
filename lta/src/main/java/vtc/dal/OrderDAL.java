@@ -514,25 +514,227 @@ public class OrderDAL {
 
     }
 
-
-
- 
-
-     public static void completeOrder(int table)
-     {
+    public static int completeOrder(final int table) {
+        int count = 0;
+        final String sql = "SELECT status FROM lemon_tee_shop.table where table_id = '" + table + "';";
         try (Connection con = UtilDB.getConnection();
-        PreparedStatement pstm = con.prepareStatement(
-                "UPDATE `lemon_tee_shop`.`table` SET `status` = 'Clear' WHERE (`table_id` = '"+table+"');");) {   
-                   int rs = pstm.executeUpdate();
-                   if (rs==1) {
-                       System.out.println("Successful!");
-                   }else{
-                       System.out.println("Fail!");
-                   }    
-   } catch (SQLException ex) {
-       ex.printStackTrace();
-       System.out.println("Update error!");
-       
-   }
-     }
+                Statement stm = con.createStatement();
+                ResultSet rs = stm.executeQuery(sql)) {
+            while (rs.next()) {
+                if (!rs.getString("status").equals("Clear")) {
+                    count = 1;
+                }
+            }
+        } catch (final SQLException ex) {
+            return count;
+        }
+        if (count == 1) {
+            try (Connection con = UtilDB.getConnection();
+                    PreparedStatement pstm = con.prepareStatement(
+                            "UPDATE `lemon_tee_shop`.`table` SET `status` = 'Clear' WHERE (`table_id` = '" + table
+                                    + "');");) {
+                final int rs = pstm.executeUpdate();
+                if (rs == 1) {
+                    System.out.println("Successful!");
+                    count = 2;
+                } else {
+                    System.out.println("Fail!");
+                }
+            } catch (final SQLException ex) {
+                ex.printStackTrace();
+                System.out.println("Update error!");
+
+            }
+        }
+        if (count == 0) {
+            System.out.println("Wrong table!");
+        }
+        return count;
+    }
+
+    public static int createOrder(final int staff_id, final int table_id, final String note) {
+        int count = 0;
+        final String sql = "SELECT status FROM lemon_tee_shop.table where table_id = '" + table_id + "';";
+        try (Connection con = UtilDB.getConnection();
+                Statement stm = con.createStatement();
+                ResultSet rs = stm.executeQuery(sql)) {
+            while (rs.next()) {
+                if (rs.getString("status").equals("Clear")) {
+                    count = 1;
+
+                } else {
+                    count = 2;
+                }
+            }
+        } catch (final SQLException ex) {
+
+            return count;
+        }
+
+        if (count == 1) {
+            try (Connection con = UtilDB.getConnection();
+                    PreparedStatement pstm = con
+                            .prepareStatement("UPDATE lemon_tee_shop.table SET status = 'Exsit' WHERE (table_id = '"
+                                    + table_id + "');");) {
+                final int rs = pstm.executeUpdate();
+                if (rs == 1) {
+
+                }
+            } catch (final SQLException ex) {
+
+                return count;
+            }
+            while (true) {
+                try (Connection con = UtilDB.getConnection();
+                        PreparedStatement pstm = con.prepareStatement(
+                                "INSERT INTO lemon_tee_shop.order (time, account_id, note, table_id) VALUES ( '"
+                                        + java.time.LocalDateTime.now() + "', '" + staff_id + "', '" + note + "', '"
+                                        + table_id + "');");) {
+                    final int rs = pstm.executeUpdate();
+                    if (rs == 1) {
+
+                    }
+                } catch (final SQLException ex) {
+                    return count;
+                }
+                break;
+            }
+            count = 3;
+        }
+
+        return count;
+    }
+
+    public static int productsInOrder(final int product_id, final int amount) {
+
+        int count = 0;
+        int order_id = 0;
+        int productInStock = 0;
+        String sql = "SELECT products_in_stock FROM lemon_tee_shop.products where product_id  = '" + product_id + "';";
+        try (Connection con = UtilDB.getConnection();
+                Statement stm = con.createStatement();
+                ResultSet rs = stm.executeQuery(sql)) {
+            while (rs.next()) {
+                if (rs.getInt("products_in_stock") == 0) {
+                    System.out.println("The product is out of stock!");
+
+                } else if (rs.getInt("products_in_stock") < amount) {
+                    System.out.println("Insufficient quantity of products!");
+
+                } else {
+                    count = 1;
+                }
+
+            }
+        } catch (final SQLException ex) {
+            return count;
+        }
+
+        if (count == 1) {
+            sql = "SELECT max(order_id) FROM lemon_tee_shop.order;";
+            try (Connection con = UtilDB.getConnection();
+                    Statement stm = con.createStatement();
+                    ResultSet rs = stm.executeQuery(sql)) {
+                while (rs.next()) {
+                    order_id = rs.getInt("max(order_id)");
+                    count = 2;
+
+                }
+            } catch (final SQLException ex) {
+                return count;
+            }
+        }
+        if (count == 2) {
+            try (Connection con = UtilDB.getConnection();
+                    PreparedStatement pstm = con
+                            .prepareStatement("INSERT INTO order_details (product_id, amount, order_id) VALUES ('"
+                                    + product_id + "', '" + amount + "', '" + order_id + "');");) {
+                final int rs = pstm.executeUpdate();
+                if (rs == 1) {
+                    System.out.println("Successful!");
+                    count = 3;
+                } else {
+                    System.out.println("Fail!");
+                }
+            } catch (final SQLException ex) {
+                return count;
+
+            }
+            sql = "SELECT products_in_stock FROM lemon_tee_shop.products where product_id = '" + product_id + "';";
+            try (Connection con = UtilDB.getConnection();
+                    Statement stm = con.createStatement();
+                    ResultSet rs = stm.executeQuery(sql)) {
+                while (rs.next()) {
+                    productInStock = rs.getInt("products_in_stock") - amount;
+                    System.out.println(productInStock);
+                }
+            } catch (final SQLException ex) {
+                System.out.println(ex.toString());
+            }
+            System.out.println(productInStock);
+            try (Connection con = UtilDB.getConnection();
+                    PreparedStatement pstm = con
+                            .prepareStatement("UPDATE lemon_tee_shop.products SET products_in_stock = '"
+                                    + productInStock + "' WHERE (product_id = '" + product_id + "');");) {
+                final int rs = pstm.executeUpdate();
+                if (rs == 1) {
+                    System.out.println("Successful!");
+                    count = 3;
+                } else {
+                    System.out.println("Fail!");
+                }
+            } catch (final SQLException ex) {
+                System.out.println(ex);
+                return count;
+
+            }
+        }
+        if (count == 0) {
+            System.out.println("Product not exsit!");
+        }
+        return count;
+
+    }
+
+    public static int updateOrder(final int table) {
+        int order_id = 0;
+        int count = 0;
+        String sql = "SELECT status FROM lemon_tee_shop.table where table_id = '" + table + "';";
+        try (Connection con = UtilDB.getConnection();
+                Statement stm = con.createStatement();
+                ResultSet rs = stm.executeQuery(sql)) {
+            while (rs.next()) {
+                if (!rs.getString("status").equals("Clear")) {
+                   return count = 1;
+                   
+                }
+                else
+                {  
+                    System.out.println("Table clear!");
+                }
+            }
+        } catch (final SQLException ex) {
+            System.out.println(ex);
+        }
+
+       System.out.println(count);
+        if (count ==  1 ){
+            sql = "SELECT max(order_id) FROM lemon_tee_shop.order where table_id = '" + table + "';";
+            try (Connection con = UtilDB.getConnection();
+                    Statement stm = con.createStatement();
+                    ResultSet rs = stm.executeQuery(sql)) {
+                while (rs.next()) {
+                    order_id = rs.getInt("max(order_id)");
+                    System.out.println(order_id);
+    
+                }
+            } catch (final SQLException ex) {
+                System.out.println(ex);
+            }
+        }
+
+        System.out.println(order_id);
+        return order_id;
+    }
+
 }

@@ -63,10 +63,10 @@ INSERT INTO `lemon_tee_shop`.`products` (`name`, `cost`, `discount`, `price`, `p
 INSERT INTO `lemon_tee_shop`.`products` (`name`, `cost`, `discount`, `price`, `promotion`, `category`, `products_in_stock`) VALUES ('Khoai tay lac pho mai (1 hop)', '30000', '0', '30000', '0', 'Do an vat', '35');
 INSERT INTO `lemon_tee_shop`.`products` (`name`, `cost`, `discount`, `price`, `promotion`, `category`, `products_in_stock`) VALUES ('Them 1 phan tran chau trang', '5000', '0', '5000', '0', 'Topping', '50');
 INSERT INTO `lemon_tee_shop`.`products` (`name`, `cost`, `discount`, `price`, `promotion`, `category`, `products_in_stock`) VALUES ('Them 1 phan nha dam', '5000', '0', '5000', '0', 'Topping', '50');
-INSERT INTO `lemon_tee_shop`.`products` (`name`, `cost`, `discount`, `price`, `promotion`, `category`, `products_in_stock`) VALUES ('Da tui', '10000', '0', '10000', '0', 'Nguyen lieu', '25');
-INSERT INTO `lemon_tee_shop`.`products` (`name`, `cost`, `discount`, `price`, `promotion`, `category`, `products_in_stock`) VALUES ('Coc nhua', '800', '0', '800', '0', 'Nguyen lieu', '350');
-INSERT INTO `lemon_tee_shop`.`products` (`name`, `cost`, `discount`, `price`, `promotion`, `category`, `products_in_stock`) VALUES ('Ong hut', '200', '0', '200', '0', 'Nguyen lieu', '350');
-INSERT INTO `lemon_tee_shop`.`products` (`name`, `cost`, `discount`, `price`, `promotion`, `category`, `products_in_stock`) VALUES ('Tui mang di', '100', '0', '100', '0', 'Nguyen lieu', '1000');
+INSERT INTO `lemon_tee_shop`.`products` (`name`, `cost`, `discount`, `price`, `promotion`, `category`, `products_in_stock`) VALUES ('Da tui', '0', '0', '0', '0', 'Nguyen lieu', '25');
+INSERT INTO `lemon_tee_shop`.`products` (`name`, `cost`, `discount`, `price`, `promotion`, `category`, `products_in_stock`) VALUES ('Coc nhua', '0', '0', '0', '0', 'Nguyen lieu', '350');
+INSERT INTO `lemon_tee_shop`.`products` (`name`, `cost`, `discount`, `price`, `promotion`, `category`, `products_in_stock`) VALUES ('Ong hut', '0', '0', '0', '0', 'Nguyen lieu', '350');
+INSERT INTO `lemon_tee_shop`.`products` (`name`, `cost`, `discount`, `price`, `promotion`, `category`, `products_in_stock`) VALUES ('Tui mang di', '0', '0', '0', '0', 'Nguyen lieu', '1000');
 
     
     CREATE TABLE `lemon_tee_shop`.`picture` (

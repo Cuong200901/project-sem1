@@ -68,10 +68,12 @@ public class OrderUI {
                 case "1":
                     cls();
                     OrderBL.showTableClear();
+                    OrderBL.createOrder(id);
                     break;
                 case "2":
                     cls();
                     OrderBL.showTableExit();
+                    OrderBL.updateOrder();
                     break;
 
                 case "3":
@@ -85,6 +87,8 @@ public class OrderUI {
                     cls();
                     OrderBL.showOrderByDay();
                     OrderBL.showBill();
+                    System.out.printf("Nhan %s de quay lai:", "Enter");
+                    nh = sc.nextLine();
                     break;
                 case "0":
                     back = false;

@@ -40,6 +40,10 @@ OrderUI orderUI = new OrderUI();
                     cls();
                     productsUI.admin_products_menu();
                     break;
+                    case "4":
+                    cls();
+                    orderUI.financial_management_menu();
+                    break;
                 case "5":
                     back = false;
                     break;

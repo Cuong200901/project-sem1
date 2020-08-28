@@ -276,7 +276,12 @@ public class AccountBL {
             a = input.nextLine();
             try {
                 x = Integer.parseInt(a);
-                return x;
+                if (x > 0) {
+                    return x;
+                }
+                else{
+                    System.out.print("  Nhap sai,moi nhap lai: ");
+                }
             } catch (Exception e) {
                 System.out.print("  Nhap sai,moi nhap lai: ");
             }
@@ -298,6 +303,23 @@ public class AccountBL {
                 System.out.print("Error!, Enter again: ");
             }
         }
+    }
+
+
+    public static double input_double() {
+        final Scanner input = new Scanner(System.in);
+        double x = 0;
+        String a;
+        while (true) {
+            a = input.nextLine();
+            try {
+                x = Double.parseDouble(a);
+                return x;
+            } catch (Exception e) {
+                System.out.print("  Nhap sai,moi nhap lai: ");
+            }
+        }
+
     }
 
 }
