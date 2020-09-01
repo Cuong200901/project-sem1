@@ -1,4 +1,4 @@
-package vtc.ui;
+package vtc.ui.ProductsUI;
 
 import vtc.bl.ProductBL;
 import vtc.persistance.Product;
@@ -30,21 +30,21 @@ public class ProductsUI {
             switch (chose) {
                 case "1":
                     cls();
-                    ProductBL.insertProduct();
+                    InputProduct.insertProduct();
                     break;
                 case "2":
                     cls();
-                    ProductBL.showProduct();
-                    ProductBL.inputInfoUpdate();
+                    ShowProduct.showProduct();
+                    InputProduct.inputInfoUpdate();
                     break;
                 case "3":
                     cls();
-                    ProductBL.showProduct();
-                    ProductBL.inputProductsInStock();
+                    ShowProduct.showProduct();
+                    InputProduct.inputProductsInStock();
                     break;
                 case "4":
                     cls();
-                    ProductBL.showProduct();
+                    ShowProduct.showProduct();
                     System.out.printf("Nhan %s de quay lai:", "Enter");
                     nh = sc.nextLine();
                     break;

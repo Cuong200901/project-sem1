@@ -2,7 +2,6 @@ package vtc.dal;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import vtc.persistance.Account;
 
@@ -11,8 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DateFormat;
-import java.time.LocalDate;
+
 import java.sql.ResultSet;
 
 public class AccountDAL {
@@ -41,7 +39,7 @@ public class AccountDAL {
 
     public int check_account(String username, String password) {
 
-        String position = null;
+     
         int id = -1;
         try {
             String strconn = "jdbc:mysql://localhost:3306/lemon_tee_shop?user=root&password=cuong2001";
@@ -226,5 +224,7 @@ public class AccountDAL {
         }
 
     }
+
+	
 
 }

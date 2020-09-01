@@ -1,15 +1,11 @@
 package vtc.persistance;
 
 
-
-import java.time.LocalDateTime;
-
 public class Order {
 
     private int orderId;
-    private LocalDateTime time;
-    private String orderStatus;
-    private Account accountId;
+    private String time;
+    private int accountId;
     private String note;
     private int table;
     
@@ -22,27 +18,20 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public LocalDateTime getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(LocalDateTime time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
-    public String getOrderStatus() {
-        return orderStatus;
-    }
 
-    public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus;
-    }
-
-    public Account getAccountId() {
+    public int getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(Account accountId) {
+    public void setAccountId(int accountId) {
         this.accountId = accountId;
     }
 
@@ -61,7 +50,5 @@ public class Order {
     public void setTable(int table) {
         this.table = table;
     }
-
-  
 
 }

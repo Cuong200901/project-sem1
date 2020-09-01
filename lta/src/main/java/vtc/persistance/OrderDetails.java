@@ -1,39 +1,39 @@
 package vtc.persistance;
 
 public class OrderDetails {
-  private  int OrderDetailsId;
-  private  int productsId;
-  private  int amount;
-   private int order_id;
+    private int orderDetailsId;
+    private int productId;
+    private int amount;
+    private int orderId;
 
 
-    public int getOrderDetailsId() {
-        return OrderDetailsId;
+    public int getorderDetailsId() {
+        return orderDetailsId;
     }
 
-    public void setOrderDetailsId(int OrderDetailsId) {
-        this.OrderDetailsId = OrderDetailsId;
+    public void setorderDetailsId(int orderDetailsId) {
+        this.orderDetailsId = orderDetailsId;
     }
-    public int getproductsId() {
-        return productsId;
+    public int getproductId() {
+        return productId;
     }
 
-    public void setproductsId(int productsId) {
-        this.productsId = productsId;
+    public void setproductId(int productId) {
+        this.productId = productId;
     }
     public int getamount() {
-        return amount;
+        return  amount;
     }
 
-    public void setamount(int amount) {
-        this.amount = amount;
+    public void setamount(int  amount) {
+        this. amount =  amount;
     }
-    public int getorder_id() {
-        return order_id;
+    public int getOrderId() {
+        return orderId;
     }
 
-    public void setorder_id(int order_id) {
-        this.order_id = order_id;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
 }

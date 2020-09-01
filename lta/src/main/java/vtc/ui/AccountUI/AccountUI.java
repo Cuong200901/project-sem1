@@ -1,14 +1,16 @@
-package vtc.ui;
+package vtc.ui.AccountUI;
 
 import java.io.IOException;
 import java.util.Scanner;
 
 import vtc.bl.AccountBL;
+// import vtc.ui.OrderUI.OrderUI;
+import vtc.ui.ProductsUI.ProductsUI;
 
 public class AccountUI {
     Scanner sc = new Scanner(System.in);
     ProductsUI productsUI = new ProductsUI();
-OrderUI orderUI = new OrderUI();
+// OrderUI orderUI = new OrderUI();
     public void admin_main_menu(int id) {
         boolean back = true;
         while (back) {
@@ -29,8 +31,8 @@ OrderUI orderUI = new OrderUI();
             switch (chose) {
                 case "1":
                 cls();
-                AccountBL.showAccountById(id);
-                AccountBL.inputInfoUpdateById(id);
+                ShowAccount.showAccountById(id);
+                InputAccount.inputInfoUpdateById(id);
                 break;
                 case "2":
                     cls();
@@ -42,7 +44,7 @@ OrderUI orderUI = new OrderUI();
                     break;
                     case "4":
                     cls();
-                    orderUI.financial_management_menu();
+                    // orderUI.financial_management_menu();
                     break;
                 case "5":
                     back = false;
@@ -75,12 +77,12 @@ OrderUI orderUI = new OrderUI();
             switch (chose) {
                 case "1":
                 cls();
-                AccountBL.showAccountById(id);
-                AccountBL.inputInfoUpdateById(id);
+                ShowAccount.showAccountById(id);
+                InputAccount.inputInfoUpdateById(id);
                 break;
                 case "2":
                 cls();
-                orderUI.manage_order_menu(id);
+                // orderUI.manage_order_menu(id);
                 break;
                 case "3":
                     back = false;
@@ -113,18 +115,18 @@ OrderUI orderUI = new OrderUI();
             chose = sc.nextLine();
             switch (chose) {
                 case "1":
-                AccountBL.insertaccount();;
+                InputAccount.insertaccount();;
                     break;  
                 case "2":
-                AccountBL.showAccount();
-                AccountBL.inputInfoUpdate();
+                ShowAccount.showAccount();
+                InputAccount.inputInfoUpdate();
                     break;
                 case "0":
                     back = false;
                     break;
                 case "3":
                 cls();
-                AccountBL.showAccount();
+                ShowAccount.showAccount();
                     System.out.printf("Nhan %s de quay lai:", "Enter");
                     String nh = sc.nextLine();
                     break;

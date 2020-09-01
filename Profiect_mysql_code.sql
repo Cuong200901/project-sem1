@@ -69,45 +69,45 @@ INSERT INTO `lemon_tee_shop`.`products` (`name`, `cost`, `discount`, `price`, `p
 INSERT INTO `lemon_tee_shop`.`products` (`name`, `cost`, `discount`, `price`, `promotion`, `category`, `products_in_stock`) VALUES ('Tui mang di', '0', '0', '0', '0', 'Nguyen lieu', '1000');
 
     
-    CREATE TABLE `lemon_tee_shop`.`picture` (
-  `picture_id` INT NOT NULL AUTO_INCREMENT,
-  `picture_link` VARCHAR(255) NOT NULL,
-  `product_id` INT NOT NULL,
-  PRIMARY KEY (`picture_id`),
-    FOREIGN KEY (`product_id`)
-    REFERENCES `lemon_tee_shop`.`products` (`product_id`)
-    );
-    INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://cdn-image.myrecipes.com/sites/default/files/styles/4_3_horizontal_-_1200x900/public', '1');
-INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://cdn.sunbasket.com/954142a1-3a66-4258-a9b5-34bfba93a627.jpg', '2');
-INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://servingjoy.com/wp-content/uploads/2014/12/Lychee-fizzy-drink-with-mint-Lychee-Mojito-.jpg', '3');
-INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://divascancook.com/wp-content/uploads/2017/04/strawberry-sweet-tea-1024x768.jpg', '4');
-INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://thehealthytart.com/wp-content/uploads/2017/03/Ginger-and-Lemon-tea.jpg', '5');
-INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://cdn2.stylecraze.com/wp-content/uploads/2014/11/2-Simple-Ways-To-Prepare-Mango-Tea1.jpg', '6');
-INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('http://www.jkteashop.com/blog/wp-content/uploads/2017/03/lizhihongcha.jpg', '7');
-INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://getinmymouf.com/wp-content/uploads/2015/04/DSC_0136.jpg', '8');
-INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://food-fanatic-res.cloudinary.com/iu/s---KYwQzp1--/f_auto,q_auto/v1430103572/sweet-mango-green-tea-photo', '9');
-INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://img.taste.com.au/xeXqY0vO/taste/2016/11/apple-and-mint-iced-tea-54697-1.jpeg', '10');
-INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://i.pinimg.com/736x/b6/b0/61/b6b061d2e47b61d94027788f1c33f7b2--easy-coffee-instant-coffee.jpg', '11');
-INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://www.cheatsheet.com/wp-content/uploads/2015/07/Passion-fruit-juice.jpg', '12');
-INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://www.eatme.eu/uploads/images/recepten/kumquat_ijsthee_1.jpg', '13');
-INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://chinatown.co.uk/wp-content/uploads/2017/06/shutterstock_584243260-e1498137425460.jpg', '14');
-INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://bakedbree.com/wp-content/uploads/2012/09/lime-mint-tea-cooler_23.jpg', '15');
-INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://i2.wp.com/foodsogoodmall.com/wp-content/uploads/2014/03/Pineapple-Iced-Tea.jpg?resize=500%2C335&ssl=1', '16');
-INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('http://2.bp.blogspot.com/_jc2ZAw5kem4/TU_-VvRHz2I/AAAAAAAAFU0/keVHC0A4XsQ/s1600/Fruit+Tea+1.jpg', '17');
-INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://the.republicoftea.com/wp-content/uploads/2016/02/Mango-Coconut-Water-Iced-Tea-Glass.jpg', '18');
-INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://sifu.unileversolutions.com/image/en-US/recipe-topvisual/2/1260-709/apple-cinnamon-tea-50202275.jpg', '19');
-INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('http://v.img.com.ua/nxs125/b/600x500/b/74/c2eca869a147c9f57889e31e39c4774b.jpg', '20');
-INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('http://4.bp.blogspot.com/--M3SrHqJ0hQ/VV1OHLY79xI/AAAAAAAAeU4/RMQD9_aippk/s640/Mua-thu-va-Tra-hoa-cuc-cam-xuc-hoa-quyen-2.jpg', '21');
-INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('data:image/jpeg;base64,/9j/4AAQSkZJRgAkFRJAEnQCecUuqrwaZaO6FxMdaZu7Fxc0TB0kdVJ0YeYmh+JWVgG4ACcubXJPTPGXfTffTelmzYdmzOys10/aTMyINfZ', '22');
-INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGB8zODMtNygtLisBCgoKDg0OGxAQGy', '23');
-INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhSggGBonHRc8zODMsNygtLiB/9k=', '24');
-INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMSEhlIBoYITEhJSkrLi4uG0OGxAQOn/2Q==', '25');
-INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxQSEhUSExIVFRUWGBcVGRUgICD/9k=', '26');
-INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUTExMVFRUWGBUXFhYXFRUVvIA//9k=', '27');
-INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUTExMWFhUWGB0bGRcXGBgXGhoYGhgaHRgYHRcYHSggGB//9k=', '28');
-INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR8qpe9k-KIF4WCQqeOQVVKuXylfn35VxyhAA&usqp=CAU', '29');
-INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUSExMVFRUXFxcbGBgYFhcdGBgXFhtNyghNP//Z', '30');
-INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUTExMWFhUXFxgbFxgWGBsBF5fWDZdKAN3ueb/9k=', '31');
+   --  CREATE TABLE `lemon_tee_shop`.`picture` (
+--   `picture_id` INT NOT NULL AUTO_INCREMENT,
+--   `picture_link` VARCHAR(255) NOT NULL,
+--   `product_id` INT NOT NULL,
+--   PRIMARY KEY (`picture_id`),
+--     FOREIGN KEY (`product_id`)
+--     REFERENCES `lemon_tee_shop`.`products` (`product_id`)
+--     );
+--     INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://cdn-image.myrecipes.com/sites/default/files/styles/4_3_horizontal_-_1200x900/public', '1');
+-- INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://cdn.sunbasket.com/954142a1-3a66-4258-a9b5-34bfba93a627.jpg', '2');
+-- INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://servingjoy.com/wp-content/uploads/2014/12/Lychee-fizzy-drink-with-mint-Lychee-Mojito-.jpg', '3');
+-- INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://divascancook.com/wp-content/uploads/2017/04/strawberry-sweet-tea-1024x768.jpg', '4');
+-- INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://thehealthytart.com/wp-content/uploads/2017/03/Ginger-and-Lemon-tea.jpg', '5');
+-- INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://cdn2.stylecraze.com/wp-content/uploads/2014/11/2-Simple-Ways-To-Prepare-Mango-Tea1.jpg', '6');
+-- INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('http://www.jkteashop.com/blog/wp-content/uploads/2017/03/lizhihongcha.jpg', '7');
+-- INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://getinmymouf.com/wp-content/uploads/2015/04/DSC_0136.jpg', '8');
+-- INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://food-fanatic-res.cloudinary.com/iu/s---KYwQzp1--/f_auto,q_auto/v1430103572/sweet-mango-green-tea-photo', '9');
+-- INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://img.taste.com.au/xeXqY0vO/taste/2016/11/apple-and-mint-iced-tea-54697-1.jpeg', '10');
+-- INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://i.pinimg.com/736x/b6/b0/61/b6b061d2e47b61d94027788f1c33f7b2--easy-coffee-instant-coffee.jpg', '11');
+-- INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://www.cheatsheet.com/wp-content/uploads/2015/07/Passion-fruit-juice.jpg', '12');
+-- INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://www.eatme.eu/uploads/images/recepten/kumquat_ijsthee_1.jpg', '13');
+-- INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://chinatown.co.uk/wp-content/uploads/2017/06/shutterstock_584243260-e1498137425460.jpg', '14');
+-- INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://bakedbree.com/wp-content/uploads/2012/09/lime-mint-tea-cooler_23.jpg', '15');
+-- INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://i2.wp.com/foodsogoodmall.com/wp-content/uploads/2014/03/Pineapple-Iced-Tea.jpg?resize=500%2C335&ssl=1', '16');
+-- INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('http://2.bp.blogspot.com/_jc2ZAw5kem4/TU_-VvRHz2I/AAAAAAAAFU0/keVHC0A4XsQ/s1600/Fruit+Tea+1.jpg', '17');
+-- INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://the.republicoftea.com/wp-content/uploads/2016/02/Mango-Coconut-Water-Iced-Tea-Glass.jpg', '18');
+-- INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://sifu.unileversolutions.com/image/en-US/recipe-topvisual/2/1260-709/apple-cinnamon-tea-50202275.jpg', '19');
+-- INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('http://v.img.com.ua/nxs125/b/600x500/b/74/c2eca869a147c9f57889e31e39c4774b.jpg', '20');
+-- INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('http://4.bp.blogspot.com/--M3SrHqJ0hQ/VV1OHLY79xI/AAAAAAAAeU4/RMQD9_aippk/s640/Mua-thu-va-Tra-hoa-cuc-cam-xuc-hoa-quyen-2.jpg', '21');
+-- INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('data:image/jpeg;base64,/9j/4AAQSkZJRgAkFRJAEnQCecUuqrwaZaO6FxMdaZu7Fxc0TB0kdVJ0YeYmh+JWVgG4ACcubXJPTPGXfTffTelmzYdmzOys10/aTMyINfZ', '22');
+-- INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGB8zODMtNygtLisBCgoKDg0OGxAQGy', '23');
+-- INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhSggGBonHRc8zODMsNygtLiB/9k=', '24');
+-- INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMSEhlIBoYITEhJSkrLi4uG0OGxAQOn/2Q==', '25');
+-- INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxQSEhUSExIVFRUWGBcVGRUgICD/9k=', '26');
+-- INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUTExMVFRUWGBUXFhYXFRUVvIA//9k=', '27');
+-- INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUTExMWFhUWGB0bGRcXGBgXGhoYGhgaHRgYHRcYHSggGB//9k=', '28');
+-- INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR8qpe9k-KIF4WCQqeOQVVKuXylfn35VxyhAA&usqp=CAU', '29');
+-- INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUSExMVFRUXFxcbGBgYFhcdGBgXFhtNyghNP//Z', '30');
+-- INSERT INTO `lemon_tee_shop`.`picture` (`picture_link`, `product_id`) VALUES ('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUTExMWFhUXFxgbFxgWGBsBF5fWDZdKAN3ueb/9k=', '31');
     
     
 CREATE TABLE `lemon_tee_shop`.`table` (
@@ -142,7 +142,7 @@ INSERT INTO `lemon_tee_shop`.`table` (`status`) VALUES ('Clear');
   `time` DATETIME NOT NULL,
   -- `order_status` VARCHAR(45) NOT NULL,
   `account_id` INT NOT NULL,
-  -- `note` VARCHAR(255) NULL,
+  `note` VARCHAR(255) NULL,
   `table_id` INT,
   PRIMARY KEY (`order_id`), 
     FOREIGN KEY (`account_id`)

@@ -1,53 +1,28 @@
 package vtc.bl;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.Year;
-import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import vtc.persistance.*;
 import vtc.dal.OrderDAL;
 
 public class OrderBL {
     static Scanner sc = new Scanner(System.in);
+    static List<Order> orderList = new ArrayList<>();
+    static List<OrderDetails> orderDetailsList = new ArrayList<>();
+    public static int completeOrder(final int table) {
+        return OrderDAL.completeOrder(table);
+    };
 
-    public static void orderByMonth() {
-        while (true) {
-            int year = 0;
-            System.out.print("Enter year: ");
-            year = input_int();
-            if (year >= 1990 && year <= 2050) {
-                OrderDAL.orderAmountByMonth(year);
-                break;
-            } else {
-                System.out.print(" Error! Enter again: ");
-            }
-        }
-    }
+    public static int createOrder(Order order) {
+        return OrderDAL.createOrder(order);
+    };
 
-    public static void showBill() {
+    public static int productsInOrder(OrderDetails orderDetails) {
+        return OrderDAL.productsInOrder(orderDetails);
 
-        System.out.print("Enter id:");
-        int id = input_int();     
-            OrderDAL.showBill(id);
-       
-
-    }
-
-    public static void monneyEarnerByMonth() {
-        while (true) {
-            int year = 0;
-            System.out.print("Enter year: ");
-            year = input_int();
-            if (year >= 1990 && year <= 2050) {
-                OrderDAL.monneyEarnByMonth(year);
-                ;
-                break;
-            } else {
-                System.out.print(" Error! Enter again: ");
-            }
-        }
-    }
+    };
 
     public static void showTableClear() {
         OrderDAL.showTableClear();
@@ -57,171 +32,34 @@ public class OrderBL {
         OrderDAL.showTableExsit();
     }
 
-    public static void showOrderByDay() {
-        System.out.print("Enter day:");
-        String day = input_date();
-        OrderDAL.showOrderByDay(day);
-    }
-
-    public static String input_date() {
-        final Scanner input = new Scanner(System.in);
-        String a;
-        while (true) {
-            a = input.nextLine();
-            try {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                a = LocalDate.parse(a, formatter).format(formatter2);
-                return a;
-            } catch (Exception e) {
-                System.out.print("Error!, Enter again: ");
-            }
-        }
-    }
-
-    public static void completeOrder() {
-        System.out.print("Enter table: ");
-        int table = input_int();
-        OrderDAL.completeOrder(table);
-    }
-
-    public static int input_int() {
-        final Scanner input = new Scanner(System.in);
-        int x = 0;
-        String a;
-        while (true) {
-            a = input.nextLine();
-            try {
-                x = Integer.parseInt(a);
-                if (x >= 0) {
-                    return x;
-                }
-                else{
-                    System.out.print("  Nhap sai,moi nhap lai: ");
-                }
-            } catch (Exception e) {
-                System.out.print("  Nhap sai,moi nhap lai: ");
-            
-            }
-        }
-
-    }
-
-    public static void createOrder(final int staff_id) {
-        int table_id;
-        String note;
-        int product_id;
-        int amount;
-        System.out.print("Enter table: ");
-        table_id = input_int();
-        System.out.print("Note: ");
-        note = sc.nextLine();
-        if(OrderDAL.createOrder(staff_id, table_id, note) ==3){
-            while (true) {
-              
-                ProductBL.showProduct();
-                System.out.print("Enter product id: ");
-                product_id = input_int();
-                System.out.print("Enter product amount: ");
-                amount = input_int();
-                System.out.print("Do you want to update(Y/N): ");
-                String yn = yesno();
-                if(yn.equals( "y") ||yn.equals("Y"))
-                {
-                    OrderDAL.productsInOrder(product_id, amount);
-                }
-                System.out.print("Continue(Y/N): ");
-                yn = yesno();
-                if(yn.equals( "n") ||yn.equals("N"))
-                {
-                    break;
-                }
-                
-            }
-        }
-        else if( OrderDAL.createOrder(staff_id, table_id, note) == 0)
-        {
-            System.out.println("Wrong table");
-            System.out.println(OrderDAL.createOrder(staff_id, table_id, note));
-            System.out.printf("Nhan %s de quay lai:", "Enter");
-           String nh = sc.nextLine();
-        }else if(OrderDAL.createOrder(staff_id, table_id, note) ==2)
-        {
-            System.out.println("Table exsit");
-            System.out.printf("Nhan %s de quay lai:", "Enter");
-          String  nh = sc.nextLine();
-        }
-
-    }
-
-    public static void updateOrder() {
-
-       
-        int table_id;
-        int product_id;
-        int amount;
-
-        System.out.print("Enter table: ");
-        table_id = input_int();
-        if (OrderDAL.updateOrder(table_id) != 0) {
-            while (true) {
-                cls();
-                ProductBL.showProduct();
-                System.out.print("Enter product id: ");
-                product_id = input_int();
-                System.out.print("Enter product amount: ");
-                amount = input_int();
-                System.out.print("Do you want to update(Y/N): ");
-                String yn = yesno();
-                if (yn.equals("y") || yn.equals("Y")) {
-                    OrderDAL.productsInOrder(product_id, amount);
-                }
-                System.out.print("Continue(Y/N): ");
-                yn = yesno();
-                if (yn.equals("n") || yn.equals("N")) {
-                    break;
-                }
-
-            }
-        }
-        }
-
+    public static int updateOrder(final int table) {
+        return OrderDAL.updateOrder(table);
+    };
 
     
 
-    public static void cls() {
-        try {
-            if (System.getProperty("os.name").contains("Windows"))
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-            else
-                Runtime.getRuntime().exec("clear");
-        } catch (IOException | InterruptedException ignored) {
-        }
-    }
+    public static List<Order> getOrderByDay(String day) {
+        return OrderDAL.getOrderByDay(day);
+
+    };
+
+    public static List<OrderDetails> getOrderDetails(int id) {
+        return OrderDAL.getOrderDetails(id);
+
+    };
 
 
-    private static String nhap() {
-        final Scanner input = new Scanner(System.in);
-        String a;
-        while (true) {
-            a = input.nextLine();
-            if (a.trim().compareTo("") == 0) {
-                System.out.print(" Nhap sai,moi nhap lai: ");
+    public static List<OrderDetails> getBillDetails(int id) {
+        return OrderDAL.getBillDetails(id);
 
-            } else {
-                return a.trim();
-            }
-        }
+    };
 
-    }
-
-    public static String yesno() {
-        String yn = sc.nextLine();
-        if (yn.equalsIgnoreCase("N") || yn.equalsIgnoreCase("Y")) {
-            return yn;
-        }
-        return yn;
-    }
+    public static List<Order> getBill(int id) {
+        return OrderDAL.getBill(id);
+    };
+    public static List<Order> getOrderByMonth(int year, int month) {
+        return OrderDAL.getOrderByMonth(year, month);
+    };
 
     
 }

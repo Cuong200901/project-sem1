@@ -4,8 +4,7 @@ import vtc.bl.AccountBL;
 import vtc.bl.ProductBL;
 import vtc.dal.OrderDAL;
 import vtc.dal.UtilDB;
-import vtc.ui.EraserThread;
-import vtc.ui.AccountUI;
+import vtc.ui.AccountUI.AccountUI;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -31,7 +30,6 @@ public class main {
         final Scanner sc = new Scanner(System.in);
         while (true) {
         cls();
-
         final AccountBL accountBL = new AccountBL();
         final AccountUI accountUI = new AccountUI();
         String username;
@@ -103,24 +101,7 @@ public class main {
         }
     }
 
-    public static String readPassword(final String prompt) {
-        final EraserThread et = new EraserThread(prompt);
-        final Thread mask = new Thread(et);
-        mask.start();
 
-        final BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        String password = "";
-
-        try {
-            password = in.readLine();
-        } catch (final IOException ioe) {
-            ioe.printStackTrace();
-        }
-        // stop masking
-        et.stopMasking();
-        // return the password entered by the user
-        return password;
-    }
 
     public static String input_date() {
         final Scanner input = new Scanner(System.in);
@@ -146,7 +127,12 @@ public class main {
             a = input.nextLine();
             try {
                 x = Integer.parseInt(a);
-                return x;
+                if (x >= 0) {
+                    return x;
+                }
+                else{
+                    System.out.print("  Nhap sai,moi nhap lai: ");
+                }
             } catch (Exception e) {
                 System.out.print("  Nhap sai,moi nhap lai: ");
             }

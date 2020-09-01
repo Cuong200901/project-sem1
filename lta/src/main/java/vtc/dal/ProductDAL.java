@@ -12,8 +12,8 @@ public class ProductDAL {
         String sql = "select * from products";
         List<Product> lst = new ArrayList<>();
         try (Connection con = UtilDB.getConnection();
-             Statement stm = con.createStatement();
-             ResultSet rs = stm.executeQuery(sql)) {
+                Statement stm = con.createStatement();
+                ResultSet rs = stm.executeQuery(sql)) {
             while (rs.next()) {
                 lst.add(getProduct(rs));
             }
@@ -26,16 +26,18 @@ public class ProductDAL {
 
     public static int insertProduct(Product product) {
         try (Connection con = UtilDB.getConnection();
-             PreparedStatement pstm = con.prepareStatement(
-                                          "insert into products(name, cost, discount, price,promotion, category, products_in_stock) values (?,?,?,?,?,?,?);");) {
+                PreparedStatement pstm = con.prepareStatement(
+                        "insert into products(name, cost, discount, price,promotion, category, products_in_stock) values (?,?,?,?,?,?,?);");) {
             pstm.setString(1, product.getProductName());
             pstm.setDouble(2, product.getCost());
             pstm.setInt(3, product.getDiscount());
             pstm.setDouble(4, product.getPrice());
-            pstm.setString(5,product.getPromotion());
-            pstm.setString(6,product.getCategory());
-            pstm.setInt(7,product.getProductsInStock());
+            pstm.setString(5, product.getPromotion());
+            pstm.setString(6, product.getCategory());
+            pstm.setInt(7, product.getProductsInStock());
+            System.out.println( pstm.executeUpdate());
             return pstm.executeUpdate();
+
         } catch (SQLException ex) {
             System.out.println("loi insert!");
             System.out.println(ex.toString());
@@ -59,22 +61,21 @@ public class ProductDAL {
 
     public int update(Product product) throws SQLException {
         try (Connection con = UtilDB.getConnection();
-             PreparedStatement pstm = con.prepareStatement(
-                     "UPDATE products SET name = ?, cost = ?, discount = ?, price = ?, promotion = ?, category = ?, products_in_stock = ? WHERE (product_id = ?);");) {
+                PreparedStatement pstm = con.prepareStatement(
+                        "UPDATE products SET name = ?, cost = ?, discount = ?, price = ?, promotion = ?, category = ?, products_in_stock = ? WHERE (product_id = ?);");) {
             pstm.setString(1, product.getProductName());
             pstm.setDouble(2, product.getCost());
             pstm.setInt(3, product.getDiscount());
             pstm.setDouble(4, product.getPrice());
-            pstm.setString(5,product.getPromotion());
-            pstm.setString(6,product.getCategory());
-            pstm.setInt(7,product.getProductsInStock());
-            pstm.setInt(8,product.getProductId());
-
+            pstm.setString(5, product.getPromotion());
+            pstm.setString(6, product.getCategory());
+            pstm.setInt(7, product.getProductsInStock());
+            pstm.setInt(8, product.getProductId());
 
             int rs = pstm.executeUpdate();
-            if (rs==1) {
+            if (rs == 1) {
                 System.out.println("Update Successful!");
-            }else{
+            } else {
                 System.out.println("Update fail!");
             }
             return rs;
@@ -86,21 +87,26 @@ public class ProductDAL {
         }
     }
 
-    public void updateProductsInStock(int id, int amount) throws SQLException {
+    public int updateProductsInStock(int id, int amount) throws SQLException {
+        int tf = 1;
         try (Connection con = UtilDB.getConnection();
-        PreparedStatement pstm = con.prepareStatement(
-                "UPDATE `lemon_tee_shop`.`products` SET `products_in_stock` = '"+amount+"' WHERE (`product_id` = '"+id+"');");) {   
-                   int rs = pstm.executeUpdate();
-                   if (rs==1) {
-                       System.out.println("Update Successful!");
-                   }else{
-                       System.out.println("Update fail!");
-                   }    
-   } catch (SQLException ex) {
-       ex.printStackTrace();
-       System.out.println("Update error!");
-       
-   }
+                PreparedStatement pstm = con
+                        .prepareStatement("UPDATE `lemon_tee_shop`.`products` SET `products_in_stock` = '" + amount
+                                + "' WHERE (`product_id` = '" + id + "');");) {
+            int rs = pstm.executeUpdate();
+            if (rs == 1) {
+                System.out.println("Update Successful!");
+                return tf = 1;
+            } else {
+                System.out.println("Update fail!");
+                return tf = 0;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("Update error!");
+
+        }
+        return tf;
     }
 
 }
