@@ -397,9 +397,7 @@ System.out.println(pstm.executeUpdate());
 
 
     public static int productsInOrderUpdate(OrderDetails orderDetails) {
-
         int count = 0;
-        
         int productInStock = 0;
         String sql = "SELECT products_in_stock FROM lemon_tee_shop.products where product_id  = '"
                 + orderDetails.getproductId() + "';";

@@ -49,7 +49,7 @@ public class main {
         System.out.print(" [Username]: ");
         username = nhap();
         System.out.print(" [Password]: ");
-        password = nhap();
+        password = nhap();  
         int check = accountBL.login(username, password);
         if (check == -1) {
         System.out.println("Tai khoan hoac mat khau khong chinh xac!");

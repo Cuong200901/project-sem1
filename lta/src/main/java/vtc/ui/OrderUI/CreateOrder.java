@@ -62,7 +62,7 @@ public class CreateOrder {
         System.out.println(Count);
         if (Count == 3) {
             while (true) {
-               ShowProduct.showProduct();
+                ShowProduct.showProduct();
                 final OrderDetails orderDetails = new OrderDetails();
                 System.out.print("Enter ProductId : ");
                 orderDetails.setproductId(input_int());
@@ -80,9 +80,9 @@ public class CreateOrder {
                 } else {
                     System.out.println("Insert account failed!");
                 }
-                System.out.println("Continue Insert?(y/n)");
+                System.out.print("Continue Insert(y/n): ");
                 final String choice1 = yesno();
-                if (choice1.equalsIgnoreCase("N")) {
+                if (choice1.equals("n") || choice1.equals("N")) {
                     break;
                 }
             }
@@ -100,13 +100,19 @@ public class CreateOrder {
 
     public static void updateOrder() {
         System.out.print("Enter table: ");
-       int table = sc.nextInt();
+        int table = sc.nextInt();
         final int Count = OrderBL.updateOrder(table);
         System.out.println(Count);
         if (Count == 0) {
             System.out.println("Table clear!");
+            System.err.println("Error");
+            System.out.printf("Nhan %s de quay lai:", "Enter");
+            String nh = sc.nextLine();
         } else if (Count == -1) {
             System.out.println("Wrong table!");
+            System.err.println("Error");
+            System.out.printf("Nhan %s de quay lai:", "Enter");
+            String nh = sc.nextLine();
         } else {
             while (true) {
                 ShowProduct.showProduct();
@@ -114,7 +120,7 @@ public class CreateOrder {
                 System.out.print("Enter ProductId : ");
                 orderDetails.setproductId(input_int());
                 System.out.print("Enter amount : ");
-                orderDetails.setamount(sc.nextInt());
+                orderDetails.setamount(input_int());
                 orderDetails.setOrderId(OrderBL.tableOrderExsit(table));
                 final int count = OrderBL.productsInOrderUpdate(orderDetails);
                 if (count == 3) {
@@ -128,8 +134,8 @@ public class CreateOrder {
                     System.out.println(count);
                     System.out.println("Insert account failed!");
                 }
-                System.out.println("Continue Insert?(y/n)");
-                String choice1 = yesno();
+                System.out.print("Continue Insert(y/n): ");
+                final String choice1 = yesno();
                 if (choice1.equals("n") || choice1.equals("N")) {
                     break;
                 }
@@ -236,34 +242,36 @@ public class CreateOrder {
     // }
 
     public static int input_int() {
-    final Scanner input = new Scanner(System.in);
-    int x = 0;
-    String a;
-    while (true) {
-    a = input.nextLine();
-    try {
-    x = Integer.parseInt(a);
-    if (x >= 0) {
-    return x;
-    }
-    else{
-    System.out.print(" Nhap sai,moi nhap lai: ");
-    }
-    } catch (Exception e) {
-    System.out.print(" Nhap sai,moi nhap lai: ");
+        final Scanner input = new Scanner(System.in);
+        int x = 0;
+        String a;
+        while (true) {
+            a = input.nextLine();
+            try {
+                x = Integer.parseInt(a);
+                if (x >= 0) {
+                    return x;
+                } else {
+                    System.out.print(" Nhap sai,moi nhap lai: ");
+                }
+            } catch (Exception e) {
+                System.out.print(" Nhap sai,moi nhap lai: ");
 
-    }
-    }
+            }
+        }
 
     }
 
     public static String yesno() {
-
-        String yn = sc.nextLine();
-        if (yn.equalsIgnoreCase("N") || yn.equalsIgnoreCase("Y") || yn.equalsIgnoreCase("n")
-                || yn.equalsIgnoreCase("y")) {
-            return yn;
+        String yn = null;
+        while (true) {
+            yn = sc.nextLine();
+            if (yn.equalsIgnoreCase("N") || yn.equalsIgnoreCase("Y") || yn.equalsIgnoreCase("n")
+                    || yn.equalsIgnoreCase("y")) {
+                break;
+            }
         }
+        
         return yn;
     }
 
