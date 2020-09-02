@@ -8,8 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import vtc.bl.AccountBL;
-import vtc.bl.ProductBL;
-import vtc.dal.AccountDAL;
+
 import vtc.persistance.Account;
 
 public class InputAccount {

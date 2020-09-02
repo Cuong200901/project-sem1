@@ -32,7 +32,12 @@ public class ProductBL {
         }
 
 		public static void showProduct() {
-		}
+        }
+        
+
+        public static List<Product> getAllById(int id) {
+            return ProductDAL.getAllById(id);
+        }
 
     // public boolean updatePro(Product product) throws SQLException {
     // return productDAL.update(product) > 0;

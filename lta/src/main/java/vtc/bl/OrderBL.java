@@ -24,6 +24,11 @@ public class OrderBL {
 
     };
 
+
+    public static int productsInOrderUpdate(OrderDetails orderDetails) {
+        return OrderDAL.productsInOrderUpdate(orderDetails);
+    };
+
     public static void showTableClear() {
         OrderDAL.showTableClear();
     }
@@ -36,17 +41,19 @@ public class OrderBL {
         return OrderDAL.updateOrder(table);
     };
 
-    
+    public static int tableOrderExsit(int table){
+        return OrderDAL.tableOrderExsit(table);
+    };
 
     public static List<Order> getOrderByDay(String day) {
         return OrderDAL.getOrderByDay(day);
 
     };
 
-    public static List<OrderDetails> getOrderDetails(int id) {
-        return OrderDAL.getOrderDetails(id);
+    // public static List<OrderDetails> getOrderDetails(int id) {
+    //     return OrderDAL.getOrderDetails(id);
 
-    };
+    // };
 
 
     public static List<OrderDetails> getBillDetails(int id) {
@@ -60,6 +67,10 @@ public class OrderBL {
     public static List<Order> getOrderByMonth(int year, int month) {
         return OrderDAL.getOrderByMonth(year, month);
     };
+
+    public static double monneyEarnByMonth(final int year, int month) {
+        return OrderDAL.monneyEarnByMonth(year, month);
+    }
 
     
 }

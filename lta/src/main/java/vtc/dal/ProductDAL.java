@@ -24,6 +24,25 @@ public class ProductDAL {
         return lst;
     }
 
+
+    
+    public static List<Product> getAllById(int id) {
+        String sql = "select * from lemon_tee_shop.products  WHERE product_id = '" + id + "';";
+        List<Product> lst = new ArrayList<>();
+        try (Connection con = UtilDB.getConnection();
+                Statement stm = con.createStatement();
+                ResultSet rs = stm.executeQuery(sql)) {
+            while (rs.next()) {
+                lst.add(getProduct(rs));
+            }
+        } catch (SQLException ex) {
+            lst = null;
+            System.out.println(ex.toString());
+        }
+        return lst;
+    }
+ 
+
     public static int insertProduct(Product product) {
         try (Connection con = UtilDB.getConnection();
                 PreparedStatement pstm = con.prepareStatement(
@@ -35,7 +54,7 @@ public class ProductDAL {
             pstm.setString(5, product.getPromotion());
             pstm.setString(6, product.getCategory());
             pstm.setInt(7, product.getProductsInStock());
-            System.out.println( pstm.executeUpdate());
+            System.out.println(pstm.executeUpdate());
             return pstm.executeUpdate();
 
         } catch (SQLException ex) {

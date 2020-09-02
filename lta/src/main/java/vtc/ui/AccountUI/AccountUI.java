@@ -4,13 +4,13 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import vtc.bl.AccountBL;
-// import vtc.ui.OrderUI.OrderUI;
+import vtc.ui.OrderUI.OrderUI;
 import vtc.ui.ProductsUI.ProductsUI;
 
 public class AccountUI {
     Scanner sc = new Scanner(System.in);
     ProductsUI productsUI = new ProductsUI();
-// OrderUI orderUI = new OrderUI();
+OrderUI orderUI = new OrderUI();
     public void admin_main_menu(int id) {
         boolean back = true;
         while (back) {
@@ -44,7 +44,7 @@ public class AccountUI {
                     break;
                     case "4":
                     cls();
-                    // orderUI.financial_management_menu();
+                    orderUI.financial_management_menu();
                     break;
                 case "5":
                     back = false;
@@ -82,7 +82,7 @@ public class AccountUI {
                 break;
                 case "2":
                 cls();
-                // orderUI.manage_order_menu(id);
+                orderUI.manage_order_menu(id);
                 break;
                 case "3":
                     back = false;

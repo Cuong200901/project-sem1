@@ -1,112 +1,113 @@
-// package vtc.ui.OrderUI;
+package vtc.ui.OrderUI;
 
-// import java.io.IOException;
-// import java.util.Scanner;
+import java.io.IOException;
+import java.util.Scanner;
 
-// import com.mysql.cj.x.protobuf.MysqlxDatatypes.ScalarOrBuilder;
 
-// import vtc.bl.OrderBL;
 
-// public class OrderUI {
-//     Scanner sc = new Scanner(System.in);
+import vtc.bl.OrderBL;
 
-//     public void financial_management_menu() {
-//         boolean back = true;
-//         while (back) {
-//             cls();
-//             System.out.println("[LTS] PF10 - Group6");
-//             System.out.println("+-------------------------------------------+");
-//             System.out.println("|            Financial management           |");
-//             System.out.println("+-------------------------------------------+");
-//             System.out.println("|      1. Order amount by month             |");
-//             System.out.println("|      2. Money earner by month             |");
-//             System.out.println("|      0. Come back                         |");
-//             System.out.println("+-------------------------------------------+");
-//             System.out.print("   --> Enter your choice:");
-//             String chose = sc.nextLine();
-//             switch (chose) {
-//                 case "1":
-//                     cls();
-//                     OrderBL.orderByMonth();
-//                     System.out.printf("Nhan %s de quay lai:", "Enter");
-//                     String nh = sc.nextLine();
-//                     break;
-//                 case "2":
-//                     cls();
-//                     OrderBL.monneyEarnerByMonth();
-//                     System.out.printf("Nhan %s de quay lai:", "Enter");
-//                     nh = sc.nextLine();
-//                     break;
+public class OrderUI {
+    Scanner sc = new Scanner(System.in);
 
-//                 case "0":
-//                     back = false;
-//                     break;
-//                 default:
-//                     System.out.printf("Khong hop le,Nhan %s de quay lai:", "Enter");
-//                     nh = sc.nextLine();
-//             }
-//         }
-//     }
+    public void financial_management_menu() {
+        boolean back = true;
+        while (back) {
+            cls();
+            System.out.println("[LTS] PF10 - Group6");
+            System.out.println("+-------------------------------------------+");
+            System.out.println("|            Financial management           |");
+            System.out.println("+-------------------------------------------+");
+            System.out.println("|      1. Order amount by month             |");
+            System.out.println("|      2. Money earner by month             |");
+            System.out.println("|      0. Come back                         |");
+            System.out.println("+-------------------------------------------+");
+            System.out.print("   --> Enter your choice:");
+            String chose = sc.nextLine();
+            switch (chose) {
+                case "1":
+                    cls();
+                    // OrderBL.orderByMonth();
+                    System.out.printf("Nhan %s de quay lai:", "Enter");
+                    String nh = sc.nextLine();
+                    break;
+                case "2":
+                    cls();
+                    // OrderBL.monneyEarnerByMonth();
+                    System.out.printf("Nhan %s de quay lai:", "Enter");
+                    nh = sc.nextLine();
+                    break;
 
-//     public void manage_order_menu(int id) {
-//         boolean back = true;
-//         while (back) {
-//             cls();
-//             System.out.println("[LTS] PF10 - Group6");
-//             System.out.println("+-------------------------------------------+");
-//             System.out.println("|                Manage order               |");
-//             System.out.println("+-------------------------------------------+");
-//             System.out.println("|      1. Create order                      |");
-//             System.out.println("|      2. Update order                      |");
-//             System.out.println("|      3. Complete order                    |");
-//             System.out.println("|      4. View order                        |");
-//             System.out.println("|      0. Come back                         |");
-//             System.out.println("+-------------------------------------------+");
-//             System.out.print("   --> Enter your choice:");
-//             String chose = sc.nextLine();
-//             switch (chose) {
-//                 case "1":
-//                     cls();
-//                     OrderBL.showTableClear();
-//                     OrderBL.createOrder(id);
-//                     break;
-//                 case "2":
-//                     cls();
-//                     OrderBL.showTableExit();
-//                     OrderBL.updateOrder();
-//                     break;
+                case "0":
+                    back = false;
+                    break;
+                default:
+                    System.out.printf("Khong hop le,Nhan %s de quay lai:", "Enter");
+                    nh = sc.nextLine();
+            }
+        }
+    }
 
-//                 case "3":
-//                     cls();
-//                     OrderBL.showTableExit();
-//                     OrderBL.completeOrder();
-//                     System.out.printf("Nhan %s de quay lai:", "Enter");
-//                     String nh = sc.nextLine();
-//                     break;
-//                 case "4":
-//                     cls();
-//                     OrderBL.showOrderByDay();
-//                     OrderBL.showBill();
-//                     System.out.printf("Nhan %s de quay lai:", "Enter");
-//                     nh = sc.nextLine();
-//                     break;
-//                 case "0":
-//                     back = false;
-//                     break;
-//                 default:
-//                     System.out.printf("Khong hop le,Nhan %s de quay lai:", "Enter");
-//                     nh = sc.nextLine();
-//             }
-//         }
-//     }
+    public void manage_order_menu(int id) {
+        boolean back = true;
+        while (back) {
+            cls();
+            System.out.println("[LTS] PF10 - Group6");
+            System.out.println("+-------------------------------------------+");
+            System.out.println("|                Manage order               |");
+            System.out.println("+-------------------------------------------+");
+            System.out.println("|      1. Create order                      |");
+            System.out.println("|      2. Update order                      |");
+            System.out.println("|      3. Complete order                    |");
+            System.out.println("|      4. View order                        |");
+            System.out.println("|      0. Come back                         |");
+            System.out.println("+-------------------------------------------+");
+            System.out.print("   --> Enter your choice:");
+            String chose = sc.nextLine();
+            switch (chose) {
+                case "1":
+                    cls();
+                    OrderBL.showTableClear();
+                    CreateOrder.createOrder(id);
+                    break;
+                case "2":
+                    cls();
+                    OrderBL.showTableExit();
+                    
+                    CreateOrder.updateOrder();
+                    break;
 
-//     public static void cls() {
-//         try {
-//             if (System.getProperty("os.name").contains("Windows"))
-//                 new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-//             else
-//                 Runtime.getRuntime().exec("clear");
-//         } catch (IOException | InterruptedException ignored) {
-//         }
-//     }
-// }
+                case "3":
+                    cls();
+                    OrderBL.showTableExit();
+                    CompleteOrder.completeOrder();
+                    System.out.printf("Nhan %s de quay lai:", "Enter");
+                    String nh = sc.nextLine();
+                    break;
+                case "4":
+                    cls();
+                    ShowOrder.showOrderByDay();
+                    ShowOrder.showBill();
+                    System.out.printf("Nhan %s de quay lai:", "Enter");
+                    nh = sc.nextLine();
+                    break;
+                case "0":
+                    back = false;
+                    break;
+                default:
+                    System.out.printf("Khong hop le,Nhan %s de quay lai:", "Enter");
+                    nh = sc.nextLine();
+            }
+        }
+    }
+
+    public static void cls() {
+        try {
+            if (System.getProperty("os.name").contains("Windows"))
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            else
+                Runtime.getRuntime().exec("clear");
+        } catch (IOException | InterruptedException ignored) {
+        }
+    }
+}

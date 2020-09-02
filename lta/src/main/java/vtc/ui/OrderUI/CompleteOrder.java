@@ -2,13 +2,14 @@ package vtc.ui.OrderUI;
 
 import java.util.Scanner;
 
-import vtc.dal.OrderDAL;
+import vtc.bl.OrderBL;
+
 
 public class CompleteOrder {
     public static void completeOrder() {
         System.out.print("Enter table: ");
-        int table = input_int();
-        OrderDAL.completeOrder(table);
+        final int table = input_int();
+        OrderBL.completeOrder(table);
     }
 
     public static int input_int() {
@@ -21,11 +22,10 @@ public class CompleteOrder {
                 x = Integer.parseInt(a);
                 if (x >= 0) {
                     return x;
-                }
-                else{
+                } else {
                     System.out.print("  Nhap sai,moi nhap lai: ");
                 }
-            } catch (Exception e) {
+            } catch (final Exception e) {
                 System.out.print("  Nhap sai,moi nhap lai: ");
             
             }
