@@ -1,6 +1,5 @@
 package vtc.bl;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,6 +10,7 @@ public class OrderBL {
     static Scanner sc = new Scanner(System.in);
     static List<Order> orderList = new ArrayList<>();
     static List<OrderDetails> orderDetailsList = new ArrayList<>();
+
     public static int completeOrder(final int table) {
         return OrderDAL.completeOrder(table);
     };
@@ -24,7 +24,6 @@ public class OrderBL {
 
     };
 
-
     public static int productsInOrderUpdate(OrderDetails orderDetails) {
         return OrderDAL.productsInOrderUpdate(orderDetails);
     };
@@ -34,27 +33,21 @@ public class OrderBL {
     }
 
     public static void showTableExit() {
-        OrderDAL.showTableExsit();
+        OrderDAL.showTableExist();
     }
 
     public static int updateOrder(final int table) {
         return OrderDAL.updateOrder(table);
     };
 
-    public static int tableOrderExsit(int table){
-        return OrderDAL.tableOrderExsit(table);
+    public static int tableOrderExist(int table) {
+        return OrderDAL.tableOrderExist(table);
     };
 
     public static List<Order> getOrderByDay(String day) {
         return OrderDAL.getOrderByDay(day);
 
     };
-
-    // public static List<OrderDetails> getOrderDetails(int id) {
-    //     return OrderDAL.getOrderDetails(id);
-
-    // };
-
 
     public static List<OrderDetails> getBillDetails(int id) {
         return OrderDAL.getBillDetails(id);
@@ -64,6 +57,7 @@ public class OrderBL {
     public static List<Order> getBill(int id) {
         return OrderDAL.getBill(id);
     };
+
     public static List<Order> getOrderByMonth(int year, int month) {
         return OrderDAL.getOrderByMonth(year, month);
     };
@@ -72,5 +66,4 @@ public class OrderBL {
         return OrderDAL.monneyEarnByMonth(year, month);
     }
 
-    
 }

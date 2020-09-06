@@ -1,7 +1,5 @@
 package vtc.persistance;
 
-
-
 public class Product {
     private int productId;
     private String productName;
@@ -10,17 +8,16 @@ public class Product {
     private Double price;
     private String promotion;
     private String category;
+    private int productsInStock;
 
     public int getProductsInStock() {
         return productsInStock;
     }
 
     public void setProductsInStock(int productsInStock) {
-        
+
         this.productsInStock = productsInStock;
     }
-
-    private int productsInStock;
 
     public int getProductId() {
         return productId;
@@ -78,6 +75,4 @@ public class Product {
         this.category = category;
     }
 
-
-   
 }

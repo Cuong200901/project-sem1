@@ -24,8 +24,6 @@ public class ProductDAL {
         return lst;
     }
 
-
-    
     public static List<Product> getAllById(int id) {
         String sql = "select * from lemon_tee_shop.products  WHERE product_id = '" + id + "';";
         List<Product> lst = new ArrayList<>();
@@ -41,7 +39,6 @@ public class ProductDAL {
         }
         return lst;
     }
- 
 
     public static int insertProduct(Product product) {
         try (Connection con = UtilDB.getConnection();
@@ -107,7 +104,6 @@ public class ProductDAL {
     }
 
     public int updateProductsInStock(int id, int amount) throws SQLException {
-        int tf = 1;
         try (Connection con = UtilDB.getConnection();
                 PreparedStatement pstm = con
                         .prepareStatement("UPDATE `lemon_tee_shop`.`products` SET `products_in_stock` = '" + amount
@@ -115,17 +111,15 @@ public class ProductDAL {
             int rs = pstm.executeUpdate();
             if (rs == 1) {
                 System.out.println("Update Successful!");
-                return tf = 1;
+                return 1;
             } else {
                 System.out.println("Update fail!");
-                return tf = 0;
+                return 0;
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();
-            System.out.println("Update error!");
-
+            return 0;
         }
-        return tf;
+        
     }
 
 }

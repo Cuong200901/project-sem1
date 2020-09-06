@@ -14,32 +14,9 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 
 public class AccountDAL {
-    // public List<DAL_Account> getAll()
-    // {
-    // String sql = "select * from customers";
-    // List<DAL_Account> lst = new ArrayList<>();
-    // try (Connection con = DB_Util.getConnection();
-    // Statement stm = con.createStatement();
-    // ResultSet rs = stm.executeQuery(sql)) {
-    // while (rs.next()) {
-    // lst.add(getAccount(rs));
-    // }
-    // } catch (SQLException ex) {
-    // }
-    // return lst;
-    // }
-    //
-    // private Account getAccount(final ResultSet rs) throws SQLException {
-    // Account account = new DAL_Account();
-    // account.getaccountId(rs.getInt("customer_id"));
-    // account.setCustomerName(rs.getString("customer_name"));
-    // customer.setCustomerAddress(rs.getString("customer_address"));
-    // return customer;
-    // }
-
+    
     public int check_account(String username, String password) {
 
-     
         int id = -1;
         try {
             String strconn = "jdbc:mysql://localhost:3306/lemon_tee_shop?user=root&password=cuong2001";
@@ -79,19 +56,24 @@ public class AccountDAL {
     }
 
     public static Account getAccount(ResultSet rs) throws SQLException {
-        Account account = new Account();
-        account.setAccountId(rs.getInt("account_id"));
-        account.setusername(rs.getString("user_name"));
-        account.setpassword(rs.getString("password"));
-        account.setfirstname(rs.getString("first_name"));
-        account.setlastname(rs.getString("last_name"));
-        account.setbirthday(rs.getString("birthday"));
-        account.setphonenumber(rs.getInt("phone_number"));
-        account.setemail(rs.getString("email"));
-        account.setposition(rs.getString("position"));
-        account.setstarttime(rs.getString("start_time"));
-        account.setshift(rs.getString("shift"));
-        return account;
+        try {
+            Account account = new Account();
+            account.setAccountId(rs.getInt("account_id"));
+            account.setusername(rs.getString("user_name"));
+            account.setpassword(rs.getString("password"));
+            account.setfirstname(rs.getString("first_name"));
+            account.setlastname(rs.getString("last_name"));
+            account.setbirthday(rs.getString("birthday"));
+            account.setphonenumber(rs.getInt("phone_number"));
+            account.setemail(rs.getString("email"));
+            account.setposition(rs.getString("position"));
+            account.setstarttime(rs.getString("start_time"));
+            account.setshift(rs.getString("shift"));
+            return account;
+        } catch (Exception e) {
+            return null;
+        }
+     
     }
 
     public static List<Account> getAll() {
@@ -105,7 +87,6 @@ public class AccountDAL {
             }
         } catch (SQLException ex) {
             lst = null;
-            System.out.println(ex.toString());
         }
         return lst;
     }
@@ -121,7 +102,6 @@ public class AccountDAL {
             }
         } catch (SQLException ex) {
             lst = null;
-            System.out.println(ex.toString());
         }
         return lst;
     }
@@ -185,8 +165,8 @@ public class AccountDAL {
 
         int id = -1;
 
-        String sql = "SELECT account_id FROM lemon_tee_shop.accounts where user_name = '"
-                + account.getusername() + "';";
+        String sql = "SELECT account_id FROM lemon_tee_shop.accounts where user_name = '" + account.getusername()
+                + "';";
 
         try (Connection con = UtilDB.getConnection();
                 Statement stm = con.createStatement();
@@ -195,12 +175,9 @@ public class AccountDAL {
                 id = rs.getInt("account_id");
             }
         } catch (SQLException ex) {
-
-            System.out.println(ex.toString());
+            return 0;
         }
-
         if (id != -1) {
-            System.out.println("Error insert!");
             return 0;
         } else {
             try (Connection con = UtilDB.getConnection();
@@ -218,13 +195,11 @@ public class AccountDAL {
                 return pstm.executeUpdate();
             } catch (SQLException ex) {
                 System.out.println("Error insert!");
-                return 0;
+                return -1;
 
             }
         }
 
     }
-
-	
 
 }

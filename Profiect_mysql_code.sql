@@ -8,11 +8,13 @@ CREATE TABLE `lemon_tee_shop`.`accounts` (
   `last_name` VARCHAR(45) NOT NULL,
   `birthday` DATE NOT NULL,
   `phone_number` INT NOT NULL,
-  `email` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(255) NOT NULL,
   `position` VARCHAR(45) NOT NULL,
   `start_time` VARCHAR(45) NOT NULL,
   `shift` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`account_id`));
+  PRIMARY KEY (`account_id`),
+  PRIMARY KEY (`user_name`)
+  );
   
 INSERT INTO `lemon_tee_shop`.`accounts` (`user_name`, `password`, `first_name`, `last_name`, `birthday`, `phone_number`, `email`, `position`, `start_time`, `shift`) VALUES ('nguyenson', '123123', 'Nguyen', 'Son', '2020-1-1', '0123456789', '.', 'Admin', '2020-1-1', 'Full time');
 INSERT INTO `lemon_tee_shop`.`accounts` (`user_name`, `password`, `first_name`, `last_name`, `birthday`, `phone_number`, `email`, `position`, `start_time`, `shift`) VALUES ('hoangcuong', '123123', 'Hoang', 'Cuong', '2020-1-1', '0123456789', '.', 'Staff', '2020-1-1', '6h-12h');

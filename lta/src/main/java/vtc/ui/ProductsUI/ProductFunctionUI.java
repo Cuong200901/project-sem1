@@ -8,11 +8,32 @@ import vtc.bl.ProductBL;
 import vtc.dal.ProductDAL;
 import vtc.persistance.Product;
 
-public class InputProduct {
+public class ProductFunctionUI {
     public static ProductDAL dal_product = new ProductDAL();
     static Scanner sc = new Scanner(System.in);
     static List<Product> productsList = new ArrayList<>();
     static ProductBL productBL = new ProductBL();
+
+    public static void showProduct() {
+        ProductBL productBL = new ProductBL();
+        List<Product> lst = productBL.getAll();
+
+        System.out.println("\nItem List: ");
+        System.out.println(
+                "+------------------------------------------------------------------------------------------------------------------------------------------------------------------+");
+        System.out.printf("| %-10s | %-30s | %-15s | %-10s | %-20s | %-20s | %-15s | %-19s |\n", "ID", "Product name",
+                "Cost", "Discount", "Price", "Promotion", "Category", "Products In Stock");
+        System.out.println(
+                "+------------------------------------------------------------------------------------------------------------------------------------------------------------------+");
+        for (Product product : lst) {
+            System.out.printf("| %-10s | %-30s | %-15s | %-10s | %-20s | %-20s | %-15s | %-19s |\n",
+                    product.getProductId(), product.getProductName(), product.getCost(), product.getDiscount(),
+                    product.getPrice(), product.getPromotion(), product.getCategory(), product.getProductsInStock());
+        }
+        System.out.println(
+                "+------------------------------------------------------------------------------------------------------------------------------------------------------------------+");
+
+    }
 
     public static void insertProduct() {
         while (true) {
@@ -45,7 +66,7 @@ public class InputProduct {
         Product product = new Product();
         // Scanner sc = new Scanner(System.in);
         System.out.print("Product name: ");
-        product.setProductName(sc.nextLine());
+        product.setProductName(inputString());
         System.out.print("Unit cost: ");
         Double cost = input_double();
         product.setCost(cost);
@@ -71,7 +92,7 @@ public class InputProduct {
 
         while (true) {
             Product product = new Product();
-           
+
             Scanner sc = new Scanner(System.in);
             System.out.print("Product_id : ");
             int id = input_int();
@@ -118,7 +139,7 @@ public class InputProduct {
     public static void inputProductsInStock() {
 
         while (true) {
-            
+
             Scanner sc = new Scanner(System.in);
             System.out.print("ProductId : ");
             int id = input_int();
@@ -156,8 +177,7 @@ public class InputProduct {
                 x = Integer.parseInt(a);
                 if (x >= 0) {
                     return x;
-                }
-                else{
+                } else {
                     System.out.print("  Nhap sai,moi nhap lai: ");
                 }
             } catch (Exception e) {
@@ -192,8 +212,7 @@ public class InputProduct {
                 x = Double.parseDouble(a);
                 if (x >= 0) {
                     return x;
-                }
-                else{
+                } else {
                     System.out.print("  Nhap sai,moi nhap lai: ");
                 }
             } catch (Exception e) {

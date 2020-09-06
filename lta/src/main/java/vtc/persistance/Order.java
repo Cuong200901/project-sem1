@@ -1,6 +1,5 @@
 package vtc.persistance;
 
-
 public class Order {
 
     private int orderId;
@@ -8,7 +7,6 @@ public class Order {
     private int accountId;
     private String note;
     private int table;
-    
 
     public int getOrderId() {
         return orderId;
@@ -25,7 +23,6 @@ public class Order {
     public void setTime(String time) {
         this.time = time;
     }
-
 
     public int getAccountId() {
         return accountId;

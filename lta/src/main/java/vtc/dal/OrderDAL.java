@@ -2,18 +2,15 @@ package vtc.dal;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import vtc.persistance.*;
-// import vtc.persistance.OrderDetails;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
+
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DateFormat;
-import java.time.LocalDate;
+
 import java.sql.ResultSet;
 
 public class OrderDAL {
@@ -36,8 +33,8 @@ public class OrderDAL {
         }
     }
 
-    public static void showTableExsit() {
-        final String sql = "SELECT * FROM lemon_tee_shop.table where status = 'Exsit';";
+    public static void showTableExist() {
+        final String sql = "SELECT * FROM lemon_tee_shop.table where status = 'Exist';";
         try (Connection con = UtilDB.getConnection();
                 Statement stm = con.createStatement();
                 ResultSet rs = stm.executeQuery(sql)) {
@@ -55,123 +52,6 @@ public class OrderDAL {
 
     }
 
-    // public static void showOrderByDay(final String day) {
-    // final String sql = "SELECT * FROM lemon_tee_shop.order where date(time) = '"
-    // + day + "';";
-    // try (Connection con = UtilDB.getConnection();
-    // Statement stm = con.createStatement();
-    // ResultSet rs = stm.executeQuery(sql)) {
-    // System.out.println(
-    // "+-------------------------------------------------------------------------------------------+");
-    // System.out.printf("| %-10s | %-20s | %-12s | %-25s | %-10s |\n", "Id",
-    // "Time", "Account Id", "note",
-    // "Table id");
-    // System.out.println(
-    // "+-------------------------------------------------------------------------------------------+");
-    // while (rs.next()) {
-    // System.out.printf("| %-10s | %-20s | %-12s | %-25s | %-10s |\n",
-    // rs.getInt("order_id"),
-    // rs.getString("time"), rs.getInt("account_id"), rs.getString("note"),
-    // rs.getInt("table_id"));
-    // }
-    // System.out.println(
-    // "+-------------------------------------------------------------------------------------------+");
-    // } catch (final SQLException ex) {
-
-    // System.out.println(ex.toString());
-    // }
-    // }
-
-    // public static void showBill(final int id) {
-    // double totalmonney = 0;
-    // double billmonney = 0;
-    // String sql = "SELECT order_id, time, table_id, note, first_name, last_name
-    // FROM lemon_tee_shop.order inner join accounts on order.account_id =
-    // accounts.account_id where order_id = '"
-    // + id + "';";
-    // try (Connection con = UtilDB.getConnection();
-    // Statement stm = con.createStatement();
-    // ResultSet rs = stm.executeQuery(sql)) {
-    // System.out.println("+-------------------------------------------------------------------------+");
-    // System.out.println("| Lemon tee shop |");
-    // System.out.println("| |");
-    // while (rs.next()) {
-    // System.out.printf("| Staff name: %-15sTime: %-15s Table: %-8s|\n",
-    // rs.getString("first_name").concat(" " + rs.getString("last_name")),
-    // rs.getString("time"),
-    // rs.getInt("table_id"));
-    // // System.out.println(
-    // // "| |");
-    // }
-
-    // } catch (final SQLException ex) {
-
-    // System.out.println(ex.toString());
-    // }
-    // sql = "SELECT name, price, amount ,order_id FROM lemon_tee_shop.order_details
-    // inner join lemon_tee_shop.products on order_details.product_id =
-    // products.product_id where order_id = '"
-    // + id + "' ;";
-    // try (Connection con = UtilDB.getConnection();
-    // Statement stm = con.createStatement();
-    // ResultSet rs = stm.executeQuery(sql)) {
-    // System.out.println("+-------------------------------------------------------------------------+");
-    // System.out.println("| |");
-    // System.out.printf("| %-30s | %-13s| %-7s | %-13s|\n", "Product name", "Price
-    // one unit", "Amount",
-    // "Total money");
-
-    // while (rs.next()) {
-    // // System.out.println(
-    // // "| | | | |");
-    // System.out.println("| |");
-    // System.out.printf("| %-30s | %-13s | %-7s | %-13s|\n", rs.getString("name"),
-    // rs.getDouble("price"),
-    // rs.getInt("amount"), (totalmonney = rs.getDouble("price") *
-    // rs.getInt("amount")));
-
-    // billmonney = billmonney + totalmonney;
-    // }
-    // System.out.println("| |");
-    // System.out.println("+-------------------------------------------------------------------------+");
-    // System.out.println("| |");
-    // System.out.printf("| Total bill: %-60s|\n", billmonney);
-    // System.out.println("| |");
-    // System.out.println("+-------------------------------------------------------------------------+");
-
-    // } catch (final SQLException ex) {
-
-    // System.out.println(ex.toString());
-    // }
-    // }
-
-    // public static void orderAmountByMonth(final int year) {
-    // int count = 0;
-    // System.out.println("+-----------------------------------+");
-    // System.out.println("| " + year + " |");
-    // System.out.println("+-----------------------------------+");
-    // System.out.printf("| %-10s | %-20s |\n", "Month", "Amount");
-    // System.out.println("+-----------------------------------+");
-    // for (int i = 1; i <= 12; i++) {
-    // String sql = "SELECT * from lemon_tee_shop.order where year(order.time) = " +
-    // year
-    // + " and month(order.time) = "+i+"";
-    // try (Connection con = UtilDB.getConnection();
-    // Statement stm = con.createStatement();
-    // ResultSet rs = stm.executeQuery(sql)) {
-    // while (rs.next()) {
-    // count++;
-    // }
-    // System.out.printf("| %-10s | %-15s |\n", i, count);
-    // System.out.println("+-----------------------------------+");
-    // count = 0;
-    // } catch (final SQLException ex) {
-
-    // System.out.println(ex.toString());
-    // }
-    // }
-    // }
-
     public static double monneyEarnByMonth(final int year, int month) {
         double monneyEarner = 0;
         String sql = "SELECT amount, price from lemon_tee_shop.order_details inner join lemon_tee_shop.products on order_details.product_id = products.product_id join lemon_tee_shop.order on order_details.order_id = order.order_id where year(order.time) = "
@@ -184,7 +64,7 @@ public class OrderDAL {
             }
         } catch (final SQLException ex) {
 
-            System.out.println(ex.toString());
+            return -1;
         }
         return monneyEarner;
     }
@@ -199,9 +79,13 @@ public class OrderDAL {
                 if (!rs.getString("status").equals("Clear")) {
                     count = 1;
                 }
+                else
+                {count = -1;}
+
+                
             }
         } catch (final SQLException ex) {
-            return count;
+            return 0;
         }
         if (count == 1) {
             try (Connection con = UtilDB.getConnection();
@@ -210,19 +94,17 @@ public class OrderDAL {
                                     + "');");) {
                 final int rs = pstm.executeUpdate();
                 if (rs == 1) {
-                    System.out.println("Successful!");
-                    count = 2;
+                    return count =2;
                 } else {
-                    System.out.println("Fail!");
+                    return 0 ;
                 }
             } catch (final SQLException ex) {
-                ex.printStackTrace();
-                System.out.println("Update error!");
+                return 0;
 
             }
         }
-        if (count == 0) {
-            System.out.println("Wrong table!");
+        if (count == -1) {
+            return count = -1;
         }
         return count;
     }
@@ -236,20 +118,19 @@ public class OrderDAL {
             while (rs.next()) {
                 if (rs.getString("status").equals("Clear")) {
                     count = 1;
-
                 } else {
                     return count = 2;
                 }
             }
         } catch (final SQLException ex) {
 
-            return count;
+            return count = 0;
         }
 
         if (count == 1) {
             try (Connection con = UtilDB.getConnection();
                     PreparedStatement pstm = con
-                            .prepareStatement("UPDATE lemon_tee_shop.table SET status = 'Exsit' WHERE (table_id = '"
+                            .prepareStatement("UPDATE lemon_tee_shop.table SET status = 'Exist' WHERE (table_id = '"
                                     + order.getTable() + "');");) {
                 final int rs = pstm.executeUpdate();
                 if (rs == 1) {
@@ -270,8 +151,6 @@ public class OrderDAL {
                     System.out.println(pstm.executeUpdate());
                     return count = 3;
                 } catch (SQLException ex) {
-                    System.out.println("Error!");
-                    System.out.println(ex.toString());
                     return count = 0;
 
                 }
@@ -281,23 +160,21 @@ public class OrderDAL {
         return count;
     }
 
-public static int tableOrderExsit(int table){
-    int order_id = 0;
-   String sql = "SELECT max(order_id) FROM lemon_tee_shop.order where table_id = '"+table+"';";
-    try (Connection con = UtilDB.getConnection();
-            Statement stm = con.createStatement();
-            ResultSet rs = stm.executeQuery(sql)) {
-        while (rs.next()) {
-            order_id = rs.getInt("max(order_id)");
-             
+    public static int tableOrderExist(int table) {
+        int order_id = 0;
+        String sql = "SELECT max(order_id) FROM lemon_tee_shop.order where table_id = '" + table + "';";
+        try (Connection con = UtilDB.getConnection();
+                Statement stm = con.createStatement();
+                ResultSet rs = stm.executeQuery(sql)) {
+            while (rs.next()) {
+                order_id = rs.getInt("max(order_id)");
+
+            }
+        } catch (final SQLException ex) {
+            return 0;
         }
-    } catch (final SQLException ex) {
-        return  0;
+        return order_id;
     }
-return order_id;
-}
-
-
 
     public static int productsInOrder(OrderDetails orderDetails) {
 
@@ -332,7 +209,7 @@ return order_id;
                     ResultSet rs = stm.executeQuery(sql)) {
                 while (rs.next()) {
                     order_id = rs.getInt("max(order_id)");
-                     count = 2;
+                    count = 2;
                 }
             } catch (final SQLException ex) {
                 return count = 0;
@@ -346,7 +223,7 @@ return order_id;
                 pstm.setInt(1, orderDetails.getproductId());
                 pstm.setInt(2, orderDetails.getamount());
                 pstm.setInt(3, order_id);
-System.out.println(pstm.executeUpdate());
+                System.out.println(pstm.executeUpdate());
             } catch (SQLException ex) {
                 // System.out.println("Error!");
                 // System.out.println(ex.toString());
@@ -380,21 +257,18 @@ System.out.println(pstm.executeUpdate());
                     return count = 0;
                 }
             } catch (final SQLException ex) {
-                System.out.println(ex);
+
                 return count;
 
             }
         }
         // if (count == 0)
         // {
-        // System.out.println("Product not exsit!");
+        // System.out.println("Product not Exist!");
         // }
         return count;
 
     }
-
-
-
 
     public static int productsInOrderUpdate(OrderDetails orderDetails) {
         int count = 0;
@@ -420,7 +294,6 @@ System.out.println(pstm.executeUpdate());
             return count;
         }
 
-       
         if (count == 1) {
 
             try (Connection con = UtilDB.getConnection();
@@ -463,14 +336,13 @@ System.out.println(pstm.executeUpdate());
                     return count = 0;
                 }
             } catch (final SQLException ex) {
-                System.out.println(ex);
-                return count;
 
+                return count;
             }
         }
         // if (count == 0)
         // {
-        // System.out.println("Product not exsit!");
+        // System.out.println("Product not Exist!");
         // }
         return count;
 
@@ -485,17 +357,15 @@ System.out.println(pstm.executeUpdate());
                 ResultSet rs = stm.executeQuery(sql)) {
             while (rs.next()) {
                 if (!rs.getString("status").equals("Clear")) {
-                    return count = 1;
-
+                    count = 1;
                 } else {
-                    System.out.println("Table clear!");
+                    return 0;
                 }
             }
         } catch (final SQLException ex) {
-            return count = -1;
+            return count = 0;
         }
 
-        System.out.println(count);
         if (count == 1) {
             sql = "SELECT max(order_id) FROM lemon_tee_shop.order where table_id = '" + table + "';";
             try (Connection con = UtilDB.getConnection();
@@ -506,11 +376,11 @@ System.out.println(pstm.executeUpdate());
 
                 }
             } catch (final SQLException ex) {
-                System.out.println(ex);
+                return 0;
             }
         }
 
-        System.out.println(order_id);
+        
         return order_id;
     }
 
@@ -544,27 +414,9 @@ System.out.println(pstm.executeUpdate());
             }
         } catch (SQLException ex) {
             lst = null;
-            System.out.println(ex.toString());
         }
         return lst;
     }
-
-    // public static List<OrderDetails> getOrderDetails(int id) {
-    //     String sql = "SELECT * FROM lemon_tee_shop.order_details inner join lemon_tee_shop.products on order_details.product_id = products.product_id where order_id = '"
-    //             + id + "' ;";
-    //     List<OrderDetails> lst = new ArrayList<>();
-    //     try (Connection con = UtilDB.getConnection();
-    //             Statement stm = con.createStatement();
-    //             ResultSet rs = stm.executeQuery(sql)) {
-    //         while (rs.next()) {
-    //             lst.add(getOrderDetails(rs));
-    //         }
-    //     } catch (SQLException ex) {
-    //         lst = null;
-    //         System.out.println(ex.toString());
-    //     }
-    //     return lst;
-    // }
 
     public static List<OrderDetails> getBillDetails(int id) {
         String sql = "SELECT * FROM lemon_tee_shop.order_details  where order_id = '" + id + "' ;";
@@ -577,13 +429,12 @@ System.out.println(pstm.executeUpdate());
             }
         } catch (SQLException ex) {
             lst = null;
-            System.out.println(ex.toString());
         }
         return lst;
     }
 
     public static List<Order> getBill(int id) {
-        String sql = "SELECT * FROM lemon_tee_shop.order where order_id = '"+id+"';";
+        String sql = "SELECT * FROM lemon_tee_shop.order where order_id = '" + id + "';";
         List<Order> lst = new ArrayList<>();
         try (Connection con = UtilDB.getConnection();
                 Statement stm = con.createStatement();
@@ -593,7 +444,6 @@ System.out.println(pstm.executeUpdate());
             }
         } catch (SQLException ex) {
             lst = null;
-            System.out.println(ex.toString());
         }
         return lst;
     }
