@@ -1,5 +1,6 @@
 package vtc.ui.ProductsUI;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -46,7 +47,7 @@ public class ProductFunctionUI {
                 System.err.println("Insert product failed!");
             }
 
-            System.out.println("Continue Insert?(y/n)");
+            System.out.print("Continued(y/n): ");
             String choice1 = yesno();
             if (choice1.equalsIgnoreCase("N")) {
                 break;
@@ -55,16 +56,21 @@ public class ProductFunctionUI {
     }
 
     public static String yesno() {
-        String yn = sc.nextLine();
-        if (yn.equalsIgnoreCase("N") || yn.equalsIgnoreCase("Y")) {
-            return yn;
+        String yn = null;
+        while (true) {
+            yn = sc.nextLine();
+            if (yn.equals("N") || yn.equals("Y") || yn.equals("n")
+                    || yn.equals("y")) {
+                break;
+            }
         }
+
         return yn;
     }
 
     public static Product inputProduct() {
         Product product = new Product();
-        // Scanner sc = new Scanner(System.in);
+
         System.out.print("Product name: ");
         product.setProductName(inputString());
         System.out.print("Unit cost: ");
@@ -84,7 +90,6 @@ public class ProductFunctionUI {
         int productsInStock = input_int();
         product.setProductsInStock(productsInStock);
 
-        // sc.close();
         return product;
     }
 
@@ -115,20 +120,20 @@ public class ProductFunctionUI {
             System.out.print("Products in stock: ");
             int productsInStock = input_int();
             product.setProductsInStock(productsInStock);
-            System.out.println("Do you want to update(y/n)?");
+            System.out.printf("Do you want to update(y/n):");
             String choice = yesno();
             if (choice.equalsIgnoreCase("y")) {
                 productsList.add(product);
                 try {
                     productBL.Update(product);
                 } catch (Exception e) {
-                    // TODO Auto-generated catch block
+
                     e.printStackTrace();
                 }
             } else {
                 System.out.println("Error. can't Update!");
             }
-            System.out.println("Continued(y/n)?");
+            System.out.print("Continued(y/n): ");
             String x = yesno();
             if (x.equalsIgnoreCase("n")) {
                 break;
@@ -149,7 +154,7 @@ public class ProductFunctionUI {
                 productBL.UpdateProductsInStock(id, productsInStock);
             } catch (Exception e) {
             }
-            System.out.println("Do you want to update(y/n)?");
+            System.out.print("Do you want to update(y/n):");
             String choice = yesno();
             if (choice.equalsIgnoreCase("y")) {
                 try {
@@ -159,7 +164,7 @@ public class ProductFunctionUI {
                     System.out.println("Error. can't Update!");
                 }
             }
-            System.out.println("Continued(y/n)?");
+            System.out.print("Continued(y/n): ");
             String x = yesno();
             if (x.equalsIgnoreCase("n")) {
                 break;
@@ -178,10 +183,10 @@ public class ProductFunctionUI {
                 if (x >= 0) {
                     return x;
                 } else {
-                    System.out.print("  Nhap sai,moi nhap lai: ");
+                    System.out.print("  Wrong type, enter again: ");
                 }
             } catch (Exception e) {
-                System.out.print("  Nhap sai,moi nhap lai: ");
+                System.out.print("  Wrong type, enter again: ");
             }
         }
 
@@ -193,7 +198,7 @@ public class ProductFunctionUI {
         while (true) {
             a = input.nextLine();
             if (a.trim().compareTo("") == 0) {
-                System.out.print(" Nhap sai,moi nhap lai: ");
+                System.out.print("  Wrong type, enter again: ");
 
             } else {
                 return a.trim();
@@ -213,13 +218,23 @@ public class ProductFunctionUI {
                 if (x >= 0) {
                     return x;
                 } else {
-                    System.out.print("  Nhap sai,moi nhap lai: ");
+                    System.out.print("  Wrong type, enter again: ");
                 }
             } catch (Exception e) {
-                System.out.print("  Nhap sai,moi nhap lai: ");
+                System.out.print("  Wrong type, enter again: ");
             }
         }
 
+    }
+
+    public static void cls() {
+        try {
+            if (System.getProperty("os.name").contains("Windows"))
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            else
+                Runtime.getRuntime().exec("clear");
+        } catch (IOException | InterruptedException ignored) {
+        }
     }
 
 }

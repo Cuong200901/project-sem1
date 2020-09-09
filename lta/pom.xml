@@ -56,8 +56,17 @@
           <version>2.22.1</version>
         </plugin>
         <plugin>
-          <artifactId>maven-jar-plugin</artifactId>
+            <artifactId>maven-jar-plugin</artifactId>
           <version>3.0.2</version>
+          <configuration>
+            <archive>
+              <manifest>
+                <addClasspath>true</addClasspath>
+                <mainClass>vtc.App</mainClass>
+                <classpathPrefix>dependency/</classpathPrefix>
+              </manifest>
+            </archive>
+          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-install-plugin</artifactId>

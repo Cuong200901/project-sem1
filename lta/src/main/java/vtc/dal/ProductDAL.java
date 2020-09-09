@@ -19,7 +19,7 @@ public class ProductDAL {
             }
         } catch (SQLException ex) {
             lst = null;
-            System.out.println(ex.toString());
+            
         }
         return lst;
     }
@@ -35,7 +35,7 @@ public class ProductDAL {
             }
         } catch (SQLException ex) {
             lst = null;
-            System.out.println(ex.toString());
+            
         }
         return lst;
     }
@@ -55,8 +55,8 @@ public class ProductDAL {
             return pstm.executeUpdate();
 
         } catch (SQLException ex) {
-            System.out.println("loi insert!");
-            System.out.println(ex.toString());
+            System.out.println("Error insert!");
+            
             return 0;
 
         }
@@ -97,7 +97,7 @@ public class ProductDAL {
             return rs;
         } catch (SQLException ex) {
             ex.printStackTrace();
-            System.out.println("loi update!");
+            System.out.println("Eror update!");
             return 0;
 
         }

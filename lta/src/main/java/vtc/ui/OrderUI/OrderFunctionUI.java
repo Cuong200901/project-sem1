@@ -1,12 +1,13 @@
 package vtc.ui.OrderUI;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import javax.lang.model.util.ElementScanner6;
+
 
 import vtc.bl.AccountBL;
 import vtc.bl.OrderBL;
@@ -59,10 +60,10 @@ public class OrderFunctionUI {
                 if (x >= 0) {
                     return x;
                 } else {
-                    System.out.print("  Nhap sai,moi nhap lai: ");
+                    System.out.printf("Wrong type, Press '%s' to go back:", "Enter");
                 }
             } catch (final Exception e) {
-                System.out.print("  Nhap sai,moi nhap lai: ");
+                System.out.printf("Wrong type, Press '%s' to go back:", "Enter");
             
             }
         }
@@ -85,6 +86,7 @@ public class OrderFunctionUI {
                     System.out.printf("| %-10s | %-15s |\n", i, orderList.size());
                     System.out.println("+------------------------------+");
                 }
+                break;
 
             } else {
                 System.out.print(" Error! Enter again: ");
@@ -116,6 +118,7 @@ public class OrderFunctionUI {
                 System.out.println(staff);
             }
         }
+        cls();
         System.out.println("+-------------------------------------------------------------------------+");
         System.out.println("|                             Lemon tee shop                              |");
         System.out.println("|                                                                         |");
@@ -132,7 +135,7 @@ public class OrderFunctionUI {
             }
 
             System.out.println("|                                |               |         |              |");
-            // System.out.println("| |");
+          
             System.out.printf("| %-30s | %-13s | %-7s | %-13s|\n", productsName, price, orderDetails.getamount(),
                     total = price * orderDetails.getamount());
             totalBill = totalBill + total;
@@ -181,7 +184,7 @@ public class OrderFunctionUI {
                     System.out.printf("| %-10s | %-15s |\n", i, OrderBL.monneyEarnByMonth(year, i));
                     System.out.println("+------------------------------+");
                 }
-
+break;
             } else {
                 System.out.print(" Error! Enter again: ");
             }
@@ -227,9 +230,7 @@ public class OrderFunctionUI {
         order.setTable(input_int());
         System.out.print("Enter note : ");
         order.setNote(input_string());
-
         final int Count = OrderBL.createOrder(order);
-        System.out.println(Count);
         if (Count == 3) {
             while (true) {
                 ProductFunctionUI.showProduct();
@@ -258,11 +259,11 @@ public class OrderFunctionUI {
             }
         } else if (Count == 2) {
             System.err.println("Table Exist!");
-            System.out.printf("Nhan %s de quay lai:", "Enter");
+            System.out.printf(" Press '%s' to go back:", "Enter");
             final String nh = sc.nextLine();
         } else {
             System.err.println("Error");
-            System.out.printf("Nhan %s de quay lai:", "Enter");
+            System.out.printf(" Press '%s' to go back:", "Enter");
             final String nh = sc.nextLine();
         }
 
@@ -276,12 +277,12 @@ public class OrderFunctionUI {
         if (Count == 0) {
             System.out.println("Table clear!");
             System.err.println("Error");
-            System.out.printf("Nhan %s de quay lai:", "Enter");
+            System.out.printf(" Press '%s' to go back:", "Enter");
             final String nh = sc.nextLine();
         } else if (Count == -1) {
             System.out.println("Wrong table!");
             System.err.println("Error");
-            System.out.printf("Nhan %s de quay lai:", "Enter");
+            System.out.printf(" Press '%s' to go back:", "Enter");
             final String nh = sc.nextLine();
         } else {
             while (true) {
@@ -301,7 +302,6 @@ public class OrderFunctionUI {
                 } else if (count == -2) {
                     System.out.println("Insufficient quantity of products!");
                 } else {
-                    System.out.println(count);
                     System.out.println("Insert account failed!");
                 }
                 System.out.print("Continue Insert(y/n): ");
@@ -317,8 +317,8 @@ public class OrderFunctionUI {
         String yn = null;
         while (true) {
             yn = sc.nextLine();
-            if (yn.equalsIgnoreCase("N") || yn.equalsIgnoreCase("Y") || yn.equalsIgnoreCase("n")
-                    || yn.equalsIgnoreCase("y")) {
+            if (yn.equals("N") || yn.equals("Y") || yn.equals("n")
+                    || yn.equals("y")) {
                 break;
             }
         }
@@ -348,12 +348,21 @@ public class OrderFunctionUI {
         while (true) {
             a = input.nextLine();
             if (a.trim().compareTo("") == 0) {
-                System.out.print("  Nhap sai,moi nhap lai: ");
+                System.out.printf(" Press '%s' to go back:", "Enter");
 
             } else {
                 return a.trim();
             }
         }
 
+    }
+    public static void cls() {
+        try {
+            if (System.getProperty("os.name").contains("Windows"))
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            else
+                Runtime.getRuntime().exec("clear");
+        } catch (IOException | InterruptedException ignored) {
+        }
     }
 }

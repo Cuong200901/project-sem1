@@ -26,13 +26,13 @@ public class OrderMenuUI {
                 case "1":
                     cls();
                     OrderFunctionUI.orderByMonth();
-                    System.out.printf("Nhan %s de quay lai:", "Enter");
+                    System.out.printf("Press '%s' to go back:", "Enter");
                     String nh = sc.nextLine();
                     break;
                 case "2":
                     cls();
                     OrderFunctionUI.monneyEarnerByMonth();
-                    System.out.printf("Nhan %s de quay lai:", "Enter");
+                    System.out.printf("Press '%s' to go back:", "Enter");
                     nh = sc.nextLine();
                     break;
 
@@ -40,7 +40,7 @@ public class OrderMenuUI {
                     back = false;
                     break;
                 default:
-                    System.out.printf("Khong hop le,Nhan %s de quay lai:", "Enter");
+                System.out.printf("Wrong, Press '%s' to go back:", "Enter");
                     nh = sc.nextLine();
             }
         }
@@ -71,7 +71,6 @@ public class OrderMenuUI {
                 case "2":
                     cls();
                     OrderBL.showTableExit();
-
                     OrderFunctionUI.updateOrder();
                     break;
 
@@ -79,21 +78,21 @@ public class OrderMenuUI {
                     cls();
                     OrderBL.showTableExit();
                     OrderFunctionUI.completeOrder();
-                    System.out.printf("Nhan %s de quay lai:", "Enter");
+                    System.out.printf(" Press '%s' to go back:", "Enter");
                     String nh = sc.nextLine();
                     break;
                 case "4":
                     cls();
                     OrderFunctionUI.showOrderByDay();
                     OrderFunctionUI.showBill();
-                    System.out.printf("Nhan %s de quay lai:", "Enter");
+                    System.out.printf(" Press '%s' to go back:", "Enter");
                     nh = sc.nextLine();
                     break;
                 case "0":
                     back = false;
                     break;
                 default:
-                    System.out.printf("Khong hop le,Nhan %s de quay lai:", "Enter");
+                System.out.printf("Wrong, Press '%s' to go back:", "Enter");
                     nh = sc.nextLine();
             }
         }

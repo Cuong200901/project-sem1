@@ -31,7 +31,7 @@ OrderMenuUI orderUI = new OrderMenuUI();
             switch (chose) {
                 case "1":
                 cls();
-                AccountFunctionUI.showAccountById(id);
+               
                 AccountFunctionUI.inputInfoUpdateById(id);
                 break;
                 case "2":
@@ -52,7 +52,7 @@ OrderMenuUI orderUI = new OrderMenuUI();
                 case "0":
                     System.exit(0);
                 default:
-                    System.out.printf("Khong hop le,Nhan %s de quay lai:", "Enter");
+                System.out.printf("Wrong, Press '%s' to go back:", "Enter");
                     String nh = sc.nextLine();
             }
         }
@@ -62,7 +62,7 @@ OrderMenuUI orderUI = new OrderMenuUI();
         boolean back = true;
         while (back) {
             cls();
-            System.out.println(id);
+        
             System.out.println("[LTS] PF10 - Group6");
             System.out.println("+-------------------------------------------+");
             System.out.println("|               Wellcome Staff              |");
@@ -77,7 +77,7 @@ OrderMenuUI orderUI = new OrderMenuUI();
             switch (chose) {
                 case "1":
                 cls();
-                AccountFunctionUI.showAccountById(id);
+              
                 AccountFunctionUI.inputInfoUpdateById(id);
                 break;
                 case "2":
@@ -90,7 +90,7 @@ OrderMenuUI orderUI = new OrderMenuUI();
                 case "0":
                     System.exit(0);
                 default:
-                    System.out.printf("Khong hop le,Nhan %s de quay lai:", "Enter");
+                System.out.printf("Wrong, Press '%s' to go back:", "Enter");
                     String nh = sc.nextLine();
             }
         }
@@ -115,9 +115,11 @@ OrderMenuUI orderUI = new OrderMenuUI();
             chose = sc.nextLine();
             switch (chose) {
                 case "1":
+                cls();
                 AccountFunctionUI.insertaccount();;
                     break;  
                 case "2":
+                cls();
                 AccountFunctionUI.showAccount();
                 AccountFunctionUI.inputInfoUpdate();
                     break;
@@ -127,11 +129,11 @@ OrderMenuUI orderUI = new OrderMenuUI();
                 case "3":
                 cls();
                 AccountFunctionUI.showAccount();
-                    System.out.printf("Nhan %s de quay lai:", "Enter");
+                System.out.printf(" Press '%s' to go back:", "Enter");
                     String nh = sc.nextLine();
                     break;
                 default:
-                    System.out.printf("Khong hop le,Nhan %s de quay lai:", "Enter");
+                System.out.printf("Wrong, Press '%s' to go back:", "Enter");
                    nh = sc.nextLine();
             }
         }

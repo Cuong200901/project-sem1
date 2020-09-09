@@ -1,5 +1,6 @@
 package vtc.ui.AccountUI;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -15,6 +16,44 @@ public class AccountFunctionUI {
     static List<Account> accountsList = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
     static AccountBL accountBL = new AccountBL();
+
+
+    public static void login()
+    {
+        final Scanner sc = new Scanner(System.in);
+        while (true) {
+            
+            final AccountBL accountBL = new AccountBL();
+            final AccountMenuUI accountUI = new AccountMenuUI();
+            String username;
+            String password;
+          
+            System.out.println("[LTS] PF10 - Group6");
+
+            System.out.println("+-------------------------------------------+");
+            System.out.println("|               WELLCOME                    |");
+            System.out.println("+-------------------------------------------+");
+            System.out.print(" [Username]: ");
+            username = sc.nextLine();
+            System.out.print(" [Password]: ");
+            password = sc.nextLine();
+            int check = accountBL.login(username, password);
+            if (check == -1) {
+                System.out.println(" Wrong username or password");
+                System.out.printf(" Press '%s' to go back:", "Enter");
+                String nh = sc.nextLine();
+            } else if (check == 1) {
+                accountUI.admin_main_menu(check);
+            } else {
+                accountUI.staff_main_menu(check);
+
+            }
+
+        }
+    }
+
+
+
 
     public static void showAccount() {
         AccountBL accountBL = new AccountBL();
@@ -74,7 +113,7 @@ public class AccountFunctionUI {
                 System.err.println("Insert account failed!");
             }
 
-            System.out.println("Continue Insert?(y/n)");
+            System.out.print("Continue Insert?(y/n): ");
             String choice1 = yesno();
             if (choice1.equalsIgnoreCase("N")) {
                 break;
@@ -86,7 +125,7 @@ public class AccountFunctionUI {
     public static Account inputAccount() {
         Account account = new Account();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        // Scanner sc = new Scanner(System.in);
+       
         System.out.print("Username: ");
         account.setusername(password_value());
         System.out.print("Password: ");
@@ -143,7 +182,7 @@ public class AccountFunctionUI {
                 try {
                     accountBL.Update(account);
                 } catch (Exception e) {
-                    // TODO Auto-generated catch block
+                    
                     e.printStackTrace();
                 }
             } else {
@@ -160,6 +199,8 @@ public class AccountFunctionUI {
     public static void inputInfoUpdateById(int id) {
 
         while (true) {
+            cls();
+            showAccountById(id);
             Account account = new Account();
             Scanner sc = new Scanner(System.in);
             account.setAccountId(id);
@@ -186,20 +227,19 @@ public class AccountFunctionUI {
             account.setstarttime(input_date());
             System.out.print("Shift: ");
             account.setshift(input_string());
-            System.out.println("Do you want to update(y/n)?");
+            System.out.printf("Do you want to update(y/n):");
             String choice = yesno();
             if (choice.equalsIgnoreCase("y")) {
                 accountsList.add(account);
                 try {
                     accountBL.Update(account);
                 } catch (Exception e) {
-
-                    e.printStackTrace();
+                    System.out.println("Error. can't Update!");
                 }
             } else {
-                System.out.println("Error. can't Update!");
+                System.out.println("Update stopped !");
             }
-            System.out.println("Continued(y/n)?");
+            System.out.print("Continued(y/n): ");
             String x = yesno();
             if (x.equalsIgnoreCase("n")) {
                 break;
@@ -208,10 +248,15 @@ public class AccountFunctionUI {
     }
 
     public static String yesno() {
-        String yn = sc.nextLine();
-        if (yn.equalsIgnoreCase("N") || yn.equalsIgnoreCase("Y")) {
-            return yn;
+        String yn = null;
+        while (true) {
+            yn = sc.nextLine();
+            if (yn.equals("N") || yn.equals("Y") || yn.equals("n")
+                    || yn.equals("y")) {
+                break;
+            }
         }
+
         return yn;
     }
 
@@ -237,7 +282,7 @@ public class AccountFunctionUI {
         while (true) {
             a = input.nextLine();
             if (a.trim().compareTo("") == 0) {
-                System.out.print("  Nhap sai,moi nhap lai: ");
+                System.out.print("  Wrong type, enter again: ");
 
             } else {
                 return a.trim();
@@ -257,10 +302,10 @@ public class AccountFunctionUI {
                 if (x > 0) {
                     return x;
                 } else {
-                    System.out.print("  Nhap sai,moi nhap lai: ");
+                    System.out.print("  Wrong type, enter again: ");
                 }
             } catch (Exception e) {
-                System.out.print("  Nhap sai,moi nhap lai: ");
+                System.out.print("  Wrong type, enter again: ");
             }
         }
 
@@ -292,10 +337,20 @@ public class AccountFunctionUI {
                 x = Double.parseDouble(a);
                 return x;
             } catch (Exception e) {
-                System.out.print("  Nhap sai,moi nhap lai: ");
+                System.out.print("  Wrong type, enter again: ");
             }
         }
 
+    }
+
+    public static void cls() {
+        try {
+            if (System.getProperty("os.name").contains("Windows"))
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            else
+                Runtime.getRuntime().exec("clear");
+        } catch (IOException | InterruptedException ignored) {
+        }
     }
 
 }

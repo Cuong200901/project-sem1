@@ -1,9 +1,10 @@
 package vtc.ui.ProductsUI;
 
-
 import java.io.IOException;
 
 import java.util.Scanner;
+
+import vtc.ui.OrderUI.OrderFunctionUI;
 
 public class ProductsMenuUI {
     Scanner sc = new Scanner(System.in);
@@ -43,14 +44,14 @@ public class ProductsMenuUI {
                 case "4":
                     cls();
                     ProductFunctionUI.showProduct();
-                    System.out.printf("Nhan %s de quay lai:", "Enter");
+                    System.out.printf(" Press '%s' to go back:", "Enter");
                     nh = sc.nextLine();
                     break;
                 case "0":
                     back = false;
                     break;
                 default:
-                    System.out.printf("Khong hop le,Nhan %s de quay lai:", "Enter");
+                    System.out.printf("Wrong, Press '%s' to go back:", "Enter");
                     nh = sc.nextLine();
             }
         }
@@ -74,8 +75,21 @@ public class ProductsMenuUI {
                 case "0":
                     back = false;
                     break;
+                case "1":
+                    cls();
+                    OrderFunctionUI.orderByMonth();
+                    System.out.printf(" Press '%s' to go back:", "Enter");
+                    nh = sc.nextLine();
+                    break;
+                case "2":
+                    cls();
+                    OrderFunctionUI.monneyEarnerByMonth();
+                    System.out.printf(" Press '%s' to go back:", "Enter");
+                    nh = sc.nextLine();
+                    break;
+
                 default:
-                    System.out.printf("Khong hop le,Nhan %s de quay lai:", "Enter");
+                    System.out.printf("Wrong, Press '%s' to go back:", "Enter");
                     nh = sc.nextLine();
             }
         }

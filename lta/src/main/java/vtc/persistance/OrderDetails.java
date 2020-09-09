@@ -1,18 +1,11 @@
 package vtc.persistance;
 
 public class OrderDetails {
-    private int orderDetailsId;
     private int productId;
     private int amount;
     private int orderId;
 
-    public int getorderDetailsId() {
-        return orderDetailsId;
-    }
 
-    public void setorderDetailsId(int orderDetailsId) {
-        this.orderDetailsId = orderDetailsId;
-    }
 
     public int getproductId() {
         return productId;

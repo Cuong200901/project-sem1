@@ -14,7 +14,7 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 
 public class AccountDAL {
-    
+
     public int check_account(String username, String password) {
 
         int id = -1;
@@ -49,8 +49,7 @@ public class AccountDAL {
             }
 
         } catch (SQLException e) {
-            System.out.println("Co loi say ra!");
-            System.out.println(e);
+
         }
         return id;
     }
@@ -73,7 +72,7 @@ public class AccountDAL {
         } catch (Exception e) {
             return null;
         }
-     
+
     }
 
     public static List<Account> getAll() {
@@ -128,7 +127,7 @@ public class AccountDAL {
             return rs;
         } catch (SQLException ex) {
             ex.printStackTrace();
-            System.out.println("loi update!");
+            System.out.println("Error update!");
             return 0;
 
         }
@@ -155,7 +154,7 @@ public class AccountDAL {
             return rs;
         } catch (SQLException ex) {
             ex.printStackTrace();
-            System.out.println("loi update!");
+            System.out.println("Error update!");
             return 0;
 
         }
