@@ -11,15 +11,15 @@ import vtc.dal.ProductDAL;
 import vtc.persistance.Product;
 
 public class ProductFunctionUI {
-    public static ProductDAL dal_product = new ProductDAL();
+  
     static Scanner sc = new Scanner(System.in);
     static List<Product> productsList = new ArrayList<>();
     static ProductBL productBL = new ProductBL();
 
     public static void showProduct() {
         cls();
-        ProductBL productBL = new ProductBL();
-        List<Product> lst = productBL.getAll();
+        final ProductBL productBL = new ProductBL();
+        final List<Product> lst = productBL.getAll();
         System.out.println("+---------------------------------------------------------------------------+");
         System.out.println("|                              [LTS] - Group 6                              | ");
         System.out.println("+---------------------------------------------------------------------------+");
@@ -28,9 +28,9 @@ public class ProductFunctionUI {
         System.out.printf("| %-5s | %-30s | %-10s | %-9s | %-7s |\n", "ID", "Product name", "Price", "Category",
                 "Amount");
         System.out.println("+---------------------------------------------------------------------------+");
-        for (Product product : lst) {
-            DecimalFormat df = new DecimalFormat("#");
-            String fomart = df.format(product.getPrice());
+        for (final Product product : lst) {
+            final DecimalFormat df = new DecimalFormat("#");
+            final String fomart = df.format(product.getPrice());
             System.out.printf("| %-5s | %-30s | %-10s | %-9s | %-7s |\n", product.getProductId(),
                     product.getProductName(), fomart, product.getCategory(), product.getProductsInStock());
         }
@@ -38,17 +38,17 @@ public class ProductFunctionUI {
 
     }
 
-    public static void showProductById(int id) {
+    public static void showProductById(final int id) {
         cls();
 
-        ProductBL productBL = new ProductBL();
-        List<Product> lp = productBL.getAllById(id);
+        final ProductBL productBL = new ProductBL();
+        final List<Product> lp = productBL.getAllById(id);
         System.out.println("+-------------------------------------------------------+");
         System.out.println("|                     [LTS] - Group6                    |");
         System.out.println("+-------------------------------------------------------+");
-        System.out.println("|                    Account Information                |");
+        System.out.println("|                    Product Information                |");
         System.out.println("+-------------------------------------------------------+");
-        for (Product product : lp) {
+        for (final Product product : lp) {
             System.out.printf("| 1. Product name      : %-30s |\n", product.getProductName());
             System.out.printf("| 2. Price             : %-30s |\n", product.getPrice());
             System.out.printf("| 3. Category          : %-30s |\n", product.getCategory());
@@ -58,12 +58,12 @@ public class ProductFunctionUI {
 
     }
 
-    public static void showProductNewInfor(Product product) {
+    public static void showProductNewInfor(final Product product) {
         cls();
         System.out.println("+-------------------------------------------------------+");
         System.out.println("|                     [LTS] - Group6                    |");
         System.out.println("+-------------------------------------------------------+");
-        System.out.println("|                    Account Information                |");
+        System.out.println("|                    Product Information                |");
         System.out.println("+-------------------------------------------------------+");
         System.out.printf("| 1. Product name      : %-30s |\n", product.getProductName());
         System.out.printf("| 2. Price             : %-30s |\n", product.getPrice());
@@ -74,15 +74,13 @@ public class ProductFunctionUI {
 
     public static void insertProduct() {
         while (true) {
-            ProductBL productBL = new ProductBL();
             if (productBL.addProduct(inputProduct())) {
                 System.out.println("Insert product complete!");
             } else {
                 System.err.println("Insert product failed!");
             }
-
             System.out.print("Continued(y/n): ");
-            String choice1 = yesno();
+            final String choice1 = yesno();
             if (choice1.equalsIgnoreCase("N")) {
                 break;
             }
@@ -90,11 +88,14 @@ public class ProductFunctionUI {
     }
 
     public static String yesno() {
+        final Scanner sc = new Scanner(System.in);
         String yn = null;
         while (true) {
             yn = sc.nextLine();
             if (yn.equals("N") || yn.equals("Y") || yn.equals("n") || yn.equals("y")) {
                 break;
+            } else {
+                System.out.print("  Wrong type, enter again: ");
             }
         }
 
@@ -103,19 +104,22 @@ public class ProductFunctionUI {
 
     public static Product inputProduct() {
         Product product = new Product();
+        final Product productDefault = new Product();
+        productDefault.setPrice((double) -1);
+        productDefault.setProductsInStock(-1);
         int count = 0;
         while (true) {
             while (true) {
                 showProductNewInfor(product);
                 System.out.print("Product name: ");
-                String name = inputString();
+                final String name = inputString();
                 System.out.print("Insert(y/n): ");
                 String choice1 = yesno();
                 if (choice1.equalsIgnoreCase("N")) {
                     System.out.print("Continue Insert(y/n): ");
                     choice1 = yesno();
                     if (choice1.equalsIgnoreCase("N")) {
-                        return product = new Product();
+                        return productDefault;
                     }
 
                 } else {
@@ -128,14 +132,14 @@ public class ProductFunctionUI {
                 while (true) {
                     showProductNewInfor(product);
                     System.out.print("Unit price: ");
-                    Double price = input_double();
+                    final Double price = input_double();
                     System.out.print("Insert(y/n): ");
                     String choice1 = yesno();
                     if (choice1.equalsIgnoreCase("N")) {
                         System.out.print("Continue Insert(y/n): ");
                         choice1 = yesno();
                         if (choice1.equalsIgnoreCase("N")) {
-                            return product = new Product();
+                            return productDefault;
                         }
                         ;
                     } else {
@@ -151,11 +155,9 @@ public class ProductFunctionUI {
                     String category = null;
                     while (true) {
                         showProductNewInfor(product);
-                        System.out.print(" 1. Drink");
-                        System.out.print(" 2. Food");
-                        System.out.print(" 3. Topping");
-                        System.out.print("Product category: ");
-                        int choice = input_int();
+                        System.out.println(" 1. Drink / 2. Food / 3. Topping");
+                        System.out.print(" Product category: ");
+                        final int choice = input_int();
                         if (choice == 1) {
                             category = "Drink";
                             break;
@@ -168,9 +170,9 @@ public class ProductFunctionUI {
                         } else {
                             System.out.print(" Not found! ");
                             System.out.print(" Continue Insert(y/n): ");
-                            String choice1 = yesno();
+                            final String choice1 = yesno();
                             if (choice1.equalsIgnoreCase("N")) {
-                                return product = new Product();
+                                return productDefault;
                             }
 
                         }
@@ -182,9 +184,8 @@ public class ProductFunctionUI {
                         System.out.print("Continue Insert(y/n): ");
                         choice1 = yesno();
                         if (choice1.equalsIgnoreCase("N")) {
-                            return product = new Product();
+                            return productDefault;
                         }
-                        ;
                     } else {
                         product.setCategory(category);
                         count = 3;
@@ -197,7 +198,7 @@ public class ProductFunctionUI {
                     showProductNewInfor(product);
 
                     System.out.print("Products in stock: ");
-                    int productsInStock = input_int();
+                    final int productsInStock = input_int();
 
                     System.out.print("Insert(y/n): ");
                     String choice1 = yesno();
@@ -205,9 +206,9 @@ public class ProductFunctionUI {
                         System.out.print("Continue Insert(y/n): ");
                         choice1 = yesno();
                         if (choice1.equalsIgnoreCase("N")) {
-                            return product = new Product();
+                            return productDefault;
                         }
-                        ;
+
                     } else {
                         product.setProductsInStock(productsInStock);
                         count = 4;
@@ -215,13 +216,12 @@ public class ProductFunctionUI {
                     }
                 }
             }
-
             if (count == 4) {
                 showProductNewInfor(product);
                 System.out.print("Insert staff(y/n): ");
-                String choice1 = yesno();
+                final String choice1 = yesno();
                 if (choice1.equalsIgnoreCase("N")) {
-                    return product = new Product();
+                    return productDefault;
                 } else {
                     return product;
                 }
@@ -233,32 +233,32 @@ public class ProductFunctionUI {
     public static void inputInfoUpdate() {
 
         boolean back = true;
-        Scanner sc = new Scanner(System.in);
-        Product product = new Product();
-        ProductBL productBL = new ProductBL();
+        final Scanner sc = new Scanner(System.in);
+        final Product product = new Product();
+        final ProductBL productBL = new ProductBL();
         while (back) {
             cls();
             showProduct();
 
             System.out.print(" --> Enter id (0 to come back): ");
-            int id = input_int();
-            List<Product> la = ProductBL.getAllById(id);
+            final int id = input_int();
+            final List<Product> la = ProductBL.getAllById(id);
             if (id == 0) {
                 back = false;
                 break;
             } else if (la.size() == 0) {
                 System.out.printf(" Not found, Press '%s' to go back:", "Enter");
-                String nh = sc.nextLine();
+                final String nh = sc.nextLine();
             } else {
 
                 product.setProductId(id);
 
-                List<Product> lp = productBL.getAllById(id);
-                for (Product product1 : lp) {
+                final List<Product> lp = productBL.getAllById(id);
+                for (final Product product1 : lp) {
                     product.setProductName(product1.getProductName());
-                    product.setPrice(product.getPrice());
+                    product.setPrice(product1.getPrice());
                     product.setCategory(product1.getCategory());
-                    product.setProductsInStock(product.getProductsInStock());
+                    product.setProductsInStock(product1.getProductsInStock());
                 }
                 back = true;
                 while (back) {
@@ -268,7 +268,7 @@ public class ProductFunctionUI {
                     System.out.println("|            0: Come back  ||  (OK/ok): Update          |");
                     System.out.println("+-------------------------------------------------------+");
                     System.out.print(" --> Enter your choice: ");
-                    String chose = sc.nextLine();
+                    final String chose = sc.nextLine();
                     switch (chose) {
                         case "0":
                             back = false;
@@ -280,16 +280,16 @@ public class ProductFunctionUI {
                                 try {
                                     productBL.Update(product);
                                     System.out.printf(" Press '%s' to go back:", "Enter");
-                                    String nh = sc.nextLine();
+                                    final String nh = sc.nextLine();
                                     back = false;
                                     break;
-                                } catch (Exception e) {
+                                } catch (final Exception e) {
                                     System.err.println(" Insert account failed!");
                                 }
                             } else {
                                 System.out.println(" Update stopped !");
                                 System.out.printf(" Press '%s' to go back:", "Enter");
-                                String nh = sc.nextLine();
+                                final String nh = sc.nextLine();
                                 back = false;
                                 break;
                             }
@@ -300,16 +300,16 @@ public class ProductFunctionUI {
                                 try {
                                     productBL.Update(product);
                                     System.out.printf(" Press '%s' to go back:", "Enter");
-                                    String nh = sc.nextLine();
+                                    final String nh = sc.nextLine();
                                     back = false;
                                     break;
-                                } catch (Exception e) {
+                                } catch (final Exception e) {
                                     System.err.println(" Insert account failed!");
                                 }
                             } else {
                                 System.out.println(" Update stopped !");
                                 System.out.printf(" Press '%s' to go back:", "Enter");
-                                String nh = sc.nextLine();
+                                final String nh = sc.nextLine();
                                 back = false;
                                 break;
                             }
@@ -317,9 +317,9 @@ public class ProductFunctionUI {
                             while (true) {
                                 showProductNewInfor(product);
                                 System.out.print("Unit price: ");
-                                Double price = input_double();
+                                final Double price = input_double();
                                 System.out.print("Insert(y/n): ");
-                                String choice1 = yesno();
+                                final String choice1 = yesno();
                                 if (choice1.equalsIgnoreCase("N")) {
                                     break;
                                 } else {
@@ -334,11 +334,9 @@ public class ProductFunctionUI {
                                 String category = null;
                                 while (true) {
                                     showProductNewInfor(product);
-                                    System.out.print(" 1. Drink");
-                                    System.out.print(" 2. Food");
-                                    System.out.print(" 3. Topping");
-                                    System.out.print("Product category: ");
-                                    int choice1 = input_int();
+                                    System.out.println(" 1. Drink / 2. Food / 3. Topping");
+                                    System.out.print(" Product category: ");
+                                    final int choice1 = input_int();
                                     if (choice1 == 1) {
                                         category = "Drink";
                                         break;
@@ -359,7 +357,7 @@ public class ProductFunctionUI {
                                     }
                                 }
                                 System.out.print("Insert(y/n): ");
-                                String choice1 = yesno();
+                                final String choice1 = yesno();
                                 if (choice1.equalsIgnoreCase("N")) {
                                     break;
                                 } else {
@@ -374,10 +372,10 @@ public class ProductFunctionUI {
                                 showProductNewInfor(product);
 
                                 System.out.print("Products in stock: ");
-                                int productsInStock = input_int();
+                                final int productsInStock = input_int();
 
                                 System.out.print("Insert(y/n): ");
-                                String choice1 = yesno();
+                                final String choice1 = yesno();
                                 if (choice1.equalsIgnoreCase("N")) {
                                     break;
                                 } else {
@@ -392,9 +390,9 @@ public class ProductFunctionUI {
                             while (true) {
                                 showProductNewInfor(product);
                                 System.out.print("Product name: ");
-                                String name = inputString();
+                                final String name = inputString();
                                 System.out.print("Insert(y/n): ");
-                                String choice1 = yesno();
+                                final String choice1 = yesno();
                                 if (choice1.equalsIgnoreCase("N")) {
                                     break;
 
@@ -406,7 +404,7 @@ public class ProductFunctionUI {
                             }
                         default:
                             System.out.printf("Wrong, Press '%s' to go back:", "Enter");
-                            String nh = sc.nextLine();
+                            final String nh = sc.nextLine();
                     }
 
                 }
@@ -416,40 +414,39 @@ public class ProductFunctionUI {
     }
 
     public static void inputProductsInStock() {
-boolean back = true;
+        boolean back = true;
         while (true) {
             cls();
             showProduct();
-            Scanner sc = new Scanner(System.in);
+            final Scanner sc = new Scanner(System.in);
             System.out.print("ProductId(0 to come back): ");
-            int id = input_int();
-            List<Product> la = ProductBL.getAllById(id);
+            final int id = input_int();
+            final List<Product> la = ProductBL.getAllById(id);
             if (id == 0) {
                 back = false;
                 break;
             } else if (la.size() == 0) {
-                System.out.print("Not found, continued(y/n): ");
-                String x = yesno();
-                if (x.equalsIgnoreCase("n")) {
-                    back = false;
-                }
+                System.out.printf(" Press '%s' to go back:", "Enter");
+                final String nh = sc.nextLine();
+                back = false;
             } else {
                 System.out.print("Products in stock: ");
-                int productsInStock = input_int();
+                final int productsInStock = input_int();
                 System.out.print("Do you want to update(y/n):");
-                String choice = yesno();
+                final String choice = yesno();
                 if (choice.equalsIgnoreCase("y")) {
                     try {
                         productBL.UpdateProductsInStock(id, productsInStock);
                         showProduct();
-                    } catch (Exception e) {
+                    } catch (final Exception e) {
                         System.out.println("Error. can't Update!");
                     }
                 }
                 System.out.print("Continued(y/n): ");
-                String x = yesno();
+                final String x = yesno();
                 if (x.equalsIgnoreCase("n")) {
-                    back = false;;
+                    back = false;
+                    ;
                 }
             }
 
@@ -469,7 +466,7 @@ boolean back = true;
                 } else {
                     System.out.print("  Wrong type, enter again: ");
                 }
-            } catch (Exception e) {
+            } catch (final Exception e) {
                 System.out.print("  Wrong type, enter again: ");
             }
         }
@@ -504,7 +501,7 @@ boolean back = true;
                 } else {
                     System.out.print("  Wrong type, enter again: ");
                 }
-            } catch (Exception e) {
+            } catch (final Exception e) {
                 System.out.print("  Wrong type, enter again: ");
             }
         }

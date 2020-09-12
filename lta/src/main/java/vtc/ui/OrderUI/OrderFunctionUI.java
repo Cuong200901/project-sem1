@@ -312,11 +312,14 @@ public class OrderFunctionUI {
     }
 
     public static String yesno() {
+        final Scanner sc = new Scanner(System.in);
         String yn = null;
         while (true) {
             yn = sc.nextLine();
             if (yn.equals("N") || yn.equals("Y") || yn.equals("n") || yn.equals("y")) {
                 break;
+            } else {
+                System.out.print("  Wrong type, enter again: ");
             }
         }
 

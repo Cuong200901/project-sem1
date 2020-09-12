@@ -319,12 +319,12 @@ public class AccountFunctionUI {
                     };
                     } else {
                         account.setstarttime(time);
-                        count = 7;
+                        count = 8;
                         break;
                     }
                 }
             }
-            if (count == 7) {
+            if (count == 8) {
                 showAccountNewInfor(account);
                 System.out.print("Insert staff(y/n): ");
                 String choice1 = yesno();
@@ -581,11 +581,14 @@ public class AccountFunctionUI {
     }
 
     public static String yesno() {
+        final Scanner sc = new Scanner(System.in);
         String yn = null;
         while (true) {
             yn = sc.nextLine();
             if (yn.equals("N") || yn.equals("Y") || yn.equals("n") || yn.equals("y")) {
                 break;
+            } else {
+                System.out.print("  Wrong type, enter again: ");
             }
         }
 

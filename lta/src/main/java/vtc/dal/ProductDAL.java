@@ -48,13 +48,11 @@ public class ProductDAL {
             pstm.setDouble(2, product.getPrice());
             pstm.setString(3, product.getCategory());
             pstm.setInt(4, product.getProductsInStock());
-            System.out.println(pstm.executeUpdate());
             return pstm.executeUpdate();
-
         } catch (SQLException ex) {
-            System.out.println("Error insert!");
+           
             
-            return 0;
+            return -1;
 
         }
     }
