@@ -168,7 +168,7 @@ public class ProductFunctionUI {
                             category = "Topping";
                             break;
                         } else {
-                            System.out.print(" Not found! ");
+                            System.out.println(" Not found! ");
                             System.out.print(" Continue Insert(y/n): ");
                             final String choice1 = yesno();
                             if (choice1.equalsIgnoreCase("N")) {
@@ -218,7 +218,7 @@ public class ProductFunctionUI {
             }
             if (count == 4) {
                 showProductNewInfor(product);
-                System.out.print("Insert staff(y/n): ");
+                System.out.print("Insert Product(y/n): ");
                 final String choice1 = yesno();
                 if (choice1.equalsIgnoreCase("N")) {
                     return productDefault;
