@@ -67,7 +67,7 @@ public class AccountDAL {
             account.setemail(rs.getString("email"));
             account.setposition(rs.getString("position"));
             account.setstarttime(rs.getString("start_time"));
-            account.setshift(rs.getString("shift"));
+
             return account;
         } catch (Exception e) {
             return null;
@@ -108,7 +108,7 @@ public class AccountDAL {
     public int updateById(Account account, int id) throws SQLException {
         try (Connection con = UtilDB.getConnection();
                 PreparedStatement pstm = con.prepareStatement(
-                        "UPDATE accounts SET `password` = ?, `first_name` = ?, `last_name` = ?, `birthday` = ?, `phone_number` = ?, `email` = ?, `shift` = ? WHERE (account_id = ?);");) {
+                        "UPDATE accounts SET `password` = ?, `first_name` = ?, `last_name` = ?, `birthday` = ?, `phone_number` = ?, `email` = ? WHERE (account_id = ?);");) {
 
             pstm.setString(1, account.getuserpassword());
             pstm.setString(2, account.getfirstname());
@@ -116,8 +116,8 @@ public class AccountDAL {
             pstm.setString(4, account.getbirthday());
             pstm.setInt(5, account.getphonenumber());
             pstm.setString(6, account.getemail());
-            pstm.setString(7, account.getshift());
-            pstm.setInt(8, id);
+
+            pstm.setInt(7, id);
             int rs = pstm.executeUpdate();
             if (rs == 1) {
                 System.out.println("Update Successful!");
@@ -136,14 +136,14 @@ public class AccountDAL {
     public int update(Account account) throws SQLException {
         try (Connection con = UtilDB.getConnection();
                 PreparedStatement pstm = con.prepareStatement(
-                        "UPDATE accounts SET  password= ?, first_name = ?, last_name = ?, birthday = ?, phone_number = ?, email = ?, shift = ? WHERE (account_id = ?);");) {
+                        "UPDATE accounts SET  password= ?, first_name = ?, last_name = ?, birthday = ?, phone_number = ?, email = ?, start_time = ? WHERE (account_id = ?);");) {
             pstm.setString(1, account.getuserpassword());
             pstm.setString(2, account.getfirstname());
             pstm.setString(3, account.getlastname());
             pstm.setString(4, account.getbirthday());
             pstm.setInt(5, account.getphonenumber());
             pstm.setString(6, account.getemail());
-            pstm.setString(7, account.getshift());
+            pstm.setString(7, account.getstarttime());
             pstm.setInt(8, account.getaccountId());
             int rs = pstm.executeUpdate();
             if (rs == 1) {
@@ -153,7 +153,7 @@ public class AccountDAL {
             }
             return rs;
         } catch (SQLException ex) {
-            ex.printStackTrace();
+
             System.out.println("Error update!");
             return 0;
 
@@ -163,7 +163,8 @@ public class AccountDAL {
     public static int insertaccount(Account account) {
 
         int id = -1;
-
+        int phone = -1;
+        int email = -1;
         String sql = "SELECT account_id FROM lemon_tee_shop.accounts where user_name = '" + account.getusername()
                 + "';";
 
@@ -174,15 +175,38 @@ public class AccountDAL {
                 id = rs.getInt("account_id");
             }
         } catch (SQLException ex) {
+            System.out.println("Account Exist!");
             return 0;
         }
-        if (id != -1) {
+        sql = "SELECT phone_number FROM lemon_tee_shop.accounts where user_name = '" + account.getusername() + "';";
+        try (Connection con = UtilDB.getConnection();
+                Statement stm = con.createStatement();
+                ResultSet rs = stm.executeQuery(sql)) {
+            while (rs.next()) {
+                id = rs.getInt("phone_number");
+            }
+        } catch (SQLException ex) {
+            System.out.println("Phone number Exist!");
+            return 0;
+        }
+        sql = "SELECT email FROM lemon_tee_shop.accounts where user_name = '" + account.getusername() + "';";
+        try (Connection con = UtilDB.getConnection();
+                Statement stm = con.createStatement();
+                ResultSet rs = stm.executeQuery(sql)) {
+            while (rs.next()) {
+                id = rs.getInt("email");
+            }
+        } catch (SQLException ex) {
+            System.out.println("Email Exist!");
+            return 0;
+        }
+        if (id != -1 && phone != -1 && email != -1) {
             return 0;
         } else {
             try (Connection con = UtilDB.getConnection();
                     PreparedStatement pstm = con.prepareStatement(
-                            "INSERT INTO accounts (user_name, password, first_name, last_name, birthday, phone_number, email,position, start_time, shift) VALUES (?, ?, ?, ?, ?,?, ?, 'Staff', "
-                                    + java.time.LocalDate.now() + ", ?);");) {
+                            "INSERT INTO accounts (user_name, password, first_name, last_name, birthday, phone_number, email, position, start_time) VALUES (?, ?, ?, ?, ?, ?, ?, 'Staff', "
+                                    + java.time.LocalDate.now() + ");");) {
                 pstm.setString(1, account.getusername());
                 pstm.setString(2, account.getuserpassword());
                 pstm.setString(3, account.getfirstname());
@@ -190,10 +214,9 @@ public class AccountDAL {
                 pstm.setString(5, account.getbirthday());
                 pstm.setInt(6, account.getphonenumber());
                 pstm.setString(7, account.getemail());
-                pstm.setString(8, account.getshift());
                 return pstm.executeUpdate();
             } catch (SQLException ex) {
-                System.out.println("Error insert!");
+
                 return -1;
 
             }

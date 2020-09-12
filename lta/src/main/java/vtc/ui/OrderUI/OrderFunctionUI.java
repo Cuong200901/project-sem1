@@ -1,13 +1,12 @@
 package vtc.ui.OrderUI;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-
 
 import vtc.bl.AccountBL;
 import vtc.bl.OrderBL;
@@ -18,7 +17,6 @@ import vtc.persistance.Order;
 import vtc.persistance.OrderDetails;
 import vtc.persistance.Product;
 import vtc.ui.ProductsUI.ProductFunctionUI;
-
 
 public class OrderFunctionUI {
 
@@ -36,15 +34,11 @@ public class OrderFunctionUI {
         System.out.print("Enter table: ");
         final int table = input_int();
         int count = OrderBL.completeOrder(table);
-        if (count== 2)
-        {
+        if (count == 2) {
             System.out.println("Complete!");
-        }
-        else if (count == 0)
-        {
+        } else if (count == 0) {
             System.out.println("Error!");
-        }
-        else {
+        } else {
             System.out.println("Wrong table!");
         }
     }
@@ -64,7 +58,7 @@ public class OrderFunctionUI {
                 }
             } catch (final Exception e) {
                 System.out.printf("Wrong type, Press '%s' to go back:", "Enter");
-            
+
             }
         }
 
@@ -72,6 +66,7 @@ public class OrderFunctionUI {
 
     public static void orderByMonth() {
         while (true) {
+            cls();
             int year = 0;
             System.out.print("Enter year: ");
             year = input_int();
@@ -82,8 +77,8 @@ public class OrderFunctionUI {
                 System.out.printf("| %-10s | %-15s |\n", "Month", "Amount");
                 System.out.println("+------------------------------+");
                 for (int i = 1; i <= 12; i++) {
-                    final List<Order> orderList = orderBL.getOrderByMonth(year, i);
-                    System.out.printf("| %-10s | %-15s |\n", i, orderList.size());
+                    int orderList = orderBL.getOrderByMonth(year, i);
+                    System.out.printf("| %-10s | %-15s |\n", i, orderList);
                     System.out.println("+------------------------------+");
                 }
                 break;
@@ -110,7 +105,7 @@ public class OrderFunctionUI {
         final List<OrderDetails> orderDetailsList = orderBL.getBillDetails(id);
 
         for (final Order order : orderList) {
-            table = order.getTable();
+
             time = order.getTime();
             final List<Account> accountsList = accountBL.getById(order.getAccountId());
             for (final Account account : accountsList) {
@@ -135,7 +130,7 @@ public class OrderFunctionUI {
             }
 
             System.out.println("|                                |               |         |              |");
-          
+
             System.out.printf("| %-30s | %-13s | %-7s | %-13s|\n", productsName, price, orderDetails.getamount(),
                     total = price * orderDetails.getamount());
             totalBill = totalBill + total;
@@ -163,7 +158,7 @@ public class OrderFunctionUI {
                 "+-------------------------------------------------------------------------------------------+");
         for (final Order order : lo) {
             System.out.printf("| %-10s | %-20s | %-12s | %-25s | %-10s |\n", order.getOrderId(), order.getTime(),
-                    order.getAccountId(), order.getNote(), order.getTable());
+                    order.getAccountId(), order.getNote());
         }
         System.out.println(
                 "+-------------------------------------------------------------------------------------------+");
@@ -171,6 +166,8 @@ public class OrderFunctionUI {
 
     public static void monneyEarnerByMonth() {
         while (true) {
+            cls();
+
             int year = 0;
             System.out.print("Enter year: ");
             year = input_int();
@@ -178,13 +175,16 @@ public class OrderFunctionUI {
                 System.out.println("+---------------- -------------+");
                 System.out.println("|             " + year + "             |");
                 System.out.println("+------------------------------+");
-                System.out.printf("| %-10s | %-15s |\n", "Month", "Amount");
+                System.out.printf("| %-10s | %-15s |\n", "Month", "Amount(VND)");
                 System.out.println("+------------------------------+");
                 for (int i = 1; i <= 12; i++) {
-                    System.out.printf("| %-10s | %-15s |\n", i, OrderBL.monneyEarnByMonth(year, i));
+                    DecimalFormat df = new DecimalFormat("#");
+                    String fomart = df.format(OrderBL.monneyEarnByMonth(year, i));
+
+                    System.out.printf("| %-10s | %-15s |\n", i,fomart );
                     System.out.println("+------------------------------+");
                 }
-break;
+                break;
             } else {
                 System.out.print(" Error! Enter again: ");
             }
@@ -203,8 +203,7 @@ break;
         final Order order = new Order();
         order.setTime("" + java.time.LocalDateTime.now() + "");
         order.setAccountId(staffid);
-        System.out.print("Enter table : ");
-        order.setTable(input_int());
+
         System.out.print("Enter note : ");
         order.setNote(input_string());
         return order;
@@ -226,8 +225,7 @@ break;
         final Order order = new Order();
         order.setTime("" + java.time.LocalDateTime.now() + "");
         order.setAccountId(id);
-        System.out.print("Enter table : ");
-        order.setTable(input_int());
+
         System.out.print("Enter note : ");
         order.setNote(input_string());
         final int Count = OrderBL.createOrder(order);
@@ -317,8 +315,7 @@ break;
         String yn = null;
         while (true) {
             yn = sc.nextLine();
-            if (yn.equals("N") || yn.equals("Y") || yn.equals("n")
-                    || yn.equals("y")) {
+            if (yn.equals("N") || yn.equals("Y") || yn.equals("n") || yn.equals("y")) {
                 break;
             }
         }
@@ -356,6 +353,7 @@ break;
         }
 
     }
+
     public static void cls() {
         try {
             if (System.getProperty("os.name").contains("Windows"))

@@ -58,7 +58,7 @@ public class OrderBL {
         return OrderDAL.getBill(id);
     };
 
-    public static List<Order> getOrderByMonth(int year, int month) {
+    public static int getOrderByMonth(int year, int month) {
         return OrderDAL.getOrderByMonth(year, month);
     };
 

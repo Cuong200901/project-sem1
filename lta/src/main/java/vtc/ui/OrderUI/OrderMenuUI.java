@@ -16,8 +16,8 @@ public class OrderMenuUI {
             System.out.println("+-------------------------------------------+");
             System.out.println("|            Financial management           |");
             System.out.println("+-------------------------------------------+");
-            System.out.println("|      1. Order amount by month             |");
-            System.out.println("|      2. Money earner by month             |");
+            System.out.println("|      1. Order amount by year              |");
+            System.out.println("|      2. Money earner by year              |");
             System.out.println("|      0. Come back                         |");
             System.out.println("+-------------------------------------------+");
             System.out.print("   --> Enter your choice:");

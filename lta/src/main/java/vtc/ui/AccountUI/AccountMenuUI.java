@@ -120,7 +120,7 @@ OrderMenuUI orderUI = new OrderMenuUI();
                     break;  
                 case "2":
                 cls();
-                AccountFunctionUI.showAccount();
+                
                 AccountFunctionUI.inputInfoUpdate();
                     break;
                 case "0":
@@ -128,13 +128,11 @@ OrderMenuUI orderUI = new OrderMenuUI();
                     break;
                 case "3":
                 cls();
-                AccountFunctionUI.showAccount();
-                System.out.printf(" Press '%s' to go back:", "Enter");
-                    String nh = sc.nextLine();
+                AccountFunctionUI.viewAccount();
                     break;
                 default:
                 System.out.printf("Wrong, Press '%s' to go back:", "Enter");
-                   nh = sc.nextLine();
+                  String nh = sc.nextLine();
             }
         }
     }

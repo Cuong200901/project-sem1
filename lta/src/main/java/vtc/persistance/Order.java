@@ -4,9 +4,11 @@ public class Order {
 
     private int orderId;
     private String time;
-    private int accountId;
     private String note;
-    private int table;
+    private int cardNumber;
+    private String orderStatus;
+    private double totalBill;
+    private int accountId;
 
     public int getOrderId() {
         return orderId;
@@ -40,12 +42,28 @@ public class Order {
         this.note = note;
     }
 
-    public int getTable() {
-        return table;
+    public int getcardNumber() {
+        return cardNumber;
     }
 
-    public void setTable(int table) {
-        this.table = table;
+    public void setcardNumber(int cardNumber) {
+        this.cardNumber = cardNumber;
+    }
+
+    public double gettotalBill() {
+        return totalBill;
+    }
+
+    public void settotalBill(Double totalBill) {
+        this.totalBill = totalBill;
+    }
+
+    public String getorderstatus() {
+        return orderStatus;
+    }
+
+    public void setorderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
 }

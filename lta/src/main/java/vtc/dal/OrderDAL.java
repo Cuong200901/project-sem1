@@ -20,7 +20,7 @@ public class OrderDAL {
         try (Connection con = UtilDB.getConnection();
                 Statement stm = con.createStatement();
                 ResultSet rs = stm.executeQuery(sql)) {
-                    System.out.println("+-------------------------+");
+            System.out.println("+-------------------------+");
             System.out.printf("| %-10s | %-10s |\n", "Id", "Status");
             System.out.println("+-------------------------+");
             while (rs.next()) {
@@ -38,7 +38,7 @@ public class OrderDAL {
         try (Connection con = UtilDB.getConnection();
                 Statement stm = con.createStatement();
                 ResultSet rs = stm.executeQuery(sql)) {
-                    System.out.println("+-------------------------+");
+            System.out.println("+-------------------------+");
             System.out.printf("| %-10s | %-10s |\n", "Id", "Status");
             System.out.println("+-------------------------+");
             while (rs.next()) {
@@ -54,13 +54,13 @@ public class OrderDAL {
 
     public static double monneyEarnByMonth(final int year, int month) {
         double monneyEarner = 0;
-        String sql = "SELECT amount, price from lemon_tee_shop.order_details inner join lemon_tee_shop.products on order_details.product_id = products.product_id join lemon_tee_shop.orders on order_details.order_id = orders.order_id where year(orders.time) = "
-                + year + " and month(orders.time) = " + month + ";";
+        String sql = "SELECT sum(total_bill) FROM lemon_tee_shop.orders where year(orders.time) = " + year
+                + " and month(orders.time) = " + month + ";";
         try (Connection con = UtilDB.getConnection();
                 Statement stm = con.createStatement();
                 ResultSet rs = stm.executeQuery(sql)) {
             while (rs.next()) {
-                monneyEarner = monneyEarner + (rs.getInt("amount") * rs.getDouble("price"));
+                monneyEarner = rs.getInt("sum(total_bill)");
             }
         } catch (final SQLException ex) {
 
@@ -78,11 +78,10 @@ public class OrderDAL {
             while (rs.next()) {
                 if (!rs.getString("status").equals("Clear")) {
                     count = 1;
+                } else {
+                    count = -1;
                 }
-                else
-                {count = -1;}
 
-                
             }
         } catch (final SQLException ex) {
             return 0;
@@ -94,9 +93,9 @@ public class OrderDAL {
                                     + "');");) {
                 final int rs = pstm.executeUpdate();
                 if (rs == 1) {
-                    return count =2;
+                    return count = 2;
                 } else {
-                    return 0 ;
+                    return 0;
                 }
             } catch (final SQLException ex) {
                 return 0;
@@ -111,7 +110,7 @@ public class OrderDAL {
 
     public static int createOrder(Order order) {
         int count = 0;
-        final String sql = "SELECT status FROM lemon_tee_shop.table where table_id = '" + order.getTable() + "';";
+        final String sql = "SELECT status FROM lemon_tee_shop.table where table_id = '';";
         try (Connection con = UtilDB.getConnection();
                 Statement stm = con.createStatement();
                 ResultSet rs = stm.executeQuery(sql)) {
@@ -129,9 +128,8 @@ public class OrderDAL {
 
         if (count == 1) {
             try (Connection con = UtilDB.getConnection();
-                    PreparedStatement pstm = con
-                            .prepareStatement("UPDATE lemon_tee_shop.table SET status = 'Exist' WHERE (table_id = '"
-                                    + order.getTable() + "');");) {
+                    PreparedStatement pstm = con.prepareStatement(
+                            "UPDATE lemon_tee_shop.table SET status = 'Exist' WHERE (table_id = '');");) {
                 final int rs = pstm.executeUpdate();
                 if (rs == 1) {
 
@@ -147,7 +145,7 @@ public class OrderDAL {
                     pstm.setString(1, order.getTime());
                     pstm.setInt(2, order.getAccountId());
                     pstm.setString(3, order.getNote());
-                    pstm.setInt(4, order.getTable());
+
                     pstm.executeUpdate();
                     return count = 3;
                 } catch (SQLException ex) {
@@ -188,10 +186,10 @@ public class OrderDAL {
                 ResultSet rs = stm.executeQuery(sql)) {
             while (rs.next()) {
                 if (rs.getInt("products_in_stock") == 0) {
-                   
+
                     return count = -1;
                 } else if (rs.getInt("products_in_stock") < orderDetails.getamount()) {
-                   
+
                     return count = -2;
                 } else {
                     count = 1;
@@ -225,7 +223,7 @@ public class OrderDAL {
                 pstm.setInt(3, order_id);
                 pstm.executeUpdate();
             } catch (SQLException ex) {
-               
+
                 return count = 0;
 
             }
@@ -237,20 +235,20 @@ public class OrderDAL {
                     ResultSet rs = stm.executeQuery(sql)) {
                 while (rs.next()) {
                     productInStock = rs.getInt("products_in_stock") - orderDetails.getamount();
-                
+
                 }
             } catch (final SQLException ex) {
-                
+
                 return count = 0;
             }
-           
+
             try (Connection con = UtilDB.getConnection();
                     PreparedStatement pstm = con.prepareStatement(
                             "UPDATE lemon_tee_shop.products SET products_in_stock = '" + productInStock
                                     + "' WHERE (product_id = '" + orderDetails.getproductId() + "');");) {
                 final int rs = pstm.executeUpdate();
                 if (rs == 1) {
-                   
+
                     return count = 3;
                 } else {
                     return count = 0;
@@ -261,7 +259,7 @@ public class OrderDAL {
 
             }
         }
-     
+
         return count;
 
     }
@@ -276,10 +274,10 @@ public class OrderDAL {
                 ResultSet rs = stm.executeQuery(sql)) {
             while (rs.next()) {
                 if (rs.getInt("products_in_stock") == 0) {
-                   
+
                     return count = -1;
                 } else if (rs.getInt("products_in_stock") < orderDetails.getamount()) {
-                   
+
                     return count = -2;
                 } else {
                     count = 1;
@@ -300,7 +298,7 @@ public class OrderDAL {
                 pstm.setInt(3, orderDetails.getOrderId());
                 pstm.executeUpdate();
             } catch (SQLException ex) {
-              
+
                 return count = 0;
 
             }
@@ -312,20 +310,20 @@ public class OrderDAL {
                     ResultSet rs = stm.executeQuery(sql)) {
                 while (rs.next()) {
                     productInStock = rs.getInt("products_in_stock") - orderDetails.getamount();
-                    
+
                 }
             } catch (final SQLException ex) {
-               
+
                 return count = 0;
             }
-            
+
             try (Connection con = UtilDB.getConnection();
                     PreparedStatement pstm = con.prepareStatement(
                             "UPDATE lemon_tee_shop.products SET products_in_stock = '" + productInStock
                                     + "' WHERE (product_id = '" + orderDetails.getproductId() + "');");) {
                 final int rs = pstm.executeUpdate();
                 if (rs == 1) {
-                   
+
                     return count = 3;
                 } else {
                     return count = 0;
@@ -335,7 +333,7 @@ public class OrderDAL {
                 return count;
             }
         }
-      
+
         return count;
 
     }
@@ -372,7 +370,6 @@ public class OrderDAL {
             }
         }
 
-        
         return order_id;
     }
 
@@ -382,7 +379,7 @@ public class OrderDAL {
         order.setTime(rs.getString("time"));
         order.setAccountId(rs.getInt("account_id"));
         order.setNote(rs.getString("note"));
-        order.setTable(rs.getInt("table_id"));
+
         return order;
     }
 
@@ -439,20 +436,21 @@ public class OrderDAL {
         return lst;
     }
 
-    public static List<Order> getOrderByMonth(int year, int month) {
-        String sql = "SELECT * from lemon_tee_shop.orders  where year(orders.time) = " + year
+    public static int getOrderByMonth(int year, int month) {
+        int amount = 0;
+        String sql = "SELECT count(order_id) FROM lemon_tee_shop.orders where year(orders.time) = " + year
                 + " and month(orders.time) = " + month + "";
-        List<Order> lst = new ArrayList<>();
         try (Connection con = UtilDB.getConnection();
                 Statement stm = con.createStatement();
                 ResultSet rs = stm.executeQuery(sql)) {
             while (rs.next()) {
-                lst.add(getOrder(rs));
+                amount = rs.getInt("count(order_id)");
             }
-        } catch (SQLException ex) {
-            lst = null;
+        } catch (final SQLException ex) {
+
+            return -1;
         }
-        return lst;
+        return amount;
     }
 
 }

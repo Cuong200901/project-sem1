@@ -11,24 +11,8 @@ public class Account {
     private String email;
     private String position;
     private String startTime;
-    private String shift;
 
-    // public Account(){}
-    // public Account(String username, String password, String firstname, String
-    // lastname, String birthday, int phonenumber, String email, String position,
-    // String starttime, String shift)
-    // {
-    // this.username = username;
-    // this.password = password;
-    // this.firstName = firstname;
-    // this.lastName = lastname;
-    // this.birthday = birthday;
-    // this.phoneNumber = phonenumber;
-    // this.email = email;
-    // this.position = position;
-    // this.startTime = starttime;
-    // this.shift = shift;
-    // }
+  
 
     public int getaccountId() {
         return accountId;
@@ -110,11 +94,4 @@ public class Account {
         this.startTime = starttime;
     }
 
-    public String getshift() {
-        return shift;
-    }
-
-    public void setshift(String shift) {
-        this.shift = shift;
-    }
 }

@@ -9,7 +9,7 @@ import java.util.List;
 public class ProductDAL {
 
     public static List<Product> getAll() {
-        String sql = "select * from products";
+        String sql = "SELECT * FROM lemon_tee_shop.products ORDER BY category ;";
         List<Product> lst = new ArrayList<>();
         try (Connection con = UtilDB.getConnection();
                 Statement stm = con.createStatement();
@@ -43,14 +43,11 @@ public class ProductDAL {
     public static int insertProduct(Product product) {
         try (Connection con = UtilDB.getConnection();
                 PreparedStatement pstm = con.prepareStatement(
-                        "insert into products(name, cost, discount, price,promotion, category, products_in_stock) values (?,?,?,?,?,?,?);");) {
-            pstm.setString(1, product.getProductName());
-            pstm.setDouble(2, product.getCost());
-            pstm.setInt(3, product.getDiscount());
-            pstm.setDouble(4, product.getPrice());
-            pstm.setString(5, product.getPromotion());
-            pstm.setString(6, product.getCategory());
-            pstm.setInt(7, product.getProductsInStock());
+                        "insert into products(name, price, category, products_in_stock) values (?,?,?,?);");) {
+            pstm.setString(1, product.getProductName());       
+            pstm.setDouble(2, product.getPrice());
+            pstm.setString(3, product.getCategory());
+            pstm.setInt(4, product.getProductsInStock());
             System.out.println(pstm.executeUpdate());
             return pstm.executeUpdate();
 
@@ -65,11 +62,8 @@ public class ProductDAL {
     public static Product getProduct(ResultSet rs) throws SQLException {
         Product product = new Product();
         product.setProductId(rs.getInt("product_id"));
-        product.setProductName(rs.getString("name"));
-        product.setCost(rs.getDouble("cost"));
-        product.setDiscount(rs.getInt("discount"));
+        product.setProductName(rs.getString("name"));    
         product.setPrice(rs.getDouble("price"));
-        product.setPromotion(rs.getString("promotion"));
         product.setCategory(rs.getString("category"));
         product.setProductsInStock(rs.getInt("products_in_stock"));
         return product;
@@ -78,15 +72,12 @@ public class ProductDAL {
     public int update(Product product) throws SQLException {
         try (Connection con = UtilDB.getConnection();
                 PreparedStatement pstm = con.prepareStatement(
-                        "UPDATE products SET name = ?, cost = ?, discount = ?, price = ?, promotion = ?, category = ?, products_in_stock = ? WHERE (product_id = ?);");) {
+                        "UPDATE products SET name = ?, price = ?,  category = ?, products_in_stock = ? WHERE (product_id = ?);");) {
             pstm.setString(1, product.getProductName());
-            pstm.setDouble(2, product.getCost());
-            pstm.setInt(3, product.getDiscount());
-            pstm.setDouble(4, product.getPrice());
-            pstm.setString(5, product.getPromotion());
-            pstm.setString(6, product.getCategory());
-            pstm.setInt(7, product.getProductsInStock());
-            pstm.setInt(8, product.getProductId());
+            pstm.setDouble(2, product.getPrice());        
+            pstm.setString(3, product.getCategory());
+            pstm.setInt(4, product.getProductsInStock());
+            pstm.setInt(5, product.getProductId());
 
             int rs = pstm.executeUpdate();
             if (rs == 1) {
