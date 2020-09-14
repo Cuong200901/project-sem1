@@ -11,18 +11,30 @@ import java.util.List;
 import java.util.Scanner;
 
 import vtc.bl.AccountBL;
+import vtc.bl.OrderBL;
 import vtc.bl.ProductBL;
 import vtc.dal.ProductDAL;
 import vtc.persistance.Account;
+import vtc.persistance.Order;
+import vtc.persistance.OrderDetails;
 import vtc.persistance.Product;
 import vtc.ui.AccountUI.AccountFunctionUI;
+import vtc.ui.OrderUI.OrderFunctionUI;
 
 public class App {
+    static Scanner sc = new Scanner(System.in);
+    static AccountBL accountBL = new AccountBL();
+    static ProductBL productBL = new ProductBL();
+    static OrderBL orderBL = new OrderBL();
+    static OrderDetails orderDetails = new OrderDetails();
+    static List<Account> accountsList = new ArrayList<>();
+    static List<Product> productsList = new ArrayList<>();
+    static List<Order> orderList = new ArrayList<>();
+    static List<OrderDetails> orderdetailssList = new ArrayList<>();
 
     public static void main(final String[] args) {
         cls();
         AccountFunctionUI.login();
-
 
     }
 
@@ -95,7 +107,7 @@ public class App {
                 } else {
                     System.out.print("  Wrong type, enter again: ");
                 }
-            } catch (Exception e) {
+            } catch (final Exception e) {
                 System.out.print("  Wrong type, enter again: ");
             }
         }
@@ -108,11 +120,11 @@ public class App {
         while (true) {
             a = input.nextLine();
             try {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                final DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 a = LocalDate.parse(a, formatter).format(formatter2);
                 return a;
-            } catch (Exception e) {
+            } catch (final Exception e) {
                 System.out.print("Error!, Enter again: ");
             }
         }
@@ -127,7 +139,7 @@ public class App {
             try {
                 x = Double.parseDouble(a);
                 return x;
-            } catch (Exception e) {
+            } catch (final Exception e) {
                 System.out.print("  Wrong type, enter again: ");
             }
         }

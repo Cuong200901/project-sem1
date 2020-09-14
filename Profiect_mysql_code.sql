@@ -71,12 +71,10 @@ INSERT INTO `lemon_tee_shop`.`products` (`product_id`, `name`, `price`, `categor
     
 
     
-    
     CREATE TABLE `lemon_tee_shop`.`orders` (
   `order_id` INT NOT NULL AUTO_INCREMENT,
   `time` DATETIME NOT NULL,
 `note` VARCHAR(45) NOT NULL,
-
    `card_number` INT ,
    `order_status` VARCHAR(45) NOT NULL,
     `total_bill` DOUBLE NOT NULL,
@@ -84,15 +82,13 @@ INSERT INTO `lemon_tee_shop`.`products` (`product_id`, `name`, `price`, `categor
   PRIMARY KEY (`order_id`), 
     FOREIGN KEY (`account_id`)
     REFERENCES `lemon_tee_shop`.`accounts` (`account_id`)
-    
-
     );
     
     CREATE TABLE `lemon_tee_shop`.`order_details` (
   `order_id` INT NOT NULL,
   `product_id` INT NOT NULL,
   `amount` INT NOT NULL,
-  
+  `monney` DOUBLE NOT NULL,
 
     FOREIGN KEY (`order_id`)
     REFERENCES `lemon_tee_shop`.`orders` (`order_id`),

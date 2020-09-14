@@ -25,7 +25,7 @@ public class ProductFunctionUI {
         System.out.println("+---------------------------------------------------------------------------+");
         System.out.println("|                                 Item List                                 | ");
         System.out.println("+---------------------------------------------------------------------------+");
-        System.out.printf("| %-5s | %-30s | %-10s | %-9s | %-7s |\n", "ID", "Product name", "Price", "Category",
+        System.out.printf("| %-5s | %-30s | %-10s | %-9s | %-7s |\n", "ID", "Product name", "Price(VND)", "Category",
                 "Amount");
         System.out.println("+---------------------------------------------------------------------------+");
         for (final Product product : lst) {
@@ -43,14 +43,17 @@ public class ProductFunctionUI {
 
         final ProductBL productBL = new ProductBL();
         final List<Product> lp = productBL.getAllById(id);
+      
         System.out.println("+-------------------------------------------------------+");
         System.out.println("|                     [LTS] - Group6                    |");
         System.out.println("+-------------------------------------------------------+");
         System.out.println("|                    Product Information                |");
         System.out.println("+-------------------------------------------------------+");
         for (final Product product : lp) {
+            final DecimalFormat df = new DecimalFormat("#");
+            String price = df.format(product.getPrice());
             System.out.printf("| 1. Product name      : %-30s |\n", product.getProductName());
-            System.out.printf("| 2. Price             : %-30s |\n", product.getPrice());
+            System.out.printf("| 2. Price             : %-30s |\n", price + "(VND)");
             System.out.printf("| 3. Category          : %-30s |\n", product.getCategory());
             System.out.printf("| 4. Products in stock : %-30s |\n", product.getProductsInStock());
         }
@@ -60,13 +63,15 @@ public class ProductFunctionUI {
 
     public static void showProductNewInfor(final Product product) {
         cls();
+        final DecimalFormat df = new DecimalFormat("#");
+        String price = df.format(product.getPrice());
         System.out.println("+-------------------------------------------------------+");
         System.out.println("|                     [LTS] - Group6                    |");
         System.out.println("+-------------------------------------------------------+");
         System.out.println("|                    Product Information                |");
         System.out.println("+-------------------------------------------------------+");
         System.out.printf("| 1. Product name      : %-30s |\n", product.getProductName());
-        System.out.printf("| 2. Price             : %-30s |\n", product.getPrice());
+        System.out.printf("| 2. Price             : %-30s |\n", price + "(VND)");
         System.out.printf("| 3. Category          : %-30s |\n", product.getCategory());
         System.out.printf("| 4. Products in stock : %-30s |\n", product.getProductsInStock());
         System.out.println("+-------------------------------------------------------+");
@@ -231,7 +236,6 @@ public class ProductFunctionUI {
     }
 
     public static void inputInfoUpdate() {
-
         boolean back = true;
         final Scanner sc = new Scanner(System.in);
         final Product product = new Product();
@@ -415,7 +419,7 @@ public class ProductFunctionUI {
 
     public static void inputProductsInStock() {
         boolean back = true;
-        while (true) {
+        while (back) {
             cls();
             showProduct();
             final Scanner sc = new Scanner(System.in);
@@ -424,7 +428,7 @@ public class ProductFunctionUI {
             final List<Product> la = ProductBL.getAllById(id);
             if (id == 0) {
                 back = false;
-                break;
+                
             } else if (la.size() == 0) {
                 System.out.printf(" Press '%s' to go back:", "Enter");
                 final String nh = sc.nextLine();
@@ -462,6 +466,7 @@ public class ProductFunctionUI {
             try {
                 x = Integer.parseInt(a);
                 if (x >= 0) {
+                    
                     return x;
                 } else {
                     System.out.print("  Wrong type, enter again: ");
@@ -469,8 +474,8 @@ public class ProductFunctionUI {
             } catch (final Exception e) {
                 System.out.print("  Wrong type, enter again: ");
             }
+            
         }
-
     }
 
     private static String inputString() {

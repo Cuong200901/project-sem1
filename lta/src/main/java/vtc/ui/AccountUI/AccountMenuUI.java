@@ -30,8 +30,7 @@ OrderMenuUI orderUI = new OrderMenuUI();
             String chose = sc.nextLine();
             switch (chose) {
                 case "1":
-                cls();
-               
+                cls(); 
                 AccountFunctionUI.inputInfoUpdateById(id);
                 break;
                 case "2":

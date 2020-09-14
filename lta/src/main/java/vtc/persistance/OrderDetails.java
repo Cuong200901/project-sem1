@@ -4,6 +4,7 @@ public class OrderDetails {
     private int productId;
     private int amount;
     private int orderId;
+    private double money;
 
 
 
@@ -30,5 +31,15 @@ public class OrderDetails {
     public void setOrderId(int orderId) {
         this.orderId = orderId;
     }
+
+    public double getmoney() {
+        return money;
+    }
+
+    public void setmoney(double money) {
+        this.money = money;
+    }
+
+
 
 }

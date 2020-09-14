@@ -4,11 +4,13 @@ public class Order {
 
     private int orderId;
     private String time;
+    private String orderStatus;
+    private int accountId;
     private String note;
     private int cardNumber;
-    private String orderStatus;
+   
     private double totalBill;
-    private int accountId;
+   
 
     public int getOrderId() {
         return orderId;

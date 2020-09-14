@@ -11,9 +11,9 @@ public class OrderBL {
     static List<Order> orderList = new ArrayList<>();
     static List<OrderDetails> orderDetailsList = new ArrayList<>();
 
-    public static int completeOrder(final int table) {
-        return OrderDAL.completeOrder(table);
-    };
+    // public static int completeOrder(final int table) {
+    //     return OrderDAL.completeOrder(table);
+    // };
 
     public static int createOrder(Order order) {
         return OrderDAL.createOrder(order);
@@ -24,25 +24,23 @@ public class OrderBL {
 
     };
 
-    public static int productsInOrderUpdate(OrderDetails orderDetails) {
-        return OrderDAL.productsInOrderUpdate(orderDetails);
-    };
+    // public static int productsInOrderUpdate(OrderDetails orderDetails) {
+    //     return OrderDAL.productsInOrderUpdate(orderDetails);
+    // };
 
-    public static void showTableClear() {
-        OrderDAL.showTableClear();
-    }
+    // public static void showTableClear() {
+    //     OrderDAL.showTableClear();
+    // }
 
-    public static void showTableExit() {
-        OrderDAL.showTableExist();
-    }
+    // public static void showTableExit() {
+    //     OrderDAL.showTableExist();
+    // }
 
-    public static int updateOrder(final int table) {
-        return OrderDAL.updateOrder(table);
-    };
+    // public static int updateOrder(final int table) {
+    //     return OrderDAL.updateOrder(table);
+    // };
 
-    public static int tableOrderExist(int table) {
-        return OrderDAL.tableOrderExist(table);
-    };
+   
 
     public static List<Order> getOrderByDay(String day) {
         return OrderDAL.getOrderByDay(day);
@@ -65,5 +63,15 @@ public class OrderBL {
     public static double monneyEarnByMonth(final int year, int month) {
         return OrderDAL.monneyEarnByMonth(year, month);
     }
+
+
+    public static List<Order> orderUnconfimred()
+    {
+        return OrderDAL.orderUnconfimred();
+    }
+    public static int ConfirmOrder(int id)
+{
+    return OrderDAL.ConfirmOrder(id);
+}
 
 }

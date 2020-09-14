@@ -3,7 +3,6 @@ package vtc.ui.OrderUI;
 import java.io.IOException;
 import java.util.Scanner;
 
-import vtc.bl.OrderBL;
 
 public class OrderMenuUI {
     Scanner sc = new Scanner(System.in);
@@ -55,9 +54,8 @@ public class OrderMenuUI {
             System.out.println("|                Manage order               |");
             System.out.println("+-------------------------------------------+");
             System.out.println("|      1. Create order                      |");
-            System.out.println("|      2. Update order                      |");
-            System.out.println("|      3. Complete order                    |");
-            System.out.println("|      4. View order                        |");
+            System.out.println("|      2. Confirm order                     |");
+            System.out.println("|      3. View order                        |");
             System.out.println("|      0. Come back                         |");
             System.out.println("+-------------------------------------------+");
             System.out.print("   --> Enter your choice:");
@@ -65,35 +63,23 @@ public class OrderMenuUI {
             switch (chose) {
                 case "1":
                     cls();
-                    OrderBL.showTableClear();
                     OrderFunctionUI.createOrder(id);
                     break;
                 case "2":
                     cls();
-                    OrderBL.showTableExit();
-                    OrderFunctionUI.updateOrder();
+                    OrderFunctionUI.confirmOrder();
                     break;
-
                 case "3":
                     cls();
-                    OrderBL.showTableExit();
-                    OrderFunctionUI.completeOrder();
-                    System.out.printf(" Press '%s' to go back:", "Enter");
-                    String nh = sc.nextLine();
-                    break;
-                case "4":
-                    cls();
-                    OrderFunctionUI.showOrderByDay();
-                    OrderFunctionUI.showBill();
-                    System.out.printf(" Press '%s' to go back:", "Enter");
-                    nh = sc.nextLine();
+                    OrderFunctionUI.showOrder();    
                     break;
                 case "0":
                     back = false;
                     break;
                 default:
                 System.out.printf("Wrong, Press '%s' to go back:", "Enter");
-                    nh = sc.nextLine();
+                String nh = sc.nextLine();
+                
             }
         }
     }

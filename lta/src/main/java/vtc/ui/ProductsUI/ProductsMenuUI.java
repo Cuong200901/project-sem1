@@ -33,12 +33,10 @@ public class ProductsMenuUI {
                     break;
                 case "2":
                     cls();
-                    ProductFunctionUI.showProduct();
                     ProductFunctionUI.inputInfoUpdate();
                     break;
                 case "3":
                     cls();
-                    ProductFunctionUI.showProduct();
                     ProductFunctionUI.inputProductsInStock();
                     break;
                 case "4":
