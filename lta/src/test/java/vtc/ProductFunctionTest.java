@@ -17,10 +17,7 @@
 //         try {
 
 //             product.setProductName("Tra da");
-//             product.setCost((double) 3000);
-//             product.setDiscount(0);
 //             product.setPrice((double) 3000);
-//             product.setPromotion(".");
 //             product.setCategory("Do uong");
 //             product.setProductsInStock(200);
 //             result = new ProductDAL().insertProduct(product);
@@ -29,12 +26,9 @@
 
             
 //             product.setProductName("Tra da");
-//             product.setCost(null);
-//             product.setDiscount((Integer) null);
 //             product.setPrice((double) 3000);
-//             product.setPromotion(null);
-//             product.setCategory("Do uong");
-//             product.setProductsInStock(200);
+//             product.setCategory(NULL);   
+//             product.setProductsInStock(null);
 //             result = new ProductDAL().insertProduct(product);
 //             expected = -1;
 //             assertTrue(result == expected);
@@ -52,11 +46,8 @@
 //         int expected;
 //         try {
 //             product.setProductId(2);
-//             product.setProductName("Tra xoai chanh vang");
-//             product.setCost((double) 20000);
-//             product.setDiscount(0);
+//             product.setProductName("Tra xoai chanh vang");     
 //             product.setPrice((double) 20000);
-//             product.setPromotion("buy 1 get 1 free");
 //             product.setCategory("Do uong");
 //             product.setProductsInStock(111);
 //             result = new ProductDAL().update(product);
@@ -65,11 +56,8 @@
 
 //             product.setProductId(2);
 //             product.setProductName("Tra da");
-//             product.setCost(null);
-//             product.setDiscount((Integer) null);
 //             product.setPrice((double) 3000);
-//             product.setPromotion(null);
-//             product.setCategory("Do uong");
+//             product.setCategory(null);
 //             product.setProductsInStock(111);
 //             result = new ProductDAL().update(product);
 //             expected = -1;
@@ -86,12 +74,9 @@
 //         int result;
 //         int expected;
 //         try {
-          
 //             result = new ProductDAL().updateProductsInStock(2, 222);
 //             expected = 1;
 //             assertTrue(result == expected);
-
-          
 //             result = new ProductDAL().updateProductsInStock((Integer) null, 222);
 //             expected = 0;
 //             assertTrue(result == expected);

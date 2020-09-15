@@ -63,15 +63,15 @@ public class ProductFunctionUI {
 
     public static void showProductNewInfor(final Product product) {
         cls();
-        final DecimalFormat df = new DecimalFormat("#");
-        String price = df.format(product.getPrice());
+        //  DecimalFormat df = new DecimalFormat("#");
+        // String price = df.format(product.getPrice());
         System.out.println("+-------------------------------------------------------+");
         System.out.println("|                     [LTS] - Group6                    |");
         System.out.println("+-------------------------------------------------------+");
         System.out.println("|                    Product Information                |");
         System.out.println("+-------------------------------------------------------+");
         System.out.printf("| 1. Product name      : %-30s |\n", product.getProductName());
-        System.out.printf("| 2. Price             : %-30s |\n", price + "(VND)");
+        System.out.printf("| 2. Price             : %-30s |\n", product.getPrice() + "(VND)");
         System.out.printf("| 3. Category          : %-30s |\n", product.getCategory());
         System.out.printf("| 4. Products in stock : %-30s |\n", product.getProductsInStock());
         System.out.println("+-------------------------------------------------------+");

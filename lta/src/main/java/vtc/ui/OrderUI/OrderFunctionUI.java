@@ -30,18 +30,7 @@ public class OrderFunctionUI {
     static List<Order> orderList = new ArrayList<>();
     static List<OrderDetails> orderdetailssList = new ArrayList<>();
 
-    // public static void completeOrder() {
-    // System.out.print("Enter table: ");
-    // final int table = input_int();
-    // int count = OrderBL.completeOrder(table);
-    // if (count == 2) {
-    // System.out.println("Complete!");
-    // } else if (count == 0) {
-    // System.out.println("Error!");
-    // } else {
-    // System.out.println("Wrong table!");
-    // }
-    // }
+  
 
     public static int input_int() {
         final Scanner input = new Scanner(System.in);
@@ -256,14 +245,6 @@ public class OrderFunctionUI {
         }
     }
 
-    // public static void showTableClear() {
-    // OrderDAL.showTableClear();
-    // }
-
-    // public static void showTableExit() {
-    // OrderDAL.showTableExist();
-    // }
-
     public static Order inputOrder(final int staffid) {
         final Order order = new Order();
         order.setTime("" + java.time.LocalDateTime.now() + "");
@@ -476,7 +457,7 @@ public class OrderFunctionUI {
                         back = false;
                         break;
                     case "ok":
-                        System.out.printf(" Do you want to update(y/n): ");
+                        System.out.printf(" Do you want to confirm(y/n): ");
                         String choice = yesno();
                         if (choice.equalsIgnoreCase("y")) {
                             try {
@@ -579,8 +560,5 @@ public class OrderFunctionUI {
         }
     }
 
-    public static void showbillUnconfimred() {
-
-    }
 
 }

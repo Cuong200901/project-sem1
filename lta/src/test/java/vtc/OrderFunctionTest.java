@@ -11,27 +11,6 @@
 // import vtc.persistance.OrderDetails;
 
 // public class OrderFunctionTest {
-//     @Test
-//     public void CompleteOrderTest() {
-//         int result;
-//         int expected;
-//         try {
-//             result = new OrderDAL().completeOrder(5);
-//             expected = 2;
-//             assertTrue(result == expected);
-
-//             result = new OrderDAL().completeOrder(2);
-//             expected = -1;
-//             assertTrue(result == expected);
-
-//             result = new OrderDAL().completeOrder(55);
-//             expected = 0;
-//             assertTrue(result == expected);
-
-//         } catch (final Exception e) {
-//             // TODO: handle exception
-//         }
-//     }
 
 //     @Test
 //     public void CreateOrderTest() {
@@ -110,64 +89,6 @@
 
 //     }
 
-//     @Test
-//     public void UpdateProductInOrderTest() {
-//         OrderDetails orderDetails = new OrderDetails();
-//         int result;
-//         int expected;
-//         try {
-//             orderDetails.setOrderId(20);
-//             orderDetails.setamount(20);
-//             orderDetails.setproductId(20);
-//             expected = 3;
-//             result = new OrderDAL().productsInOrderUpdate(orderDetails);
-//             assertTrue(result == expected);
-
-//             orderDetails.setOrderId(20);
-//             orderDetails.setamount(10);
-//             orderDetails.setproductId(1);
-//             expected = -1;
-//             result = new OrderDAL().productsInOrderUpdate(orderDetails);
-//             assertTrue(result == expected);
-
-//             orderDetails.setOrderId(20);
-//             orderDetails.setamount(9999);
-//             orderDetails.setproductId(20);
-//             expected = -2;
-//             result = new OrderDAL().productsInOrderUpdate(orderDetails);
-//             assertTrue(result == expected);
-
-//             orderDetails.setOrderId((Integer) null);
-//             orderDetails.setamount(20);
-//             orderDetails.setproductId((Integer) null);
-//             result = new OrderDAL().productsInOrderUpdate(orderDetails);
-//             expected = 0;
-//             assertTrue(result == expected);
-//         } catch (Exception e) {
-//             // TODO: handle exception
-//         }
-//     }
-
-//     @Test
-//     public void UpdateOrderTest() {
-//         int result;
-//         int expected;
-//         try {
-//             result = new OrderDAL().updateOrder(5);
-//             expected = 0;
-//             assertTrue(result != expected);
-
-//             result = new OrderDAL().updateOrder(1);
-//             expected = 0;
-//             assertTrue(result == expected);
-
-//             result = new OrderDAL().updateOrder(55);
-//             expected = 0;
-//             assertTrue(result == expected);
-
-//         } catch (final Exception e) {
-//             // TODO: handle exception
-//         }
-//     }
+//    
 
 // }
