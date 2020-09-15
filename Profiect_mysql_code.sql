@@ -15,10 +15,10 @@ CREATE TABLE `lemon_tee_shop`.`accounts` (
  
   );
   
-INSERT INTO `lemon_tee_shop`.`accounts` (`account_id`, `user_name`, `password`, `first_name`, `last_name`, `birthday`, `phone_number`, `email`, `position`, `start_time`) VALUES ('1', 'nguyenson', '123123', 'Nguyen', 'Son', '2020-01-01', '123456789', '.', 'Admin', '2020-1-1');
+INSERT INTO `lemon_tee_shop`.`accounts` (`account_id`, `user_name`, `password`, `first_name`, `last_name`, `birthday`, `phone_number`, `email`, `position`, `start_time`) VALUES ('1', 'admin', '123123', 'Nguyen', 'Son', '2020-01-01', '123456789', '.', 'Admin', '2020-1-1');
 INSERT INTO `lemon_tee_shop`.`accounts` (`account_id`, `user_name`, `password`, `first_name`, `last_name`, `birthday`, `phone_number`, `email`, `position`, `start_time`) VALUES ('2', 'hoangcuong', '123123', 'Hoang', 'Cuong', '2020-01-01', '123654789', '..', 'Staff', '2020-1-1');
 INSERT INTO `lemon_tee_shop`.`accounts` (`account_id`, `user_name`, `password`, `first_name`, `last_name`, `birthday`, `phone_number`, `email`, `position`, `start_time`) VALUES ('3', 'cuonghaodung', '123123', 'Hoang', 'Cuong', '2020-01-01', '123444789', '...', 'Staff', '2020-1-1');
-INSERT INTO `lemon_tee_shop`.`accounts` (`account_id`, `user_name`, `password`, `first_name`, `last_name`, `birthday`, `phone_number`, `email`, `position`, `start_time`) VALUES ('4', 'cuonghmc', '123123', 'Hoang', 'Cuong', '2020-01-01', '123', '.3', 'Staff', '2020-1-1');
+INSERT INTO `lemon_tee_shop`.`accounts` (`account_id`, `user_name`, `password`, `first_name`, `last_name`, `birthday`, `phone_number`, `email`, `position`, `start_time`) VALUES ('4', 'cuonghmc', '123123', 'Hoang', 'Cuong', '2020-01-01', '123123222', '.3', 'Staff', '2020-1-1');
 
 
 CREATE TABLE `lemon_tee_shop`.`products` (

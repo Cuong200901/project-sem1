@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import vtc.bl.ProductBL;
-import vtc.dal.ProductDAL;
+
 import vtc.persistance.Product;
 
 public class ProductFunctionUI {
@@ -21,9 +21,9 @@ public class ProductFunctionUI {
         final ProductBL productBL = new ProductBL();
         final List<Product> lst = productBL.getAll();
         System.out.println("+---------------------------------------------------------------------------+");
-        System.out.println("|                              [LTS] - Group 6                              | ");
+        System.out.println("|                             [LTS] - Group 6                               | ");
         System.out.println("+---------------------------------------------------------------------------+");
-        System.out.println("|                                 Item List                                 | ");
+        System.out.println("|                               Product List                                | ");
         System.out.println("+---------------------------------------------------------------------------+");
         System.out.printf("| %-5s | %-30s | %-10s | %-9s | %-7s |\n", "ID", "Product name", "Price(VND)", "Category",
                 "Amount");
@@ -63,8 +63,8 @@ public class ProductFunctionUI {
 
     public static void showProductNewInfor(final Product product) {
         cls();
-        //  DecimalFormat df = new DecimalFormat("#");
-        // String price = df.format(product.getPrice());
+     
+
         System.out.println("+-------------------------------------------------------+");
         System.out.println("|                     [LTS] - Group6                    |");
         System.out.println("+-------------------------------------------------------+");

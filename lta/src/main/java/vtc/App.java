@@ -1,9 +1,10 @@
 package vtc;
 
-import java.io.Console;
+
 import java.io.IOException;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
+
+import java.sql.SQLException;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -13,13 +14,13 @@ import java.util.Scanner;
 import vtc.bl.AccountBL;
 import vtc.bl.OrderBL;
 import vtc.bl.ProductBL;
-import vtc.dal.ProductDAL;
+
 import vtc.persistance.Account;
 import vtc.persistance.Order;
 import vtc.persistance.OrderDetails;
 import vtc.persistance.Product;
 import vtc.ui.AccountUI.AccountFunctionUI;
-import vtc.ui.OrderUI.OrderFunctionUI;
+
 
 public class App {
     static Scanner sc = new Scanner(System.in);
@@ -32,10 +33,10 @@ public class App {
     static List<Order> orderList = new ArrayList<>();
     static List<OrderDetails> orderdetailssList = new ArrayList<>();
 
-    public static void main(final String[] args) {
+    public static void main(final String[] args) throws SQLException {
+
         cls();
         AccountFunctionUI.login();
-
     }
 
     public static void cls() {

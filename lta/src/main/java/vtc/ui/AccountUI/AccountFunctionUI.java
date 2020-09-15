@@ -2,6 +2,8 @@ package vtc.ui.AccountUI;
 
 import java.io.Console;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -27,6 +29,18 @@ public class AccountFunctionUI {
             String username;
             String password;
             cls();
+            try {
+                String strconn = "jdbc:mysql://localhost:3306/lemon_tee_shop?user=root&password=cuong2001";
+                Connection conn = (Connection) DriverManager.getConnection(strconn);
+                if (conn == null) {
+                    System.out.println("+-------------------------------------------+");
+                    System.out.println("|          No connection to database        |");
+                }
+
+            } catch (Exception e) {
+                System.out.println("+-------------------------------------------+");
+                System.out.println("|          No connection to database        |");
+            }
             System.out.println("+-------------------------------------------+");
             System.out.println("|               [LTS] - Group6              |");
             System.out.println("+-------------------------------------------+");
