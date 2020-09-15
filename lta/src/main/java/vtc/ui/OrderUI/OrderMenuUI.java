@@ -3,7 +3,6 @@ package vtc.ui.OrderUI;
 import java.io.IOException;
 import java.util.Scanner;
 
-
 public class OrderMenuUI {
     Scanner sc = new Scanner(System.in);
 
@@ -11,7 +10,8 @@ public class OrderMenuUI {
         boolean back = true;
         while (back) {
             cls();
-            System.out.println("[LTS] PF10 - Group6");
+            System.out.println("+-------------------------------------------+");
+            System.out.println("|               [LTS] - Group6              |");
             System.out.println("+-------------------------------------------+");
             System.out.println("|            Financial management           |");
             System.out.println("+-------------------------------------------+");
@@ -39,7 +39,7 @@ public class OrderMenuUI {
                     back = false;
                     break;
                 default:
-                System.out.printf("Wrong, Press '%s' to go back:", "Enter");
+                    System.out.printf("Wrong, Press '%s' to go back:", "Enter");
                     nh = sc.nextLine();
             }
         }
@@ -49,7 +49,8 @@ public class OrderMenuUI {
         boolean back = true;
         while (back) {
             cls();
-            System.out.println("[LTS] PF10 - Group6");
+            System.out.println("+-------------------------------------------+");
+            System.out.println("|               [LTS] - Group6              |");
             System.out.println("+-------------------------------------------+");
             System.out.println("|                Manage order               |");
             System.out.println("+-------------------------------------------+");
@@ -71,15 +72,15 @@ public class OrderMenuUI {
                     break;
                 case "3":
                     cls();
-                    OrderFunctionUI.showOrder();    
+                    OrderFunctionUI.showOrder();
                     break;
                 case "0":
                     back = false;
                     break;
                 default:
-                System.out.printf("Wrong, Press '%s' to go back:", "Enter");
-                String nh = sc.nextLine();
-                
+                    System.out.printf("Wrong, Press '%s' to go back:", "Enter");
+                    String nh = sc.nextLine();
+
             }
         }
     }

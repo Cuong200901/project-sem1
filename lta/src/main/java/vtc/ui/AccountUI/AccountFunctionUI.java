@@ -27,10 +27,10 @@ public class AccountFunctionUI {
             String username;
             String password;
             cls();
-            System.out.println("[LTS] PF10 - Group6");
-
             System.out.println("+-------------------------------------------+");
-            System.out.println("|               WELLCOME                    |");
+            System.out.println("|               [LTS] - Group6              |");
+            System.out.println("+-------------------------------------------+");
+            System.out.println("|                 WELLCOME                  |");
             System.out.println("+-------------------------------------------+");
             System.out.print(" [Username]: ");
             username = sc.nextLine();
@@ -76,20 +76,20 @@ public class AccountFunctionUI {
         AccountBL accountBL = new AccountBL();
         while (back) {
             cls();
-           showAccount();
+            showAccount();
             System.out.print(" --> Enter id (0 to come back): ");
             int id = input_int();
             List<Account> la = accountBL.getById(id);
             if (id == 0) {
                 back = false;
                 break;
-            } else if (la.size() == 0) {      
+            } else if (la.size() == 0) {
                 System.out.printf(" Not found, Press '%s' to go back:", "Enter");
                 String nh = sc.nextLine();
             } else {
-              showAccountById(id);
-              System.out.printf(" Press '%s' to go back:", "Enter");
-              String nh = sc.nextLine();
+                showAccountById(id);
+                System.out.printf(" Press '%s' to go back:", "Enter");
+                String nh = sc.nextLine();
             }
         }
     }
@@ -174,7 +174,7 @@ public class AccountFunctionUI {
                     if (choice1.equalsIgnoreCase("N")) {
                         return account = new Account();
                     }
-                    
+
                 } else {
                     account.setusername(username);
                     count = 1;
@@ -190,10 +190,11 @@ public class AccountFunctionUI {
                     String choice1 = yesno();
                     if (choice1.equalsIgnoreCase("N")) {
                         System.out.print("Continue Insert(y/n): ");
-                    choice1 = yesno();
-                    if (choice1.equalsIgnoreCase("N")) {
-                        return account = new Account();
-                    };
+                        choice1 = yesno();
+                        if (choice1.equalsIgnoreCase("N")) {
+                            return account = new Account();
+                        }
+                        ;
                     } else {
                         account.setpassword(password);
                         count = 2;
@@ -211,10 +212,11 @@ public class AccountFunctionUI {
                     String choice1 = yesno();
                     if (choice1.equalsIgnoreCase("N")) {
                         System.out.print("Continue Insert(y/n): ");
-                    choice1 = yesno();
-                    if (choice1.equalsIgnoreCase("N")) {
-                        return account = new Account();
-                    };
+                        choice1 = yesno();
+                        if (choice1.equalsIgnoreCase("N")) {
+                            return account = new Account();
+                        }
+                        ;
                     } else {
                         account.setfirstname(fn);
                         count = 3;
@@ -232,10 +234,11 @@ public class AccountFunctionUI {
                     String choice1 = yesno();
                     if (choice1.equalsIgnoreCase("N")) {
                         System.out.print("Continue Insert(y/n): ");
-                    choice1 = yesno();
-                    if (choice1.equalsIgnoreCase("N")) {
-                        return account = new Account();
-                    };
+                        choice1 = yesno();
+                        if (choice1.equalsIgnoreCase("N")) {
+                            return account = new Account();
+                        }
+                        ;
                     } else {
                         account.setlastname(ln);
                         count = 4;
@@ -252,10 +255,11 @@ public class AccountFunctionUI {
                     String choice1 = yesno();
                     if (choice1.equalsIgnoreCase("N")) {
                         System.out.print("Continue Insert(y/n): ");
-                    choice1 = yesno();
-                    if (choice1.equalsIgnoreCase("N")) {
-                        return account = new Account();
-                    };
+                        choice1 = yesno();
+                        if (choice1.equalsIgnoreCase("N")) {
+                            return account = new Account();
+                        }
+                        ;
                     } else {
                         account.setbirthday(date);
                         count = 5;
@@ -272,10 +276,11 @@ public class AccountFunctionUI {
                     String choice1 = yesno();
                     if (choice1.equalsIgnoreCase("N")) {
                         System.out.print("Continue Insert(y/n): ");
-                    choice1 = yesno();
-                    if (choice1.equalsIgnoreCase("N")) {
-                        return account = new Account();
-                    };
+                        choice1 = yesno();
+                        if (choice1.equalsIgnoreCase("N")) {
+                            return account = new Account();
+                        }
+                        ;
                     } else {
                         account.setphonenumber(phone);
                         count = 6;
@@ -292,10 +297,11 @@ public class AccountFunctionUI {
                     String choice1 = yesno();
                     if (choice1.equalsIgnoreCase("N")) {
                         System.out.print("Continue Insert(y/n): ");
-                    choice1 = yesno();
-                    if (choice1.equalsIgnoreCase("N")) {
-                        return account = new Account();
-                    };
+                        choice1 = yesno();
+                        if (choice1.equalsIgnoreCase("N")) {
+                            return account = new Account();
+                        }
+                        ;
                     } else {
                         account.setemail(email);
                         count = 7;
@@ -312,11 +318,12 @@ public class AccountFunctionUI {
                     String choice1 = yesno();
                     if (choice1.equalsIgnoreCase("N")) {
                         System.out.print("Continue Insert(y/n): ");
-                    choice1 = yesno();
-                    if (choice1.equalsIgnoreCase("N")) {
-                        return account = new Account();
-                        
-                    };
+                        choice1 = yesno();
+                        if (choice1.equalsIgnoreCase("N")) {
+                            return account = new Account();
+
+                        }
+                        ;
                     } else {
                         account.setstarttime(time);
                         count = 8;
@@ -330,16 +337,12 @@ public class AccountFunctionUI {
                 String choice1 = yesno();
                 if (choice1.equalsIgnoreCase("N")) {
                     return account = new Account();
-                }
-                else
-                {
+                } else {
                     return account;
                 }
             }
-           
-            
+
         }
-        
 
     }
 
@@ -350,7 +353,7 @@ public class AccountFunctionUI {
         AccountBL accountBL = new AccountBL();
         while (back) {
             cls();
-           showAccount();
+            showAccount();
 
             System.out.print(" --> Enter id (0 to come back): ");
             int id = input_int();
@@ -358,12 +361,11 @@ public class AccountFunctionUI {
             if (id == 0) {
                 back = false;
                 break;
-            } else if (la.size() == 0) {      
+            } else if (la.size() == 0) {
                 System.out.printf(" Not found, Press '%s' to go back:", "Enter");
                 String nh = sc.nextLine();
             } else {
-               inputInfoUpdateById(id);
-              
+                inputInfoUpdateById(id);
 
             }
         }
@@ -616,7 +618,7 @@ public class AccountFunctionUI {
         String a;
         while (true) {
             a = input.nextLine();
-            if (a.trim().compareTo("") == 0 || a.length()>30) {
+            if (a.trim().compareTo("") == 0 || a.length() > 30) {
                 System.out.print("  Wrong type, enter again: ");
 
             } else {
@@ -671,7 +673,8 @@ public class AccountFunctionUI {
             try {
                 x = Double.parseDouble(a);
                 if (x >= 0) {
-                    return x;}
+                    return x;
+                }
             } catch (Exception e) {
                 System.out.print("  Wrong type, enter again: ");
             }

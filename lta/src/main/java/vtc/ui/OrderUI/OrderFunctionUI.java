@@ -17,7 +17,6 @@ import vtc.persistance.Order;
 import vtc.persistance.OrderDetails;
 import vtc.persistance.Product;
 
-
 public class OrderFunctionUI {
 
     static Scanner sc = new Scanner(System.in);
@@ -29,8 +28,6 @@ public class OrderFunctionUI {
     static List<Product> productsList = new ArrayList<>();
     static List<Order> orderList = new ArrayList<>();
     static List<OrderDetails> orderdetailssList = new ArrayList<>();
-
-  
 
     public static int input_int() {
         final Scanner input = new Scanner(System.in);
@@ -60,6 +57,8 @@ public class OrderFunctionUI {
             System.out.print("Enter year: ");
             year = input_int();
             if (year >= 1990 && year <= 2050) {
+                System.out.println("+------------------------------+");
+                System.out.println("|         [LTS] - Group6       |");
                 System.out.println("+------------------------------+");
                 System.out.println("|             " + year + "             |");
                 System.out.println("+------------------------------+");
@@ -106,6 +105,8 @@ public class OrderFunctionUI {
         cls();
         String price = null;
         System.out.println("+-------------------------------------------------------------------------+");
+        System.out.println("|                             [LTS] - Group6                              |");
+        System.out.println("+-------------------------------------------------------------------------+");
         System.out.println("|                             Lemon tee shop                              |");
         System.out.println("|                                                                         |");
         System.out.printf("|  Staff name: %-14sTime: %-17s  Card number: %-5s|\n", staff, time, cardnumber);
@@ -122,7 +123,6 @@ public class OrderFunctionUI {
             }
             final DecimalFormat df = new DecimalFormat("#");
             String total = df.format(orderDetails.getmoney());
-        
 
             System.out.println("|                                |               |         |              |");
 
@@ -172,7 +172,10 @@ public class OrderFunctionUI {
             } else {
                 while (true) {
                     cls();
-                    System.out.println("\nOrder List: ");
+                    System.out.println("+-------------------------------------------------------------------------+");
+                    System.out.println("|                              [LTS] - Group6                             |");
+                    System.out.println("+-------------------------------------------------------------------------+");
+                    System.out.println("|                              Order List                                 |");
                     System.out.println("+-------------------------------------------------------------------------+");
                     System.out.printf("| %-10s | %-20s | %-20s | %-12s |\n", "Id", "Time", "Total bill(VND)",
                             "Card number");
@@ -226,7 +229,9 @@ public class OrderFunctionUI {
             System.out.print("Enter year: ");
             year = input_int();
             if (year >= 1990 && year <= 2050) {
-                System.out.println("+---------------- -------------+");
+                System.out.println("+------------------------------+");
+                System.out.println("|         [LTS] - Group6       |");
+                System.out.println("+------------------------------+");
                 System.out.println("|             " + year + "             |");
                 System.out.println("+------------------------------+");
                 System.out.printf("| %-10s | %-15s |\n", "Month", "Amount(VND)");
@@ -367,7 +372,7 @@ public class OrderFunctionUI {
                 }
                 OrderFunctionUI.showBill(orderid);
                 System.out.printf(" Press '%s' to go back:", "Enter");
-                    String nh = sc.nextLine();
+                String nh = sc.nextLine();
                 break;
             } else {
                 List<Product> lpi = ProductBL.getAllById(proID);
@@ -428,6 +433,8 @@ public class OrderFunctionUI {
             boolean back = true;
             while (back) {
                 cls();
+                System.out.println("+-------------------------------------------------------------------------+");
+                System.out.println("|                             [LTS] - Group6                              |");
                 System.out.println("+-------------------------------------------------------------------------+");
                 System.out.println("|                             Lemon tee shop                              |");
                 System.out.println("|                                                                         |");
@@ -559,6 +566,5 @@ public class OrderFunctionUI {
         } catch (IOException | InterruptedException ignored) {
         }
     }
-
 
 }

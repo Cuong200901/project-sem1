@@ -30,7 +30,7 @@ CREATE TABLE `lemon_tee_shop`.`products` (
   PRIMARY KEY (`product_id`));
   
 INSERT INTO `lemon_tee_shop`.`products` (`product_id`, `name`, `price`, `category`, `products_in_stock`) VALUES ('1', 'Tra dau tay tranh vang', '20000', 'Do uong', '50');
-INSERT INTO `lemon_tee_shop`.`products` (`product_id`, `name`, `price`, `category`, `products_in_stock`) VALUES ('2', 'Tra xoai chanh vang', '20000', 'Do uong', '50');
+INSERT INTO `lemon_tee_shop`.`products` (`product_id`, `name`, `price`, `category`, `products_in_stock`) VALUES ('2', 'Tra xoai chanh vang', '20000', 'Do uong', '0');
 INSERT INTO `lemon_tee_shop`.`products` (`product_id`, `name`, `price`, `category`, `products_in_stock`) VALUES ('3', 'Tra dua leo tao xanh', '20000', 'Do uong', '50');
 INSERT INTO `lemon_tee_shop`.`products` (`product_id`, `name`, `price`, `category`, `products_in_stock`) VALUES ('4', 'Sua tuoi chan chau duong den', '25000', 'Do uong', '50');
 INSERT INTO `lemon_tee_shop`.`products` (`product_id`, `name`, `price`, `category`, `products_in_stock`) VALUES ('5', 'Tra chanh xoai', '10000', 'Do uong', '50');
@@ -48,7 +48,7 @@ INSERT INTO `lemon_tee_shop`.`products` (`product_id`, `name`, `price`, `categor
 INSERT INTO `lemon_tee_shop`.`products` (`product_id`, `name`, `price`, `category`, `products_in_stock`) VALUES ('17', 'Chanh leo kim quat', '20000', 'Do uong', '50');
 INSERT INTO `lemon_tee_shop`.`products` (`product_id`, `name`, `price`, `category`, `products_in_stock`) VALUES ('18', 'Tra vai kim cuong', '20000', 'Do uong', '50');
 INSERT INTO `lemon_tee_shop`.`products` (`product_id`, `name`, `price`, `category`, `products_in_stock`) VALUES ('19', 'Cam dua kim quat', '20000', 'Do uong', '50');
-INSERT INTO `lemon_tee_shop`.`products` (`product_id`, `name`, `price`, `category`, `products_in_stock`) VALUES ('20', 'Dau nhiet doi', '25000', 'Do uong', '50');
+INSERT INTO `lemon_tee_shop`.`products` (`product_id`, `name`, `price`, `category`, `products_in_stock`) VALUES ('20', 'Dau nhiet doi', '25000', 'Do uong', '500');
 INSERT INTO `lemon_tee_shop`.`products` (`product_id`, `name`, `price`, `category`, `products_in_stock`) VALUES ('21', 'Tra xanh buoi hong', '25000', 'Do uong', '50');
 INSERT INTO `lemon_tee_shop`.`products` (`product_id`, `name`, `price`, `category`, `products_in_stock`) VALUES ('22', 'Huong duong (1 goi)', '10000', 'Do an vat', '100');
 INSERT INTO `lemon_tee_shop`.`products` (`product_id`, `name`, `price`, `category`, `products_in_stock`) VALUES ('23', 'Khoai lang ken (1 hop)', '25000', 'Do an vat', '20');

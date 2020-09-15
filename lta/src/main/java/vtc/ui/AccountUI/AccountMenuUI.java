@@ -15,7 +15,8 @@ OrderMenuUI orderUI = new OrderMenuUI();
         boolean back = true;
         while (back) {
             cls();
-            System.out.println("[LTS] PF10 - Group6");
+            System.out.println("+-------------------------------------------+");
+            System.out.println("|               [LTS] - Group6              |");
             System.out.println("+-------------------------------------------+");
             System.out.println("|               Wellcome Admin              |");
             System.out.println("+-------------------------------------------+");
@@ -62,7 +63,8 @@ OrderMenuUI orderUI = new OrderMenuUI();
         while (back) {
             cls();
         
-            System.out.println("[LTS] PF10 - Group6");
+            System.out.println("+-------------------------------------------+");
+            System.out.println("|               [LTS] - Group6              |");
             System.out.println("+-------------------------------------------+");
             System.out.println("|               Wellcome Staff              |");
             System.out.println("+-------------------------------------------+");
@@ -101,7 +103,8 @@ OrderMenuUI orderUI = new OrderMenuUI();
         String chose;
         while (back) {
             cls();
-            System.out.println("[LTS] PF10 - Group6");
+            System.out.println("+-------------------------------------------+");
+            System.out.println("|               [LTS] - Group6              |");
             System.out.println("+-------------------------------------------+");
             System.out.println("|               Manage staff                |");
             System.out.println("+-------------------------------------------+");
